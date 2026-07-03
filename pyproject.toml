@@ -1,17 +1,18 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=77.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "choopscoop"
-version = "3.2.0"
+version = "3.4.0"
 description = "Playwright-powered site auditor and marketing tag detector."
 readme = "README.md"
 authors = [
     { name = "Jerusha Gray", email = "jerusha.gray@gmail.com" }
 ]
-license = { file = "LICENSE.md" }
-keywords = ["web-audit", "crawler", "tag-detection", "martech", "analytics", "playwright"]
+license = "MIT"
+license-files = ["LICENSE.md"]
+keywords = ["web-audit", "crawler", "tag-detection", "martech", "analytics", "playwright", "mcp"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.9",
@@ -19,7 +20,6 @@ classifiers = [
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
-    "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Topic :: Internet :: WWW/HTTP :: Site Management",
 ]
@@ -31,6 +31,7 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
+mcp = ["mcp>=1.0"]
 dev = ["pytest", "pytest-asyncio"]
 
 [project.urls]
@@ -39,6 +40,7 @@ Issues = "https://github.com/JerushaGray/ChoopScoop/issues"
 
 [project.scripts]
 choopscoop = "choopscoop.cli:main"
+choopscoop-mcp = "choopscoop.mcp_server:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]

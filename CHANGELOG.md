@@ -1,5 +1,34 @@
 # Changelog
 
+## v3.4.0
+
+Single-page audit API, LLM-optimized output format, and MCP server.
+
+### Added
+
+- **Single-page audit API** (`audit_page`).  Standalone async function that
+  runs the full per-page analysis pipeline (metadata, tags, dataLayer, GA4
+  collect decoding, performance, technology detection) without crawl
+  orchestration.  Accepts an optional `browser` argument for persistent
+  browser reuse.  Exported from the `choopscoop` package via lazy import.
+- **LLM-optimized output format** (`format_page_llm`, `format_site_llm`).
+  Compact projection of the JSON data model: strips detection internals
+  (evidence, found bools, detection notes), raw network request logs, full
+  meta tag lists, and screenshot paths.  Flattens metadata into top-level
+  fields and merges datalayer and GA4 collect data into a single `ga4` key.
+  Stable field order, empty sections omitted.
+- **`--format llm` CLI flag.**  Exports site-level LLM format to
+  `{prefix}-llm.json` alongside other export formats.
+- **MCP server** (`choopscoop.mcp_server`).  Stdio-transport MCP server
+  with six tools: `audit_page_tool`, `start_site_audit`,
+  `get_audit_status`, `get_audit_results`, `list_patterns`, and
+  `identify_unknowns`.  Features persistent browser with lazy init,
+  lifespan shutdown hook, background crawl management with audit eviction,
+  and a guarded import that prints a clear install message when the `mcp`
+  extra is missing.
+- **`choopscoop[mcp]` optional dependency** for the MCP SDK.
+- **`choopscoop-mcp` console script** to launch the MCP server.
+
 ## v3.3.0
 
 Findings engine and structured analysis exports.  ChoopScoop now

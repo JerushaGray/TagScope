@@ -163,7 +163,7 @@ Examples:
     parser.add_argument('--rate-limit', type=float, help='Seconds between requests')
     parser.add_argument('--concurrent', type=int, help='Concurrent pages (1-10)')
     parser.add_argument('--output', help='Output filename prefix')
-    parser.add_argument('--format', choices=['json', 'csv', 'html', 'all'],
+    parser.add_argument('--format', choices=['json', 'csv', 'html', 'llm', 'all'],
                         help='Export format')
     parser.add_argument('--exclude', nargs='+',
                         help='URL patterns to exclude (regex)')
@@ -239,6 +239,9 @@ Examples:
 
         if 'html' in config['output']['formats']:
             auditor.export_html(f'{output_prefix}.html')
+
+        if 'llm' in config['output']['formats']:
+            auditor.export_llm(f'{output_prefix}-llm.json')
 
         auditor.export_findings(f'{output_prefix}-findings.json')
         auditor.export_tag_matrix(f'{output_prefix}-tag-matrix.csv')

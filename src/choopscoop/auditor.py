@@ -1564,6 +1564,24 @@ class SiteAuditor:
 
         print(f"Exported tag coverage matrix to {filename}")
 
+    def export_llm(self, filename: str):
+        """Export LLM-optimized JSON with compact projections."""
+        if not self.page_data:
+            return
+
+        _, unidentified_hosts = self._classify_network_requests()
+
+        output = format_site_llm(
+            self.page_data,
+            broken_links=self.broken_links,
+            unidentified_hosts=unidentified_hosts,
+        )
+
+        with open(filename, 'w', encoding='utf-8') as f:
+            json.dump(output, f, indent=2, ensure_ascii=False, default=str)
+
+        print(f"Exported LLM format to {filename}")
+
     def export_html(self, filename: str):
         """Export interactive HTML report."""
         tag_summary = defaultdict(int)
@@ -1796,3 +1814,334 @@ def _build_html_report(domain: str, page_data: List[Dict],
 """
 
     return html
+
+
+# ---------------------------------------------------------------------------
+# Single-page audit API
+# ---------------------------------------------------------------------------
+
+def _single_page_config(url: str, overrides: Optional[Dict] = None) -> Dict:
+    """Build a minimal config dict tuned for single-page auditing.
+
+    Starts from the same defaults as the CLI, then disables crawl-specific
+    features (resume, progress saving, rate limiting) so a single page can
+    be audited as fast as possible.
+    """
+    # Import here to avoid circular dependency at module level
+    from choopscoop.cli import _default_config
+
+    cfg = _default_config()
+    cfg['start_url'] = url
+    cfg['crawl']['max_pages'] = 1
+    cfg['crawl']['max_depth'] = 0
+    cfg['crawl']['rate_limit'] = 0.0  # no throttle for single page
+    cfg['crawl']['concurrent_pages'] = 1
+    cfg['resume']['enabled'] = False
+    cfg['output']['save_progress'] = False
+    cfg['logging']['console'] = False
+    cfg['logging']['log_file'] = None
+
+    if overrides:
+        for section, values in overrides.items():
+            if isinstance(values, dict) and section in cfg:
+                cfg[section].update(values)
+            else:
+                cfg[section] = values
+
+    return cfg
+
+
+async def audit_page(
+    url: str,
+    *,
+    config: Optional[Dict] = None,
+    browser: Optional[Browser] = None,
+    tech_patterns: Optional[Dict] = None,
+) -> Optional[Dict]:
+    """Audit a single page and return its data dict.
+
+    This is the public, standalone entry point for single-page auditing.
+    It reuses the full SiteAuditor analysis pipeline (metadata, tags,
+    dataLayer, GA4 collect decoding, performance metrics, and technology
+    detection) without any crawl orchestration overhead.
+
+    Parameters
+    ----------
+    url : str
+        The page URL to audit.
+    config : dict, optional
+        Config overrides merged on top of single-page defaults.
+        Accepts the same section/key structure as the full config
+        (e.g. ``{'browser': {'headless': False}}``).
+    browser : playwright Browser, optional
+        An existing Playwright Chromium browser instance to reuse.
+        When provided the caller owns the lifecycle; ``audit_page``
+        will **not** close it.  When omitted a browser is launched
+        and torn down automatically.
+    tech_patterns : dict, optional
+        Extended technology patterns (e.g. merged Wappalyzer rulesets).
+        Falls back to the built-in ``TECHNOLOGY_PATTERNS``.
+
+    Returns
+    -------
+    dict or None
+        The page data dict on success, ``None`` on navigation failure
+        or HTTP >= 400.
+    """
+    cfg = _single_page_config(url, config)
+    auditor = SiteAuditor(cfg, extended_tech_patterns=tech_patterns)
+    # Bypass the 0.1 s floor enforced by the constructor -- single-page
+    # mode should not sleep between requests.
+    auditor.rate_limit = 0
+
+    own_browser = browser is None
+    pw_context = None
+    try:
+        if own_browser:
+            pw_context = await async_playwright().start()
+            browser = await pw_context.chromium.launch(
+                headless=cfg['browser']['headless']
+            )
+
+        return await auditor._crawl_page(browser, url, depth=0)
+    finally:
+        if own_browser:
+            if browser:
+                await browser.close()
+            if pw_context:
+                await pw_context.stop()
+
+
+# ---------------------------------------------------------------------------
+# LLM-optimized format projection
+# ---------------------------------------------------------------------------
+
+def _merge_ga4(datalayer: Dict, ga4_collect: Dict) -> Dict:
+    """Merge datalayer GA4 data and collect-request data into one summary."""
+    measurement_ids = sorted(set(ga4_collect.get('measurement_ids', [])))
+
+    # Merge event counts: collect events are the ground truth for what
+    # actually fired; datalayer events show what was pushed client-side.
+    # Use collect counts when available, fall back to datalayer.
+    events = dict(ga4_collect.get('events', {}))
+    for label, count in datalayer.get('ga4_events', {}).items():
+        key = label.lower().replace(' ', '_')
+        if key not in events:
+            events[key] = count
+
+    custom = datalayer.get('custom_events', [])
+    gtag_config = datalayer.get('gtag_config', [])
+
+    out = {}
+    if measurement_ids:
+        out['measurement_ids'] = measurement_ids
+    if events:
+        out['events'] = events
+    if custom:
+        out['custom_events'] = custom
+    if gtag_config:
+        out['gtag_config'] = gtag_config
+    return out
+
+
+def format_page_llm(page_data: Dict) -> Dict:
+    """Project a page data dict into a compact, LLM-optimized shape.
+
+    Strips detection internals (evidence, found bools, detection_notes),
+    raw network request logs, full meta tag lists, screenshot paths,
+    and crawl depth. Flattens metadata into top-level fields. Merges
+    datalayer and GA4 collect data into a single ``ga4`` key.
+
+    Field order is stable and alphabetical within sections to keep
+    token representations consistent across calls.
+    """
+    meta = page_data.get('metadata', {})
+
+    # --- Tags: keep only ids, category, confidence ---
+    tags = {}
+    for name, info in sorted(page_data.get('tags', {}).items()):
+        entry = {'category': info['category'], 'confidence': info['confidence']}
+        if info.get('ids'):
+            entry['ids'] = info['ids']
+        tags[name] = entry
+
+    # --- Technologies: flatten to list of {name, category, confidence} ---
+    techs = [
+        {'name': t['name'], 'category': t['category'], 'confidence': t['confidence']}
+        for t in sorted(page_data.get('technologies', []), key=lambda t: t['name'])
+    ]
+
+    # --- GA4: merge datalayer + collect ---
+    ga4 = _merge_ga4(
+        page_data.get('datalayer', {}),
+        page_data.get('ga4_collect_events', {}),
+    )
+
+    # --- Performance: pass through, already compact ---
+    perf = page_data.get('performance', {})
+
+    # --- Assemble in stable order ---
+    out = {'url': page_data['url'], 'status': page_data['status']}
+
+    if meta.get('title'):
+        out['title'] = meta['title']
+    if meta.get('description'):
+        out['description'] = meta['description']
+    if meta.get('canonical'):
+        out['canonical'] = meta['canonical']
+    if meta.get('lang'):
+        out['lang'] = meta['lang']
+    if meta.get('h1'):
+        out['h1'] = meta['h1']
+
+    if tags:
+        out['tags'] = tags
+    if techs:
+        out['technologies'] = techs
+    if ga4:
+        out['ga4'] = ga4
+    if perf:
+        out['performance'] = perf
+
+    out['crawled_at'] = page_data.get('crawled_at', '')
+    return out
+
+
+def format_site_llm(
+    pages: List[Dict],
+    broken_links: Optional[List[Dict]] = None,
+    unidentified_hosts: Optional[Dict[str, int]] = None,
+) -> Dict:
+    """Project a full site audit into a compact, LLM-optimized shape.
+
+    Aggregates per-page data into site-level summaries: tag coverage,
+    technology stack, merged GA4 analytics, average performance, and
+    page-level compact records. Designed to fit comfortably in an LLM
+    context window even for large crawls.
+    """
+    if not pages:
+        return {'pages_audited': 0}
+
+    start_url = pages[0]['url']
+    total = len(pages)
+
+    # --- Tag coverage ---
+    tag_agg: Dict[str, Dict] = {}
+    for page in pages:
+        for name, info in page.get('tags', {}).items():
+            if name not in tag_agg:
+                tag_agg[name] = {
+                    'category': info['category'],
+                    'ids': set(),
+                    'pages': 0,
+                    'confidence': info['confidence'],
+                }
+            agg = tag_agg[name]
+            agg['pages'] += 1
+            agg['ids'].update(info.get('ids', []))
+            if info['confidence'] == 'high':
+                agg['confidence'] = 'high'
+
+    tags_out = {}
+    for name in sorted(tag_agg):
+        agg = tag_agg[name]
+        entry = {
+            'category': agg['category'],
+            'pages': agg['pages'],
+            'coverage_pct': round(agg['pages'] / total * 100, 1),
+            'confidence': agg['confidence'],
+        }
+        if agg['ids']:
+            entry['ids'] = sorted(agg['ids'])
+        tags_out[name] = entry
+
+    # --- Technology stack ---
+    tech_agg: Dict[str, Dict] = {}
+    for page in pages:
+        for t in page.get('technologies', []):
+            name = t['name']
+            if name not in tech_agg:
+                tech_agg[name] = {
+                    'category': t['category'],
+                    'pages': 0,
+                    'confidence': t['confidence'],
+                }
+            tech_agg[name]['pages'] += 1
+            if t['confidence'] == 'high':
+                tech_agg[name]['confidence'] = 'high'
+
+    techs_out = [
+        {
+            'name': name,
+            'category': info['category'],
+            'pages': info['pages'],
+            'confidence': info['confidence'],
+        }
+        for name, info in sorted(tech_agg.items())
+    ]
+
+    # --- GA4 aggregate ---
+    all_mids: set = set()
+    all_events: Dict[str, int] = {}
+    all_custom: set = set()
+    for page in pages:
+        dl = page.get('datalayer', {})
+        gc = page.get('ga4_collect_events', {})
+        all_mids.update(gc.get('measurement_ids', []))
+        # Per-page dedup: prefer collect events, fall back to datalayer
+        page_events = dict(gc.get('events', {}))
+        for label, cnt in dl.get('ga4_events', {}).items():
+            key = label.lower().replace(' ', '_')
+            if key not in page_events:
+                page_events[key] = cnt
+        for ev, cnt in page_events.items():
+            all_events[ev] = all_events.get(ev, 0) + cnt
+        all_custom.update(dl.get('custom_events', []))
+
+    ga4_out = {}
+    if all_mids:
+        ga4_out['measurement_ids'] = sorted(all_mids)
+    if all_events:
+        ga4_out['events'] = all_events
+    if all_custom:
+        ga4_out['custom_events'] = sorted(all_custom)
+
+    # --- Performance averages ---
+    perf_sums: Dict[str, float] = {}
+    perf_counts: Dict[str, int] = {}
+    for page in pages:
+        for k, v in page.get('performance', {}).items():
+            if isinstance(v, (int, float)) and v > 0:
+                perf_sums[k] = perf_sums.get(k, 0) + v
+                perf_counts[k] = perf_counts.get(k, 0) + 1
+    perf_avg = {
+        k: round(perf_sums[k] / perf_counts[k], 1) for k in sorted(perf_sums)
+    }
+
+    # --- Compact per-page records ---
+    page_records = []
+    for page in pages:
+        rec = format_page_llm(page)
+        page_records.append(rec)
+
+    # --- Assemble ---
+    out: Dict = {
+        'url': start_url,
+        'pages_audited': total,
+    }
+    if tags_out:
+        out['tags'] = tags_out
+    if techs_out:
+        out['technologies'] = techs_out
+    if ga4_out:
+        out['ga4'] = ga4_out
+    if perf_avg:
+        out['performance_avg'] = perf_avg
+    if broken_links:
+        out['broken_links'] = len(broken_links)
+    if unidentified_hosts:
+        out['unidentified_hosts'] = dict(
+            sorted(unidentified_hosts.items(), key=lambda x: -x[1])[:20]
+        )
+    out['pages'] = page_records
+    return out
