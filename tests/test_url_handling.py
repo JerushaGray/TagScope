@@ -60,37 +60,37 @@ class TestShouldCrawl:
 
 class TestAuditorInit:
     def test_max_pages_floor(self, default_config):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         default_config['crawl']['max_pages'] = -5
         a = SiteAuditor(default_config)
         assert a.max_pages == 1
 
     def test_max_depth_floor(self, default_config):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         default_config['crawl']['max_depth'] = -1
         a = SiteAuditor(default_config)
         assert a.max_depth == 0
 
     def test_rate_limit_floor(self, default_config):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         default_config['crawl']['rate_limit'] = 0.01
         a = SiteAuditor(default_config)
         assert a.rate_limit == 0.1
 
     def test_concurrent_capped_at_10(self, default_config):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         default_config['crawl']['concurrent_pages'] = 50
         a = SiteAuditor(default_config)
         assert a.concurrent_pages == 10
 
     def test_invalid_concurrent_defaults_to_3(self, default_config):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         default_config['crawl']['concurrent_pages'] = 'bad'
         a = SiteAuditor(default_config)
         assert a.concurrent_pages == 3
 
     def test_timeout_converted_to_ms(self, default_config):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         default_config['crawl']['timeout'] = 45
         a = SiteAuditor(default_config)
         assert a.timeout == 45000

@@ -1,6 +1,6 @@
 # Data Dictionary
 
-Reference for all data structures in ChoopScoop: pattern definitions, detection
+Reference for all data structures in TagScope: pattern definitions, detection
 output, JSON export schema, and GA4 event decoding.
 
 ---
@@ -321,7 +321,7 @@ Exported as `{prefix}-findings.json` alongside the main JSON export.
 
 | Key | Type | Description |
 |-----|------|-------------|
-| `report_info` | `object` | Site, domain, generation timestamp, total pages, ChoopScoop version. |
+| `report_info` | `object` | Site, domain, generation timestamp, total pages, TagScope version. |
 | `tag_index` | `dict[str, object]` | Per-tag detail keyed by tag name. See below. |
 | `technology_index` | `dict[str, object]` | Per-technology detail keyed by tech name. See below. |
 | `category_breakdown` | `dict[str, list[str]]` | Tag category -> list of tag names in that category. |
@@ -413,7 +413,7 @@ Exported as `{prefix}-findings.json` alongside the main JSON export.
 When `--extended` is used, Wappalyzer entries are converted to the same schema
 as TECHNOLOGY_PATTERNS. The conversion mapping:
 
-| Wappalyzer field | ChoopScoop field | Notes |
+| Wappalyzer field | TagScope field | Notes |
 |------------------|-----------------|-------|
 | `scriptSrc` (list of regex) | `patterns` | Suffixes like `\;version:\1` and `\;confidence:50` are stripped. Invalid regexes are dropped. |
 | `html` (list of regex) | `patterns` | Disabled by default (`INCLUDE_HTML_BODY = False`) due to false-positive risk. |

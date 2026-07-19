@@ -10,7 +10,7 @@ Single-page audit API, LLM-optimized output format, and MCP server.
   runs the full per-page analysis pipeline (metadata, tags, dataLayer, GA4
   collect decoding, performance, technology detection) without crawl
   orchestration.  Accepts an optional `browser` argument for persistent
-  browser reuse.  Exported from the `choopscoop` package via lazy import.
+  browser reuse.  Exported from the `tagscope` package via lazy import.
 - **LLM-optimized output format** (`format_page_llm`, `format_site_llm`).
   Compact projection of the JSON data model: strips detection internals
   (evidence, found bools, detection notes), raw network request logs, full
@@ -19,19 +19,19 @@ Single-page audit API, LLM-optimized output format, and MCP server.
   Stable field order, empty sections omitted.
 - **`--format llm` CLI flag.**  Exports site-level LLM format to
   `{prefix}-llm.json` alongside other export formats.
-- **MCP server** (`choopscoop.mcp_server`).  Stdio-transport MCP server
+- **MCP server** (`tagscope.mcp_server`).  Stdio-transport MCP server
   with six tools: `audit_page_tool`, `start_site_audit`,
   `get_audit_status`, `get_audit_results`, `list_patterns`, and
   `identify_unknowns`.  Features persistent browser with lazy init,
   lifespan shutdown hook, background crawl management with audit eviction,
   and a guarded import that prints a clear install message when the `mcp`
   extra is missing.
-- **`choopscoop[mcp]` optional dependency** for the MCP SDK.
-- **`choopscoop-mcp` console script** to launch the MCP server.
+- **`tagscope[mcp]` optional dependency** for the MCP SDK.
+- **`tagscope-mcp` console script** to launch the MCP server.
 
 ## v3.3.0
 
-Findings engine and structured analysis exports.  ChoopScoop now
+Findings engine and structured analysis exports.  TagScope now
 auto-generates a findings report with 17 issue types, a tag coverage
 matrix, and organizes all output into per-run subdirectories.
 
@@ -84,7 +84,7 @@ matrix, and organizes all output into per-run subdirectories.
 
 ## v3.2.0
 
-Extended technology detection via Wappalyzer adapter.  ChoopScoop can now
+Extended technology detection via Wappalyzer adapter.  TagScope can now
 detect ~5000 technologies by converting Wappalyzer OSS fingerprints at
 runtime, without bundling any GPL data in the package.
 
@@ -92,11 +92,11 @@ runtime, without bundling any GPL data in the package.
 
 - **Wappalyzer adapter module** (`wappalyzer_adapter.py`).  Build-time
   converter that transforms Wappalyzer-format fingerprints (scriptSrc, html,
-  meta, headers) into ChoopScoop's TECHNOLOGY_PATTERNS schema.  Strips
+  meta, headers) into TagScope's TECHNOLOGY_PATTERNS schema.  Strips
   `\;version:\1` and `\;confidence:` suffixes, validates regexes, and
   normalizes keys to snake_case.
 - **`--fetch-rulesets` CLI flag.**  Downloads Wappalyzer fingerprint data
-  from GitHub to `~/.choopscoop/rulesets/` using stdlib urllib.  Tries
+  from GitHub to `~/.tagscope/rulesets/` using stdlib urllib.  Tries
   multiple mirror URLs (enthec/webappanalyzer, AliasIO/wappalyzer,
   wappalyzer/wappalyzer) for resilience.  No URL argument required.
 - **`--extended` CLI flag.**  Loads cached Wappalyzer rulesets, converts
@@ -108,7 +108,7 @@ runtime, without bundling any GPL data in the package.
   The auditor's detection methods transparently handle both compiled and
   string patterns.
 - **Category mapping.**  Maps Wappalyzer's ~100 category IDs to
-  ChoopScoop's 16 category strings via explicit ID map with name-based
+  TagScope's 16 category strings via explicit ID map with name-based
   fallback.  Unmapped categories default to 'Other'.
 - 36 new tests covering suffix stripping, key normalization, category
   mapping, entry conversion, merge semantics, pattern compilation, and
@@ -219,7 +219,7 @@ caused false negatives, false positives, and event blindness.
 
 **Breaking:** Full restructure from single-file script to proper Python package.
 
-- Reorganized into `src/choopscoop/` package layout (auditor, cli, patterns modules)
+- Reorganized into `src/tagscope/` package layout (auditor, cli, patterns modules)
 - Removed Wappalyzer subprocess dependency; all detection is now built-in
 - Expanded technology detection from 8 to 50 patterns (CMS, frameworks, CDN, hosting, payment, monitoring)
 - Added response header analysis for server/CDN/platform fingerprinting

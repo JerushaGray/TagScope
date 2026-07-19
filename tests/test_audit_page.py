@@ -3,7 +3,7 @@
 import asyncio
 from unittest.mock import AsyncMock, MagicMock, patch
 
-from choopscoop.auditor import audit_page, _single_page_config
+from tagscope.auditor import audit_page, _single_page_config
 
 
 # ---------------------------------------------------------------------------
@@ -169,7 +169,7 @@ class TestAuditPage:
         async def fake_start():
             return mock_pw
 
-        with patch('choopscoop.auditor.async_playwright') as mock_apw:
+        with patch('tagscope.auditor.async_playwright') as mock_apw:
             mock_apw.return_value.start = fake_start
 
             asyncio.run(
@@ -187,7 +187,7 @@ class TestAuditPage:
         page = _make_mock_page()
         browser = _make_mock_browser(page)
 
-        with patch('choopscoop.auditor.asyncio.sleep', new_callable=AsyncMock) as mock_sleep:
+        with patch('tagscope.auditor.asyncio.sleep', new_callable=AsyncMock) as mock_sleep:
             asyncio.run(
                 audit_page('https://example.com', browser=browser)
             )

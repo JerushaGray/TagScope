@@ -1,7 +1,7 @@
 """Tests for Wappalyzer adapter module."""
 
 import re
-from choopscoop.wappalyzer_adapter import (
+from tagscope.wappalyzer_adapter import (
     _strip_wappalyzer_suffixes,
     _is_valid_regex,
     _normalize_key,
@@ -219,7 +219,7 @@ class TestCompiledPatternsWithAuditor:
     """Verify that compiled patterns work correctly with auditor detection."""
 
     def test_compiled_patterns_match_html(self):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         from conftest import make_config
 
         compiled = compile_patterns({
@@ -238,7 +238,7 @@ class TestCompiledPatternsWithAuditor:
         assert result[0]["name"] == "test_tech"
 
     def test_compiled_meta_patterns_match(self):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         from conftest import make_config
 
         compiled = compile_patterns({
@@ -257,7 +257,7 @@ class TestCompiledPatternsWithAuditor:
         assert result[0]["name"] == "test_cms"
 
     def test_compiled_header_patterns_match(self):
-        from choopscoop.auditor import SiteAuditor
+        from tagscope.auditor import SiteAuditor
         from conftest import make_config
 
         compiled = compile_patterns({

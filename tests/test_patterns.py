@@ -1,6 +1,6 @@
 """Tests for pattern data integrity."""
 
-from choopscoop.patterns import TAG_PATTERNS, GA4_EVENTS, TECHNOLOGY_PATTERNS
+from tagscope.patterns import TAG_PATTERNS, GA4_EVENTS, TECHNOLOGY_PATTERNS
 
 
 class TestPatternIntegrity:

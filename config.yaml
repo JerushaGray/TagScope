@@ -1,4 +1,4 @@
-# ChoopScoop - Configuration File
+# TagScope - Configuration File
 # Copy and customize this file for your specific needs.
 
 # Crawl Settings
@@ -80,7 +80,7 @@ output:
 # Logging
 logging:
   level: "INFO"               # DEBUG, INFO, WARNING, ERROR
-  log_file: "choopscoop.log"  # Log file name (null for no file logging)
+  log_file: "tagscope.log"  # Log file name (null for no file logging)
   console: true               # Log to console
 
 # Resume Settings

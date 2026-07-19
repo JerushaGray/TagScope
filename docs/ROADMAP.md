@@ -2,7 +2,7 @@
 
 ## v3.0 (current)
 
-- [x] Proper Python package layout (`src/choopscoop/`)
+- [x] Proper Python package layout (`src/tagscope/`)
 - [x] 48 marketing/analytics tag patterns
 - [x] 50 built-in technology detection patterns (no external dependencies)
 - [x] Response header fingerprinting (web servers, CDNs, hosting platforms)

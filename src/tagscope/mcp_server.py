@@ -1,8 +1,8 @@
-"""MCP server exposing ChoopScoop site-auditing tools over stdio transport.
+"""MCP server exposing TagScope site-auditing tools over stdio transport.
 
-Install with the optional extra: ``pip install choopscoop[mcp]``
+Install with the optional extra: ``pip install tagscope[mcp]``
 
-Run: ``choopscoop-mcp`` (console script) or ``python -m choopscoop.mcp_server``
+Run: ``tagscope-mcp`` (console script) or ``python -m tagscope.mcp_server``
 """
 
 import asyncio
@@ -20,14 +20,14 @@ try:
 except ImportError:
     _MISSING_MCP = True
 
-from choopscoop.auditor import (
+from tagscope.auditor import (
     SiteAuditor,
     audit_page,
     format_page_llm,
     format_site_llm,
     _extract_host,
 )
-from choopscoop.patterns import TAG_PATTERNS, TECHNOLOGY_PATTERNS
+from tagscope.patterns import TAG_PATTERNS, TECHNOLOGY_PATTERNS
 
 logging.basicConfig(level=logging.WARNING)
 
@@ -153,7 +153,7 @@ async def start_site_audit(
 
     audit_id = _make_audit_id()
 
-    from choopscoop.cli import _default_config
+    from tagscope.cli import _default_config
     config = _default_config()
     config['start_url'] = url
     config['crawl']['max_pages'] = max_pages
@@ -161,7 +161,7 @@ async def start_site_audit(
     config['resume']['enabled'] = False
     config['output']['save_progress'] = False
     config['output']['prefix'] = str(
-        tempfile.mkdtemp(prefix='choopscoop-') + '/audit'
+        tempfile.mkdtemp(prefix='tagscope-') + '/audit'
     )
     config['logging']['console'] = False
     config['logging']['log_file'] = None
@@ -251,7 +251,7 @@ async def get_audit_results(audit_id: str) -> str:
 
 
 async def list_patterns() -> str:
-    """List all marketing tags and web technologies that ChoopScoop can detect.
+    """List all marketing tags and web technologies that TagScope can detect.
 
     Returns tag names grouped by category (Tag Management, Analytics,
     Advertising, etc.) and technology names grouped by category (CMS,
@@ -278,7 +278,7 @@ async def list_patterns() -> str:
 async def identify_unknowns(hosts: List[str]) -> str:
     """Classify a list of third-party hostnames as known or unknown.
 
-    Checks each hostname against ChoopScoop's tag and technology pattern
+    Checks each hostname against TagScope's tag and technology pattern
     databases. Returns which hosts are recognized (and which vendor they
     belong to) and which are unidentified.
 
@@ -337,9 +337,9 @@ async def identify_unknowns(hosts: List[str]) -> str:
 
 if not _MISSING_MCP:
     mcp = FastMCP(
-        "choopscoop",
+        "tagscope",
         instructions=(
-            "ChoopScoop is a Playwright-powered site auditor that detects marketing "
+            "TagScope is a Playwright-powered site auditor that detects marketing "
             "tags, analytics implementations, and web technologies. All detection is "
             "deterministic (no LLM in the detection loop). Use audit_page for fast "
             "single-page checks and start_site_audit/get_audit_status/get_audit_results "
@@ -366,14 +366,14 @@ def _require_mcp():
     if _MISSING_MCP:
         print(
             "The MCP server requires the 'mcp' package.\n"
-            "Install it with: pip install choopscoop[mcp]",
+            "Install it with: pip install tagscope[mcp]",
             file=sys.stderr,
         )
         sys.exit(1)
 
 
 def main():
-    """Run the ChoopScoop MCP server over stdio."""
+    """Run the TagScope MCP server over stdio."""
     _require_mcp()
     mcp.run(transport="stdio")
 

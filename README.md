@@ -1,6 +1,6 @@
-# ChoopScoop
+# TagScope
 
-[![CI](https://github.com/JerushaGray/ChoopScoop/actions/workflows/ci.yml/badge.svg)](https://github.com/JerushaGray/ChoopScoop/actions/workflows/ci.yml)
+[![CI](https://github.com/JerushaGray/TagScope/actions/workflows/ci.yml/badge.svg)](https://github.com/JerushaGray/TagScope/actions/workflows/ci.yml)
 [![Python 3.9+](https://img.shields.io/badge/python-3.9%2B-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE.md)
 [![Playwright](https://img.shields.io/badge/browser-Playwright-45ba63.svg)](https://playwright.dev/python/)
@@ -21,37 +21,37 @@ All detection uses built-in pattern matching against HTML, script sources, meta 
 
 ```bash
 # Clone and install
-git clone https://github.com/JerushaGray/ChoopScoop.git
-cd ChoopScoop
+git clone https://github.com/JerushaGray/TagScope.git
+cd TagScope
 pip install .
 
 # Install the Chromium browser engine (one-time)
 playwright install chromium
 
 # Run an audit
-choopscoop https://example.com
+tagscope https://example.com
 ```
 
 ## Usage
 
 ```bash
 # Basic crawl (100 pages, depth 3, exports JSON + CSV + HTML)
-choopscoop https://example.com
+tagscope https://example.com
 
 # Larger crawl with higher concurrency
-choopscoop https://example.com --max-pages 500 --concurrent 5
+tagscope https://example.com --max-pages 500 --concurrent 5
 
 # Single format output
-choopscoop https://example.com --format html --output my-report
+tagscope https://example.com --format html --output my-report
 
 # Filter URLs
-choopscoop https://example.com --exclude "/admin.*" "/login.*"
+tagscope https://example.com --exclude "/admin.*" "/login.*"
 
 # Use a config file for repeatable settings
-choopscoop https://example.com --config config.yaml
+tagscope https://example.com --config config.yaml
 
 # Also works as a module
-python -m choopscoop https://example.com
+python -m tagscope https://example.com
 ```
 
 ## Output
@@ -116,9 +116,9 @@ URL --> Playwright (Chromium, headless)
 ## Project structure
 
 ```
-src/choopscoop/
+src/tagscope/
     __init__.py              Package metadata and version
-    __main__.py              python -m choopscoop entry point
+    __main__.py              python -m tagscope entry point
     auditor.py               SiteAuditor class: crawling, detection, export
     cli.py                   Argument parsing, config loading, entry point
     patterns.py              Tag patterns, technology patterns, GA4 event map
@@ -156,25 +156,25 @@ resume:
   enabled: true         # Resume interrupted crawls
 ```
 
-All settings can also be overridden via CLI flags. See `choopscoop --help`.
+All settings can also be overridden via CLI flags. See `tagscope --help`.
 
 ## Extended technology detection
 
-By default ChoopScoop ships 50 curated technology patterns. For broader coverage (~5000 technologies), you can opt in to fingerprints from the [Wappalyzer](https://github.com/AliasIO/wappalyzer) open-source project:
+By default TagScope ships 50 curated technology patterns. For broader coverage (~5000 technologies), you can opt in to fingerprints from the [Wappalyzer](https://github.com/AliasIO/wappalyzer) open-source project:
 
 ```bash
-# One-time: download fingerprints to ~/.choopscoop/rulesets/
-choopscoop --fetch-rulesets
+# One-time: download fingerprints to ~/.tagscope/rulesets/
+tagscope --fetch-rulesets
 
 # Use them on your next crawl
-choopscoop https://example.com --extended
+tagscope https://example.com --extended
 ```
 
-This is opt-in because the Wappalyzer fingerprint data is [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) licensed. ChoopScoop (MIT) never bundles or redistributes that data -- `--fetch-rulesets` downloads it to your local machine only. The 50 curated patterns always take precedence when both sources define the same technology.
+This is opt-in because the Wappalyzer fingerprint data is [GPL-3.0](https://www.gnu.org/licenses/gpl-3.0.en.html) licensed. TagScope (MIT) never bundles or redistributes that data -- `--fetch-rulesets` downloads it to your local machine only. The 50 curated patterns always take precedence when both sources define the same technology.
 
 ## Comparison
 
-| Feature | ChoopScoop | Screaming Frog | Lighthouse | python-seo-analyzer |
+| Feature | TagScope | Screaming Frog | Lighthouse | python-seo-analyzer |
 |---------|-----------|----------------|------------|---------------------|
 | Marketing tag detection (77 tools) | Yes | No | No | No |
 | Technology fingerprinting (50 curated, ~5000 extended) | Yes | Limited | No | No |

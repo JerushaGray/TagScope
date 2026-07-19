@@ -1,6 +1,6 @@
 """Tests for LLM-optimized format projections."""
 
-from choopscoop.auditor import format_page_llm, format_site_llm
+from tagscope.auditor import format_page_llm, format_site_llm
 
 
 def _sample_page(url='https://example.com', **overrides):

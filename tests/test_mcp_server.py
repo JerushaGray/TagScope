@@ -8,7 +8,7 @@ import asyncio
 import json
 from unittest.mock import AsyncMock, patch
 
-from choopscoop.mcp_server import (
+from tagscope.mcp_server import (
     audit_page_tool,
     get_audit_status,
     get_audit_results,
@@ -149,8 +149,8 @@ def _mock_audit_page_result():
 class TestAuditPageTool:
     def test_success_returns_llm_format(self):
         mock_browser = AsyncMock()
-        with patch('choopscoop.mcp_server._get_browser', return_value=mock_browser), \
-             patch('choopscoop.mcp_server.audit_page', return_value=_mock_audit_page_result()):
+        with patch('tagscope.mcp_server._get_browser', return_value=mock_browser), \
+             patch('tagscope.mcp_server.audit_page', return_value=_mock_audit_page_result()):
             result = json.loads(asyncio.run(audit_page_tool('https://example.com')))
         assert result['url'] == 'https://example.com'
         assert result['status'] == 200
@@ -160,8 +160,8 @@ class TestAuditPageTool:
 
     def test_navigation_failure_returns_error(self):
         mock_browser = AsyncMock()
-        with patch('choopscoop.mcp_server._get_browser', return_value=mock_browser), \
-             patch('choopscoop.mcp_server.audit_page', return_value=None):
+        with patch('tagscope.mcp_server._get_browser', return_value=mock_browser), \
+             patch('tagscope.mcp_server.audit_page', return_value=None):
             result = json.loads(asyncio.run(audit_page_tool('https://example.com/404')))
         assert 'error' in result
 
@@ -175,7 +175,7 @@ class TestSiteAuditLifecycle:
         _audits.clear()
 
     def test_start_returns_audit_id(self):
-        with patch('choopscoop.mcp_server.SiteAuditor') as MockAuditor:
+        with patch('tagscope.mcp_server.SiteAuditor') as MockAuditor:
             mock_instance = MockAuditor.return_value
             mock_instance.stats = {'pages_crawled': 0, 'pages_failed': 0}
             mock_instance.to_visit = []
@@ -188,7 +188,7 @@ class TestSiteAuditLifecycle:
         assert result['status'] == 'running'
 
     def test_max_pages_clamped(self):
-        with patch('choopscoop.mcp_server.SiteAuditor') as MockAuditor:
+        with patch('tagscope.mcp_server.SiteAuditor') as MockAuditor:
             mock_instance = MockAuditor.return_value
             mock_instance.stats = {'pages_crawled': 0, 'pages_failed': 0}
             mock_instance.to_visit = []

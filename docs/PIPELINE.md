@@ -1,4 +1,4 @@
-# ChoopScoop Audit Pipeline
+# TagScope Audit Pipeline
 
 This document walks through the full audit pipeline -- from launching a crawl to producing a client-ready report -- and describes what data is gathered at each step.
 
@@ -7,10 +7,10 @@ This document walks through the full audit pipeline -- from launching a crawl to
 ## Step 1: Launch the Crawl
 
 ```bash
-choopscoop https://example.com
+tagscope https://example.com
 ```
 
-The CLI (`src/choopscoop/cli.py`) parses arguments, loads configuration (defaults or a YAML config file), and initializes the `SiteAuditor`. Key settings:
+The CLI (`src/tagscope/cli.py`) parses arguments, loads configuration (defaults or a YAML config file), and initializes the `SiteAuditor`. Key settings:
 
 | Setting | Default | Description |
 |---------|---------|-------------|
@@ -43,7 +43,7 @@ These network logs feed into tag detection, GA4 collect decoding, and third-part
 
 ### 2b. Tag Detection
 
-Tags are detected by matching page content and network requests against patterns defined in `src/choopscoop/patterns.py`. Each tag pattern can use multiple detection methods:
+Tags are detected by matching page content and network requests against patterns defined in `src/tagscope/patterns.py`. Each tag pattern can use multiple detection methods:
 
 | Method | How it works |
 |--------|-------------|

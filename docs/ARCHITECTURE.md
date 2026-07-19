@@ -2,7 +2,7 @@
 
 ## Overview
 
-ChoopScoop is a Playwright-powered site auditor that detects marketing tags, analytics
+TagScope is a Playwright-powered site auditor that detects marketing tags, analytics
 platforms, and web technologies across crawled pages. It runs headless Chromium to render
 JavaScript-heavy sites, then applies regex and URL-signature matching against the rendered
 DOM, network requests, meta tags, and response headers.
@@ -24,8 +24,8 @@ SiteAuditor (auditor.py)
   |     |-- TECHNOLOGY_PATTERNS (50+ platform fingerprints)
   |     `-- GA4_EVENTS (25 dataLayer event types)
   |-- Wappalyzer adapter (wappalyzer_adapter.py, optional --extended)
-  |     |-- fetch_rulesets: download fingerprints to ~/.choopscoop/rulesets/
-  |     |-- load_and_convert: JSON -> ChoopScoop schema conversion
+  |     |-- fetch_rulesets: download fingerprints to ~/.tagscope/rulesets/
+  |     |-- load_and_convert: JSON -> TagScope schema conversion
   |     |-- merge_patterns: curated-wins merge with extended data
   |     `-- compile_patterns: one-time regex compilation at load
   |-- Link extraction and crawl queue
@@ -39,7 +39,7 @@ SiteAuditor (auditor.py)
 Early versions shelled out to `wappalyzer-next` (the npm CLI) as a subprocess for
 technology detection. This was dropped in v3.0 for three reasons:
 
-1. **Licensing conflict.** wappalyzer-next is GPL v3; ChoopScoop is MIT. Distributing
+1. **Licensing conflict.** wappalyzer-next is GPL v3; TagScope is MIT. Distributing
    them together creates a license compatibility issue.
 2. **Performance.** Spawning a Node subprocess per page added 2-4 seconds of overhead
    on top of the Playwright crawl. Built-in regex matching against already-fetched HTML
@@ -181,7 +181,7 @@ collapsed.
 
 ### Why not async HTTP (httpx/aiohttp) instead of Playwright?
 
-Many tag detection tools use plain HTTP requests. ChoopScoop uses a real browser because:
+Many tag detection tools use plain HTTP requests. TagScope uses a real browser because:
 
 - **JavaScript rendering.** Most marketing tags are injected by JavaScript (GTM, HubSpot,
   Segment). A plain HTTP fetch sees none of them.
@@ -196,18 +196,18 @@ The cost is higher resource usage and slower crawl speed. For the typical use ca
 ### Extended detection via Wappalyzer adapter (v3.2)
 
 The curated TECHNOLOGY_PATTERNS library covers ~50 technologies -- the ones most
-relevant to MarTech auditing.  For broader coverage (~5000 technologies), ChoopScoop
+relevant to MarTech auditing.  For broader coverage (~5000 technologies), TagScope
 can optionally load fingerprints from the Wappalyzer open-source project.
 
-**Why not bundle them?**  Wappalyzer fingerprint data is GPL-3.0; ChoopScoop is MIT.
+**Why not bundle them?**  Wappalyzer fingerprint data is GPL-3.0; TagScope is MIT.
 Bundling the data would create a license compatibility issue.  Instead, the user
 downloads the data themselves (`--fetch-rulesets`) to a local cache
-(`~/.choopscoop/rulesets/`), and the adapter converts the format at runtime.  The
+(`~/.tagscope/rulesets/`), and the adapter converts the format at runtime.  The
 package never distributes GPL content.
 
-**Format conversion.**  Wappalyzer entries use a different schema than ChoopScoop:
+**Format conversion.**  Wappalyzer entries use a different schema than TagScope:
 
-| Wappalyzer field | ChoopScoop equivalent |
+| Wappalyzer field | TagScope equivalent |
 |---|---|
 | `scriptSrc` (list of regex) | `patterns` (list of regex) |
 | `html` (body-level regex) | `patterns` (disabled by default -- too noisy) |
@@ -235,9 +235,9 @@ first one that responds.
 ## Project Layout
 
 ```
-src/choopscoop/
+src/tagscope/
   __init__.py              # Package version
-  __main__.py              # python -m choopscoop entry point
+  __main__.py              # python -m tagscope entry point
   auditor.py               # SiteAuditor class, crawl logic, export
   cli.py                   # Argument parsing, config loading, dependency checks
   patterns.py              # TAG_PATTERNS, TECHNOLOGY_PATTERNS, GA4_EVENTS

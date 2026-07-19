@@ -1,7 +1,7 @@
-"""Shared fixtures for the ChoopScoop test suite."""
+"""Shared fixtures for the TagScope test suite."""
 
 import pytest
-from choopscoop.cli import _default_config
+from tagscope.cli import _default_config
 
 
 def make_config():
@@ -23,7 +23,7 @@ def default_config():
 @pytest.fixture
 def auditor(default_config):
     """A SiteAuditor instance configured for testing (no Playwright needed)."""
-    from choopscoop.auditor import SiteAuditor
+    from tagscope.auditor import SiteAuditor
     return SiteAuditor(default_config)
 
 

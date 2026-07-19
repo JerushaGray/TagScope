@@ -3,7 +3,7 @@
 import os
 import tempfile
 import pytest
-from choopscoop.cli import load_config, _default_config
+from tagscope.cli import load_config, _default_config
 
 
 class TestDefaultConfig:

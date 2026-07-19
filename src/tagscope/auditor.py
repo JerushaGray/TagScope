@@ -17,7 +17,7 @@ from playwright.async_api import (
     TimeoutError as PlaywrightTimeout,
 )
 
-from choopscoop.patterns import (
+from tagscope.patterns import (
     TAG_PATTERNS, GA4_EVENTS, TECHNOLOGY_PATTERNS,
     CONFIDENCE_HIGH, CONFIDENCE_MEDIUM, CONFIDENCE_LOW,
 )
@@ -145,7 +145,7 @@ class SiteAuditor:
             handlers.append(console_handler)
 
         if log_config['log_file']:
-            log_dir = Path.home() / '.choopscoop'
+            log_dir = Path.home() / '.tagscope'
             log_dir.mkdir(exist_ok=True)
             log_path = log_dir / log_config['log_file']
 
@@ -1475,7 +1475,7 @@ class SiteAuditor:
                 'domain': self.base_domain,
                 'generated_at': datetime.now().isoformat(),
                 'total_pages': total_pages,
-                'choopscoop_version': '3.3.0',
+                'tagscope_version': '3.3.0',
             },
             'tag_index': tag_index,
             'technology_index': tech_index,
@@ -1828,7 +1828,7 @@ def _single_page_config(url: str, overrides: Optional[Dict] = None) -> Dict:
     be audited as fast as possible.
     """
     # Import here to avoid circular dependency at module level
-    from choopscoop.cli import _default_config
+    from tagscope.cli import _default_config
 
     cfg = _default_config()
     cfg['start_url'] = url

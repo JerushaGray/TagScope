@@ -1,4 +1,4 @@
-"""Command-line interface for ChoopScoop."""
+"""Command-line interface for TagScope."""
 
 import asyncio
 import argparse
@@ -9,9 +9,9 @@ from platform import system
 from typing import Dict, Optional
 from urllib.parse import urlparse
 
-from choopscoop import __version__
-from choopscoop.auditor import SiteAuditor
-from choopscoop.wappalyzer_adapter import (
+from tagscope import __version__
+from tagscope.auditor import SiteAuditor
+from tagscope.wappalyzer_adapter import (
     fetch_rulesets, load_and_convert, merge_patterns, compile_patterns,
     RULESETS_DIR,
 )
@@ -136,7 +136,7 @@ def _default_config() -> Dict:
             'formats': ['json', 'csv', 'html'], 'prefix': 'site-audit',
             'save_progress': True, 'progress_interval': 10
         },
-        'logging': {'level': 'INFO', 'log_file': 'choopscoop.log', 'console': True},
+        'logging': {'level': 'INFO', 'log_file': 'tagscope.log', 'console': True},
         'resume': {'enabled': True, 'state_file': 'crawl_state.json'}
     }
 
@@ -144,7 +144,7 @@ def _default_config() -> Dict:
 async def _async_main():
     """Async entry point."""
     parser = argparse.ArgumentParser(
-        description='ChoopScoop - Playwright-powered site auditor and marketing tag detector',
+        description='TagScope - Playwright-powered site auditor and marketing tag detector',
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""
 Examples:
@@ -182,7 +182,7 @@ Examples:
 
     # Handle --fetch-rulesets: download and exit
     if args.fetch_rulesets:
-        print(f"ChoopScoop v{__version__} - fetching Wappalyzer rulesets...\n")
+        print(f"TagScope v{__version__} - fetching Wappalyzer rulesets...\n")
         try:
             dest = fetch_rulesets()
             print(f"\nRulesets cached at {dest}")
@@ -195,7 +195,7 @@ Examples:
     if not args.url:
         parser.error("the following arguments are required: url")
 
-    print(f"ChoopScoop v{__version__} - checking dependencies...\n")
+    print(f"TagScope v{__version__} - checking dependencies...\n")
     if not check_dependencies():
         print("\nPlease install missing dependencies and try again.", file=sys.stderr)
         sys.exit(2)
@@ -214,7 +214,7 @@ Examples:
             sys.exit(2)
         print("Loading extended technology detection (Wappalyzer rulesets)...")
         wappalyzer_patterns = load_and_convert()
-        from choopscoop.patterns import TECHNOLOGY_PATTERNS
+        from tagscope.patterns import TECHNOLOGY_PATTERNS
         extended_patterns = merge_patterns(TECHNOLOGY_PATTERNS, wappalyzer_patterns)
         extended_patterns = compile_patterns(extended_patterns)
         print(f"  {len(extended_patterns)} technology patterns loaded "

@@ -1,9 +1,9 @@
-"""Wappalyzer ruleset adapter -- converts Wappalyzer fingerprints to ChoopScoop schema.
+"""Wappalyzer ruleset adapter -- converts Wappalyzer fingerprints to TagScope schema.
 
 Wappalyzer fingerprint data is GPL-3.0 licensed.  This module never bundles
 that data; it is fetched at runtime by the user (--fetch-rulesets) into a
-local cache (~/.choopscoop/rulesets/).  The adapter converts the format on
-the fly so the MIT-licensed ChoopScoop package never distributes GPL content.
+local cache (~/.tagscope/rulesets/).  The adapter converts the format on
+the fly so the MIT-licensed TagScope package never distributes GPL content.
 """
 
 import json
@@ -34,13 +34,13 @@ _CATEGORIES_URLS = [
 ]
 
 # Where rulesets are cached locally
-RULESETS_DIR = Path.home() / ".choopscoop" / "rulesets"
+RULESETS_DIR = Path.home() / ".tagscope" / "rulesets"
 
 # When True, Wappalyzer "html" body-level patterns are included.
 # Default False because they tend toward false positives on large DOMs.
 INCLUDE_HTML_BODY = False
 
-# Wappalyzer category ID -> ChoopScoop category string mapping.
+# Wappalyzer category ID -> TagScope category string mapping.
 # IDs come from Wappalyzer's categories.json.  Unmapped IDs get a
 # fallback based on the category name.
 _CATEGORY_MAP: Dict[int, str] = {
@@ -76,7 +76,7 @@ _CATEGORY_MAP: Dict[int, str] = {
     95: "Performance Monitoring",
 }
 
-# Fallback: map Wappalyzer category name substrings to ChoopScoop categories
+# Fallback: map Wappalyzer category name substrings to TagScope categories
 _CATEGORY_NAME_FALLBACKS = [
     ("cms", "CMS"),
     ("e-commerce", "E-commerce"),
@@ -184,7 +184,7 @@ def _map_category(
     cat_ids: List[int],
     categories_lookup: Dict[int, str],
 ) -> str:
-    """Map Wappalyzer category IDs to a ChoopScoop category string.
+    """Map Wappalyzer category IDs to a TagScope category string.
 
     Tries the explicit ID map first, then falls back to name-based matching,
     then defaults to 'Other'.
@@ -208,7 +208,7 @@ def convert_entry(
     entry: Dict,
     categories_lookup: Dict[int, str],
 ) -> Optional[Dict]:
-    """Convert a single Wappalyzer technology entry to ChoopScoop schema.
+    """Convert a single Wappalyzer technology entry to TagScope schema.
 
     Returns None if the entry has no usable fingerprints after conversion.
     """
@@ -304,7 +304,7 @@ def convert_entry(
 
 
 def load_and_convert(rulesets_dir: Optional[Path] = None) -> Dict[str, Dict]:
-    """Load all cached Wappalyzer JSON files and convert to ChoopScoop schema.
+    """Load all cached Wappalyzer JSON files and convert to TagScope schema.
 
     Returns a dict of {tech_name: tech_config} in the same format as
     TECHNOLOGY_PATTERNS from patterns.py.

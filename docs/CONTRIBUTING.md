@@ -5,8 +5,8 @@ Contributions, issues, and feedback are welcome.
 ## Development setup
 
 ```bash
-git clone https://github.com/JerushaGray/ChoopScoop.git
-cd ChoopScoop
+git clone https://github.com/JerushaGray/TagScope.git
+cd TagScope
 pip install -e ".[dev]"
 playwright install chromium
 ```

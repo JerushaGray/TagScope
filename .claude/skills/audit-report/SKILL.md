@@ -1,17 +1,17 @@
 ---
-description: Analyze a ChoopScoop site audit JSON and produce a structured narrative report. Use when the user asks for a site audit report, audit summary, or audit analysis.
+description: Analyze a TagScope site audit JSON and produce a structured narrative report. Use when the user asks for a site audit report, audit summary, or audit analysis.
 argument-hint: <path-to-json> [--tier 1|2|3]
 ---
 
 ## Context
 
-ChoopScoop is a Playwright-powered site auditor that detects marketing tags, technologies,
+TagScope is a Playwright-powered site auditor that detects marketing tags, technologies,
 dataLayer events, and GA4 Measurement Protocol events across crawled pages. The JSON export
 contains all crawl data. Your job is to read it and produce a client-ready narrative.
 
 ## Arguments
 
-- `$0` -- Path to the ChoopScoop JSON export file. Required.
+- `$0` -- Path to the TagScope JSON export file. Required.
 - `--tier 1` -- Factual summary only (reformats the data).
 - `--tier 2` -- Analytical (derives insights, flags anomalies). **Default.**
 - `--tier 3` -- Advisory (includes recommendations and priority ranking).
