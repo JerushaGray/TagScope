@@ -41,8 +41,11 @@ tagscope https://example.com
 # Larger crawl with higher concurrency
 tagscope https://example.com --max-pages 500 --concurrent 5
 
-# Single format output
-tagscope https://example.com --format html --output my-report
+# LLM-optimized output (compact JSON, strips internals, merges GA4 data)
+tagscope https://example.com --format llm
+
+# All formats at once
+tagscope https://example.com --format all
 
 # Filter URLs
 tagscope https://example.com --exclude "/admin.*" "/login.*"
@@ -54,6 +57,36 @@ tagscope https://example.com --config config.yaml
 python -m tagscope https://example.com
 ```
 
+## Python API
+
+TagScope exposes a single-page audit function for use in scripts, notebooks, and agents:
+
+```python
+import asyncio
+from tagscope import audit_page, format_page_llm, format_site_llm
+
+# Audit a single page
+result = asyncio.run(audit_page("https://example.com"))
+
+# Full result dict: tags, technologies, dataLayer, GA4 events, performance
+print(result["tags_detected"])
+
+# Compact projection for LLM consumption
+compact = format_page_llm(result)
+```
+
+For multi-page audits, use `SiteAuditor` directly:
+
+```python
+from tagscope.auditor import SiteAuditor
+
+async def run():
+    auditor = SiteAuditor({"crawl": {"max_pages": 50}})
+    await auditor.crawl("https://example.com")
+    auditor.export_findings()
+    return format_site_llm(auditor)
+```
+
 ## Output
 
 Each crawl creates a run directory at `output/run-{domain}/` containing:
@@ -63,6 +96,7 @@ Each crawl creates a run directory at `output/run-{domain}/` containing:
 | `site-audit-{domain}.json` | Full crawl data: tags, technologies, dataLayer, GA4 collect events, performance, network requests |
 | `site-audit-{domain}-findings.json` | Computed analysis: tag index, technology index, coverage profiles, GA4 summary, and auto-generated findings with severity ratings |
 | `site-audit-{domain}-tag-matrix.csv` | Tag coverage matrix -- pages as rows, tags as columns, with group deduplication |
+| `site-audit-{domain}-llm.json` | Compact projection for LLM consumption: flattened metadata, merged GA4 data, internals stripped |
 | `site-audit-{domain}.csv` | One row per page with tag presence, load time, link counts |
 | `site-audit-{domain}.html` | Interactive dashboard with tag/tech summaries, broken links, page details |
 
@@ -85,6 +119,16 @@ If you use [Claude Code](https://claude.ai/code), the bundled `/audit-report` sk
 | Tier 3 | Advisory -- expands each finding into Finding / Risk / Recommendation / Priority | ~2000 words |
 
 See [docs/PIPELINE.md](docs/PIPELINE.md) for a full walkthrough of the data pipeline.
+
+## MCP server
+
+TagScope ships an MCP server that exposes its auditing tools to AI agents:
+
+```bash
+pip install "tagscope[mcp]"
+```
+
+Six tools are available: `audit_page_tool`, `start_site_audit`, `get_audit_status`, `get_audit_results`, `list_patterns`, and `identify_unknowns`. The server uses stdio transport and maintains a persistent browser across tool calls.
 
 ## How it works
 
@@ -110,6 +154,7 @@ URL --> Playwright (Chromium, headless)
          |--> Raw JSON + CSV + HTML exports
          |--> Findings report (computed analysis + auto-findings)
          |--> Tag coverage matrix
+         |--> LLM-optimized JSON
          |--> [optional] Narrative report via /audit-report skill
 ```
 
@@ -117,14 +162,15 @@ URL --> Playwright (Chromium, headless)
 
 ```
 src/tagscope/
-    __init__.py              Package metadata and version
+    __init__.py              Package exports: audit_page, format_page_llm, format_site_llm
     __main__.py              python -m tagscope entry point
     auditor.py               SiteAuditor class: crawling, detection, export
     cli.py                   Argument parsing, config loading, entry point
     patterns.py              Tag patterns, technology patterns, GA4 event map
+    mcp_server.py            MCP server with 6 auditing tools
     wappalyzer_adapter.py    Wappalyzer fingerprint conversion and caching
 config.yaml           Default configuration template
-tests/                Test suite (264 tests, pytest)
+tests/                333 tests (pytest)
 docs/
     PIPELINE.md       Full pipeline walkthrough
     DATA_DICTIONARY.md  Field definitions for patterns, detection output, and export schema
@@ -181,6 +227,9 @@ This is opt-in because the Wappalyzer fingerprint data is [GPL-3.0](https://www.
 | DataLayer/GA4 event parsing | Yes | No | No | No |
 | GA4 Measurement Protocol decoding | Yes | No | No | No |
 | Auto-generated findings (17 types) | Yes | No | No | No |
+| LLM-optimized output format | Yes | No | No | No |
+| Python API (`audit_page`) | Yes | No | No | No |
+| MCP server (AI agent integration) | Yes | No | No | No |
 | JavaScript-rendered pages | Yes (Playwright) | Yes | Yes | No |
 | Performance metrics | Yes | Yes | Yes | No |
 | Concurrent crawling | Yes (1-10 pages) | Yes | Single page | Yes |
@@ -201,4 +250,4 @@ This is opt-in because the Wappalyzer fingerprint data is [GPL-3.0](https://www.
 
 ## Author
 
-**Jerusha Gray** -- Marketing Operations, MarTech, and Data Strategy
+**Jerusha Gray** -- Marketing technologist and software engineer. [LinkedIn](https://www.linkedin.com/in/jerusha-gray/) | [GitHub](https://github.com/JerushaGray)
