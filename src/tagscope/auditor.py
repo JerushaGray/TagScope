@@ -8,6 +8,9 @@ import logging
 import sys
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, parse_qs, unquote_plus
+from urllib.robotparser import RobotFileParser
+from urllib.request import urlopen
+from urllib.error import URLError
 from datetime import datetime
 from collections import defaultdict, OrderedDict
 from typing import Set, Dict, List, Optional, Tuple
@@ -144,6 +147,11 @@ class SiteAuditor:
         self.output_prefix = config['output']['prefix']
         self.memory_threshold = 50  # Flush to disk every 50 pages
 
+        # robots.txt — parsed once at startup, None means "allow all"
+        self._robots: Optional[RobotFileParser] = None
+        if config['filters'].get('respect_robots', True):
+            self._robots = self._load_robots_txt()
+
         self._setup_logging()
 
     def _setup_logging(self):
@@ -180,6 +188,29 @@ class SiteAuditor:
             handlers=handlers,
             force=True
         )
+
+    def _load_robots_txt(self) -> Optional[RobotFileParser]:
+        """Fetch and parse robots.txt for the crawl domain.
+
+        Returns a RobotFileParser on success, or None if the file cannot be
+        fetched (404, timeout, network error) — callers treat None as allow-all.
+        """
+        parsed = urlparse(self.start_url)
+        robots_url = f"{parsed.scheme}://{parsed.netloc}/robots.txt"
+        try:
+            rp = RobotFileParser()
+            rp.set_url(robots_url)
+            with urlopen(robots_url, timeout=10) as response:
+                raw = response.read().decode('utf-8', errors='replace')
+            rp.parse(raw.splitlines())
+            logging.info(f"Loaded robots.txt from {robots_url}")
+            return rp
+        except URLError as e:
+            logging.warning(f"Could not fetch robots.txt ({robots_url}): {e} — proceeding without restrictions")
+            return None
+        except Exception as e:
+            logging.warning(f"Failed to parse robots.txt ({robots_url}): {e} — proceeding without restrictions")
+            return None
 
     def _load_previous_state(self):
         """Load previous crawl state for resume."""
@@ -260,6 +291,10 @@ class SiteAuditor:
 
         skip_extensions = self.config['filters']['skip_extensions']
         if any(url.lower().endswith(ext) for ext in skip_extensions):
+            return False
+
+        if self._robots is not None and not self._robots.can_fetch('*', url):
+            logging.debug(f"Skipping {url} (disallowed by robots.txt)")
             return False
 
         return True
