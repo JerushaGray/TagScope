@@ -1,5 +1,52 @@
 # Changelog
 
+## v3.5.0
+
+Bug fixes, config correctness, and crawl reliability improvements.
+
+### Fixed
+
+- **`retry_on_status` now applied.** HTTP 429 and 5xx responses are
+  retried up to `max_retries` times with `retry_delay` backoff, matching
+  the documented config behaviour. Previously the config key was declared
+  but never read — all error-status responses were immediately treated as
+  permanent failures. A URL is added to `broken_links` only after all
+  retries are exhausted, preventing duplicate entries.
+- **`respect_robots` now enforced.** `filters.respect_robots: true`
+  (the default) now fetches and parses `robots.txt` at crawl startup
+  using `urllib.robotparser` with user-agent `*`. Disallowed paths are
+  skipped before queuing. Fetch failures (404, timeout, network error,
+  malformed content) log a warning and degrade gracefully to allow-all.
+  Previously the config key was declared but never implemented.
+- **`custom_patterns` now consumed.** Tag patterns defined under
+  `tags.custom_patterns` in config or YAML are now merged into the
+  detection pipeline. Each entry requires `patterns` (list) and
+  `category` (string); invalid entries are skipped with a warning.
+  Previously the key was declared but never read.
+- **`CONFIDENCE_LOW` now assigned.** Tag detections supported only by
+  a generic HTML regex match are now rated `low` confidence instead of
+  `medium`. Script-URL and network-request evidence continue to rate
+  `medium` and `high` respectively.
+- **Findings export version corrected.** `tagscope_version` in the
+  findings JSON now reflects the actual package version via `__version__`
+  rather than a hardcoded `'3.3.0'`.
+- **Unexpected crawl task exceptions now logged.** Exceptions returned
+  by `asyncio.gather` tasks that are not `dict` results are now logged
+  at ERROR level rather than silently discarded.
+
+### Removed
+
+- `technology.detect_all` and `tags.detect_all` config keys removed.
+  Both were no-ops with no implementation. All 77 tag patterns and 50
+  technology patterns always run. Selective detection is tracked for a
+  future release (see roadmap).
+
+### Tests
+
+- 33 new tests added (333 → 366 total) covering retry-on-status
+  behaviour, robots.txt loading and enforcement, custom pattern
+  loading/validation/detection, and config correctness.
+
 ## v3.4.0
 
 Single-page audit API, LLM-optimized output format, and MCP server.

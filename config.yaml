@@ -50,13 +50,11 @@ filters:
     - .mov
 
 # Technology Detection
-technology:
-  detect_all: true            # Detect all 50 built-in technology patterns
+technology: {}                # Reserved for future per-technology filtering
 
 # Tag Detection
 tags:
-  detect_all: true            # Detect all 73 configured marketing/analytics tags
-  custom_patterns: {}         # Add custom tag patterns (same format as TAG_PATTERNS)
+  custom_patterns: {}         # Add custom tag patterns (requires 'patterns' list and 'category' string)
 
 # DataLayer Analysis
 datalayer:

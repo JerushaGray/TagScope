@@ -78,13 +78,17 @@ compact = format_page_llm(result)
 For multi-page audits, use `SiteAuditor` directly:
 
 ```python
-from tagscope.auditor import SiteAuditor
+from tagscope.auditor import SiteAuditor, format_site_llm
+from tagscope.cli import _default_config
 
 async def run():
-    auditor = SiteAuditor({"crawl": {"max_pages": 50}})
-    await auditor.crawl("https://example.com")
-    auditor.export_findings()
-    return format_site_llm(auditor)
+    config = _default_config()
+    config['start_url'] = 'https://example.com'
+    config['crawl']['max_pages'] = 50
+    auditor = SiteAuditor(config)
+    await auditor.crawl()
+    auditor.export_findings('site-audit-findings.json')
+    return format_site_llm(auditor.page_data, auditor.broken_links)
 ```
 
 ## Output
@@ -170,7 +174,7 @@ src/tagscope/
     mcp_server.py            MCP server with 6 auditing tools
     wappalyzer_adapter.py    Wappalyzer fingerprint conversion and caching
 config.yaml           Default configuration template
-tests/                333 tests (pytest)
+tests/                366 tests (pytest)
 docs/
     PIPELINE.md       Full pipeline walkthrough
     DATA_DICTIONARY.md  Field definitions for patterns, detection output, and export schema
@@ -191,8 +195,16 @@ crawl:
   concurrent_pages: 3   # Parallel page limit (1-10)
 
 filters:
+  respect_robots: true        # Honour robots.txt disallow rules
   exclude_patterns: ["/admin.*", "/api/.*"]
   skip_extensions: [".pdf", ".jpg", ".png", ".zip"]
+
+tags:
+  custom_patterns:            # Optional: define your own tag patterns
+    my_vendor:
+      patterns: ['myvendor\.init\(']
+      urls: ['cdn.myvendor.com/tag.js']
+      category: 'Analytics'
 
 output:
   formats: ["json", "csv", "html"]
