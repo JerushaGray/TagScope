@@ -3,7 +3,7 @@
 import pytest
 from tagscope.auditor import SiteAuditor
 from tagscope.patterns import TAG_PATTERNS
-from tests.conftest import make_config
+from conftest import make_config
 
 
 def _auditor_with_custom(custom_patterns):

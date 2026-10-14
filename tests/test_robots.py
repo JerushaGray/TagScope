@@ -6,7 +6,7 @@ from io import BytesIO
 from urllib.error import URLError
 from urllib.robotparser import RobotFileParser
 from tagscope.auditor import SiteAuditor
-from tests.conftest import make_config
+from conftest import make_config
 
 
 def _auditor(respect_robots=True, start_url='https://example.com'):

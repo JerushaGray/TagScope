@@ -3,7 +3,7 @@
 import pytest
 from unittest.mock import AsyncMock, MagicMock, patch
 from tagscope.auditor import SiteAuditor, RetriableStatusError
-from tests.conftest import make_config
+from conftest import make_config
 
 
 def _auditor(retry_on_status=None, max_retries=2, retry_delay=0.0):
