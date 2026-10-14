@@ -9,7 +9,7 @@ import sys
 from pathlib import Path
 from urllib.parse import urljoin, urlparse, parse_qs, unquote_plus
 from datetime import datetime
-from collections import defaultdict
+from collections import defaultdict, OrderedDict
 from typing import Set, Dict, List, Optional, Tuple
 
 from playwright.async_api import (
@@ -17,6 +17,7 @@ from playwright.async_api import (
     TimeoutError as PlaywrightTimeout,
 )
 
+from tagscope import __version__
 from tagscope.patterns import (
     TAG_PATTERNS, GA4_EVENTS, TECHNOLOGY_PATTERNS,
     CONFIDENCE_HIGH, CONFIDENCE_MEDIUM, CONFIDENCE_LOW,
@@ -330,7 +331,7 @@ class SiteAuditor:
                 elif has_script:
                     confidence = CONFIDENCE_MEDIUM
                 else:
-                    confidence = CONFIDENCE_MEDIUM
+                    confidence = CONFIDENCE_LOW
 
                 detected_tags[tag_name] = {
                     'found': True,
@@ -901,7 +902,9 @@ class SiteAuditor:
                     results = await asyncio.gather(*tasks, return_exceptions=True)
 
                     for result in results:
-                        if isinstance(result, dict):
+                        if isinstance(result, Exception):
+                            logging.error(f"Unexpected task failure: {result}")
+                        elif isinstance(result, dict):
                             self.page_data.append(result)
                             page_counter += 1
 
@@ -1475,7 +1478,7 @@ class SiteAuditor:
                 'domain': self.base_domain,
                 'generated_at': datetime.now().isoformat(),
                 'total_pages': total_pages,
-                'tagscope_version': '3.3.0',
+                'tagscope_version': __version__,
             },
             'tag_index': tag_index,
             'technology_index': tech_index,
@@ -1517,7 +1520,6 @@ class SiteAuditor:
             return
 
         # Group pages by their exact tag fingerprint
-        from collections import OrderedDict
         profile_groups = OrderedDict()
         for page in self.page_data:
             tag_set = frozenset(
