@@ -91,6 +91,13 @@ class SiteAuditor:
     def __init__(self, config: Dict, extended_tech_patterns: Optional[Dict] = None):
         self.config = config
         self._tech_patterns = extended_tech_patterns or TECHNOLOGY_PATTERNS
+        self._tag_patterns = dict(TAG_PATTERNS)
+        custom = config.get('tags', {}).get('custom_patterns', {})
+        for name, entry in custom.items():
+            if not isinstance(entry.get('patterns'), list) or not isinstance(entry.get('category'), str):
+                logging.warning(f"Skipping invalid custom tag pattern '{name}': requires 'patterns' (list) and 'category' (str)")
+                continue
+            self._tag_patterns[name] = entry
         self.start_url = config['start_url']
         self.base_domain = urlparse(self.start_url).netloc
 
@@ -306,7 +313,7 @@ class SiteAuditor:
         """Detect tracking tags from HTML content and network requests."""
         detected_tags = {}
 
-        for tag_name, tag_config in TAG_PATTERNS.items():
+        for tag_name, tag_config in self._tag_patterns.items():
             matches = []
             evidence = []
 
@@ -316,12 +323,12 @@ class SiteAuditor:
                     matches.extend(found_matches)
                     evidence.append(f"html_pattern:{pattern}")
 
-            for url_pattern in tag_config['urls']:
+            for url_pattern in tag_config.get('urls', []):
                 if url_pattern in page_content:
                     evidence.append(f"script_url:{url_pattern}")
 
             if network_requests:
-                for url_pattern in tag_config['urls']:
+                for url_pattern in tag_config.get('urls', []):
                     pattern_host = _extract_host(url_pattern)
                     for req in network_requests:
                         req_host = urlparse(req['url']).netloc
@@ -973,7 +980,7 @@ class SiteAuditor:
         """
         # Collect URL-fragment hosts for substring matching
         known_hosts = set()
-        for tag_config in TAG_PATTERNS.values():
+        for tag_config in self._tag_patterns.values():
             for url_frag in tag_config.get('urls', []):
                 h = _extract_host(url_frag)
                 if h:
@@ -986,7 +993,7 @@ class SiteAuditor:
 
         # Collect owned domains for registrable-domain attribution
         owned_domains = set()
-        for tag_config in TAG_PATTERNS.values():
+        for tag_config in self._tag_patterns.values():
             for d in tag_config.get('owned_domains', []):
                 owned_domains.add(d)
         for tech_config in self._tech_patterns.values():
@@ -1121,7 +1128,7 @@ class SiteAuditor:
                 else:
                     pages_absent.append(page['url'])
 
-            tag_config = TAG_PATTERNS.get(tag_name, {})
+            tag_config = self._tag_patterns.get(tag_name, {})
             coverage_pct = round(len(pages_present) / total_pages * 100, 1)
 
             entry = {

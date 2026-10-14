@@ -125,8 +125,8 @@ def _default_config() -> Dict:
             'include_patterns': [],
             'skip_extensions': ['.pdf', '.jpg', '.png', '.gif', '.css', '.js', '.zip']
         },
-        'technology': {'detect_all': True},
-        'tags': {'detect_all': True, 'custom_patterns': {}},
+        'technology': {},
+        'tags': {'custom_patterns': {}},
         'datalayer': {'extract': True, 'parse_events': True, 'max_events': 100},
         'performance': {
             'capture_metrics': True, 'capture_screenshots': False,

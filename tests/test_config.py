@@ -112,10 +112,8 @@ filters:
   exclude_patterns: []
   include_patterns: []
   skip_extensions: [".pdf"]
-technology:
-  detect_all: true
+technology: {}
 tags:
-  detect_all: true
   custom_patterns: {}
 datalayer:
   extract: true
@@ -174,10 +172,8 @@ filters:
   exclude_patterns: []
   include_patterns: []
   skip_extensions: [".pdf"]
-technology:
-  detect_all: true
+technology: {}
 tags:
-  detect_all: true
   custom_patterns: {}
 datalayer:
   extract: true
