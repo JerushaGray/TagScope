@@ -24,6 +24,14 @@ from tagscope.patterns import (
 )
 
 
+class RetriableStatusError(Exception):
+    """Raised when a page returns an HTTP status that should trigger a retry."""
+    def __init__(self, status: int, url: str):
+        self.status = status
+        self.url = url
+        super().__init__(f"HTTP {status} on {url}")
+
+
 def _extract_host(url_fragment: str) -> str:
     """Extract the host from a URL or URL fragment.
 
@@ -717,6 +725,20 @@ class SiteAuditor:
                     self.stats['pages_failed'] += 1
                     return None
 
+            except RetriableStatusError as e:
+                if attempt < retry_config['max_retries']:
+                    logging.warning(f"HTTP {e.status} on {url}, retrying ({attempt + 1}/{retry_config['max_retries']})")
+                    await asyncio.sleep(retry_config['retry_delay'])
+                else:
+                    logging.error(f"Failed after {retry_config['max_retries']} retries: {url} - HTTP {e.status}")
+                    self.broken_links.append({
+                        'url': url,
+                        'status': e.status,
+                        'depth': depth
+                    })
+                    self.stats['pages_failed'] += 1
+                    return None
+
             except Exception as e:
                 if attempt < retry_config['max_retries']:
                     logging.warning(f"Error on {url}: {e}, retrying ({attempt + 1}/{retry_config['max_retries']})")
@@ -784,12 +806,14 @@ class SiteAuditor:
             resp_headers = {k.lower(): v for k, v in response.headers.items()}
 
             if status >= 400:
+                await page.close()
+                if status in self.config['retry']['retry_on_status']:
+                    raise RetriableStatusError(status, url)
                 self.broken_links.append({
                     'url': url,
                     'status': status,
                     'depth': depth
                 })
-                await page.close()
                 return None
 
             await asyncio.sleep(self.rate_limit)
