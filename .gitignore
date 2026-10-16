@@ -43,6 +43,7 @@ Thumbs.db
 *.log
 
 # Crawl output
+outputs/
 output/
 
 # Poetry

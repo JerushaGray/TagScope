@@ -4,6 +4,7 @@ import asyncio
 import argparse
 import logging
 import sys
+from datetime import date
 from pathlib import Path
 from platform import system
 from typing import Dict, Optional
@@ -79,11 +80,10 @@ def load_config(config_file: Optional[str], cli_args: Dict) -> Dict:
         config['crawl']['rate_limit'] = cli_args['rate_limit']
     if cli_args.get('concurrent'):
         config['crawl']['concurrent_pages'] = cli_args['concurrent']
-    if cli_args.get('output'):
-        config['output']['prefix'] = cli_args['output']
-    else:
-        domain = urlparse(config['start_url']).netloc.replace(':', '_')
-        config['output']['prefix'] = f'output/run-{domain}/site-audit-{domain}'
+    domain = urlparse(config['start_url']).netloc.replace(':', '_').replace('.', '_')
+    date_str = date.today().strftime('%Y-%m-%d')
+    prefix = cli_args.get('output') or f'site-audit-{domain}'
+    config['output']['prefix'] = f'outputs/{domain}/{date_str}/{prefix}'
 
     # Ensure the output directory exists
     output_dir = Path(config['output']['prefix']).parent
@@ -99,6 +99,8 @@ def load_config(config_file: Optional[str], cli_args: Dict) -> Dict:
         config['filters']['include_patterns'] = cli_args['include']
     if cli_args.get('no_resume'):
         config['resume']['enabled'] = False
+    if cli_args.get('interact'):
+        config['interact']['enabled'] = True
 
     return config
 
@@ -123,7 +125,9 @@ def _default_config() -> Dict:
         'filters': {
             'respect_robots': True, 'exclude_patterns': [],
             'include_patterns': [],
-            'skip_extensions': ['.pdf', '.jpg', '.png', '.gif', '.css', '.js', '.zip']
+            'skip_extensions': ['.pdf', '.jpg', '.jpeg', '.png', '.gif', '.css', '.js',
+                                '.zip', '.eps', '.ai', '.psd', '.svg', '.mp4', '.mp3',
+                                '.webp', '.ico', '.woff', '.woff2', '.ttf', '.eot']
         },
         'technology': {},
         'tags': {'custom_patterns': {}},
@@ -137,7 +141,17 @@ def _default_config() -> Dict:
             'save_progress': True, 'progress_interval': 10
         },
         'logging': {'level': 'INFO', 'log_file': 'tagscope.log', 'console': True},
-        'resume': {'enabled': True, 'state_file': 'crawl_state.json'}
+        'resume': {'enabled': True, 'state_file': 'crawl_state.json'},
+        'interact': {
+            'enabled': False,
+            'scroll_always': True,
+            'scroll_delay': 250,
+            'hover_nav': True,
+            'click_ctas': True,
+            'interaction_delay': 500,
+            'max_clicks': 3,
+            'exclude_patterns': ['/blog'],
+        }
     }
 
 
@@ -175,6 +189,8 @@ Examples:
                         help='Download Wappalyzer fingerprints to local cache and exit')
     parser.add_argument('--extended', action='store_true',
                         help='Enable extended technology detection using cached Wappalyzer rulesets')
+    parser.add_argument('--interact', action='store_true',
+                        help='Simulate user interactions (scroll, CTA clicks, nav hover) to trigger GTM interaction-based rules')
     parser.add_argument('--version', action='version',
                         version=f'%(prog)s {__version__}')
 

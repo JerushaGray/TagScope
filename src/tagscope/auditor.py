@@ -792,6 +792,94 @@ class SiteAuditor:
 
         return None
 
+    async def _simulate_interactions(self, page: Page, url: str) -> None:
+        """Simulate user interactions to trigger GTM interaction-based rules.
+
+        Scroll milestones run on every page by default (scroll_always=True) to
+        surface lazy-loaded tags. Full interactions (nav hover, CTA clicks) only
+        run when interact.enabled is True (--interact flag).
+
+        Pages whose paths match any pattern in interact.exclude_patterns are
+        skipped entirely — both scroll and full interactions.
+        """
+        cfg = self.config.get('interact', {})
+
+        # Skip if this URL matches an excluded path pattern
+        path = urlparse(url).path
+        for pattern in cfg.get('exclude_patterns', ['/blog']):
+            if pattern in path:
+                return
+
+        try:
+            # --- Scroll depth milestones (always, unless disabled) ---
+            if cfg.get('scroll_always', True) or cfg.get('scroll', True):
+                scroll_delay = cfg.get('scroll_delay', 250) / 1000
+                for pct in (25, 50, 75, 100):
+                    await page.evaluate(f"""() => {{
+                        const h = document.body.scrollHeight;
+                        window.scrollTo(0, h * {pct} / 100);
+                    }}""")
+                    await asyncio.sleep(scroll_delay)
+                # Scroll back to top so hover/click targets are in view
+                await page.evaluate("() => window.scrollTo(0, 0)")
+                await asyncio.sleep(0.2)
+
+            # --- Full interactions: nav hover + CTA clicks (--interact only) ---
+            if cfg.get('enabled'):
+                full_delay = cfg.get('interaction_delay', 500) / 1000
+
+                # Nav hover
+                if cfg.get('hover_nav', True):
+                    nav_selectors = ['nav a', 'header a', '[role="navigation"] a']
+                    for sel in nav_selectors:
+                        try:
+                            items = await page.query_selector_all(sel)
+                            for item in items[:5]:
+                                try:
+                                    if await item.is_visible():
+                                        await item.hover()
+                                        await asyncio.sleep(0.1)
+                                except Exception:
+                                    pass
+                        except Exception:
+                            pass
+
+                # CTA clicks — buttons only, no <a> tags to avoid navigation
+                if cfg.get('click_ctas', True):
+                    max_clicks = cfg.get('max_clicks', 3)
+                    cta_selectors = [
+                        'button:not([type="submit"]):not([disabled])',
+                        '[role="button"]:not(a)',
+                        'input[type="button"]',
+                    ]
+                    clicked = 0
+                    for sel in cta_selectors:
+                        if clicked >= max_clicks:
+                            break
+                        try:
+                            candidates = await page.query_selector_all(sel)
+                            for el in candidates:
+                                if clicked >= max_clicks:
+                                    break
+                                try:
+                                    if await el.is_visible():
+                                        await el.dispatch_event('click')
+                                        clicked += 1
+                                        await asyncio.sleep(full_delay)
+                                except Exception:
+                                    pass
+                        except Exception:
+                            pass
+
+            # Wait for any async tag requests triggered by interactions
+            try:
+                await page.wait_for_load_state('networkidle', timeout=3000)
+            except Exception:
+                pass
+
+        except Exception as e:
+            logging.debug(f"Interaction simulation error (non-fatal): {e}")
+
     async def _crawl_page(self, browser: Browser, url: str, depth: int) -> Optional[Dict]:
         """Crawl a single page."""
 
@@ -839,6 +927,11 @@ class SiteAuditor:
                 await page.wait_for_load_state('networkidle', timeout=5000)
             except Exception:
                 pass
+
+            # Simulate user interactions to trigger GTM interaction-based rules.
+            # Scroll always runs (unless scroll_always=False); full interactions
+            # require --interact. Both respect exclude_patterns.
+            await self._simulate_interactions(page, url)
 
             if not response:
                 await page.close()
