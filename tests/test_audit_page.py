@@ -50,6 +50,10 @@ def _make_mock_page(*, status=200, html='<html><head><title>Test</title></head><
     """Build a mock Playwright Page with the minimum surface for _crawl_page."""
     page = AsyncMock()
 
+    # page.url is a sync property in Playwright -- set it explicitly so it isn't
+    # auto-created as a coroutine by AsyncMock
+    page.url = 'https://example.com'
+
     # page.goto() returns a response
     response = AsyncMock()
     response.status = status
@@ -223,6 +227,6 @@ class TestAuditPage:
             'url', 'depth', 'status', 'metadata', 'tags',
             'datalayer', 'ga4_collect_events', 'technologies',
             'performance', 'network_requests', 'internal_links_found',
-            'screenshot', 'crawled_at',
+            'screenshot', 'crawled_at', 'script_deferral', 'gtm_executed',
         }
         assert expected_keys == set(result.keys())

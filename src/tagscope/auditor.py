@@ -47,6 +47,60 @@ def _extract_host(url_fragment: str) -> str:
     return url_fragment.split('/')[0]
 
 
+def classify_tag_status(evidence: list) -> str:
+    """Return 'fired' if any evidence item starts with 'request_', else 'declared'."""
+    return 'fired' if any(e.startswith('request_') for e in evidence) else 'declared'
+
+
+def detect_script_deferral(scripts: list) -> dict:
+    """Detect deferred script loading mechanisms from a list of script descriptors.
+
+    Each descriptor: {"type": str, "src": str, "attrs": dict}
+    Returns: {"deferred": bool, "mechanisms": list, "count": int, "examples": list}
+    """
+    mechanisms = set()
+    deferred_count = 0
+    examples = []
+
+    for script in scripts:
+        stype = (script.get('type') or '').lower()
+        src = script.get('src') or ''
+        attrs = script.get('attrs') or {}
+        cls = str(attrs.get('class') or '')
+
+        mechanism = None
+        if stype == 'rocketlazyloadscript' or 'data-rocket-src' in attrs or 'data-rocket-type' in attrs:
+            mechanism = 'wp_rocket_delay_js'
+        elif stype == 'litespeed/javascript':
+            mechanism = 'litespeed_delay_js'
+        elif stype == 'pmdelayedscript':
+            mechanism = 'perfmatters_delay_js'
+        elif stype == 'flying-scripts' or (attrs.get('data-type') == 'lazy' and 'data-src' in attrs):
+            mechanism = 'flying_scripts'
+        elif stype.endswith('-text/javascript'):
+            mechanism = 'cloudflare_rocket_loader'
+        elif stype == 'text/plain' and 'data-cookieconsent' in attrs:
+            mechanism = 'cookiebot_autoblock'
+        elif stype == 'text/plain' and 'optanon-category-' in cls:
+            mechanism = 'onetrust_autoblock'
+        elif stype == 'text/partytown':
+            mechanism = 'partytown'
+
+        if mechanism:
+            mechanisms.add(mechanism)
+            deferred_count += 1
+            example = attrs.get('data-rocket-src') or attrs.get('data-src') or src
+            if example:
+                examples.append(example)
+
+    return {
+        'deferred': len(mechanisms) > 0,
+        'mechanisms': sorted(mechanisms),
+        'count': deferred_count,
+        'examples': examples[:3],
+    }
+
+
 class CrawlState:
     """Manages crawl state for resume capability."""
 
@@ -431,6 +485,7 @@ class SiteAuditor:
 
                 detected_tags[tag_name] = {
                     'found': True,
+                    'status': classify_tag_status(evidence),
                     'ids': list(set(matches)) if matches else [],
                     'category': tag_config['category'],
                     'evidence': evidence,
@@ -519,20 +574,45 @@ class SiteAuditor:
         return technologies
 
     async def _detect_tags_from_page(self, page: Page,
-                                    network_requests: Optional[List[Dict]] = None) -> Dict:
-        """Extract script content from a page and detect tags."""
+                                    network_requests: Optional[List[Dict]] = None) -> Tuple[Dict, Dict]:
+        """Extract script content from a page and detect tags.
+
+        Returns a tuple of (tags, script_deferral) where script_deferral is the
+        output of detect_script_deferral for this page's scripts.
+        """
         try:
-            scripts = await page.eval_on_selector_all(
+            scripts_raw = await page.eval_on_selector_all(
                 'script',
-                'elements => elements.map(el => el.innerHTML + " " + (el.src || ""))'
+                '''elements => elements.map(el => ({
+                    type: el.type || "",
+                    src: el.src || "",
+                    innerHTML: el.innerHTML || "",
+                    attrs: {
+                        "data-rocket-src": el.getAttribute("data-rocket-src") || "",
+                        "data-rocket-type": el.getAttribute("data-rocket-type") || "",
+                        "data-cookieconsent": el.getAttribute("data-cookieconsent") || "",
+                        "data-cfasync": el.getAttribute("data-cfasync") || "",
+                        "data-src": el.getAttribute("data-src") || "",
+                        "data-type": el.getAttribute("data-type") || "",
+                        "class": el.getAttribute("class") || ""
+                    }
+                }))'''
             )
 
-            page_content = ' '.join(scripts)
-            return self.detect_tags(page_content, page.url, network_requests)
+            page_content = ' '.join(
+                (s.get('innerHTML') or '') + ' ' + (s.get('src') or '')
+                for s in scripts_raw
+            )
+            tags = self.detect_tags(page_content, page.url, network_requests)
+            deferral = detect_script_deferral([
+                {'type': s.get('type', ''), 'src': s.get('src', ''), 'attrs': s.get('attrs', {})}
+                for s in scripts_raw
+            ])
+            return tags, deferral
 
         except Exception as e:
             logging.error(f"Error detecting tags: {e}")
-            return {}
+            return {}, {}
 
     @staticmethod
     def _is_gtag_arguments_object(item: Dict) -> bool:
@@ -986,6 +1066,9 @@ class SiteAuditor:
             status = response.status
             resp_headers = {k.lower(): v for k, v in response.headers.items()}
 
+            if depth == 0:
+                self._adopt_redirect_host(page.url)
+
             if status >= 400:
                 await page.close()
                 if status in self.config['retry']['retry_on_status']:
@@ -997,13 +1080,10 @@ class SiteAuditor:
                 })
                 return None
 
-            if depth == 0:
-                self._adopt_redirect_host(page.url)
-
             await asyncio.sleep(self.rate_limit)
 
             metadata = await self._get_page_metadata(page)
-            tags = await self._detect_tags_from_page(page, network_logs)
+            tags, script_deferral = await self._detect_tags_from_page(page, network_logs)
             links, page_broken_links = await self._extract_links(page, url)
             self.broken_links.extend(page_broken_links)
 
@@ -1036,6 +1116,20 @@ class SiteAuditor:
                 network_logs
             )
 
+            gtm_tag = tags.get('google_tag_manager', {})
+            gtm_executed = (
+                classify_tag_status(gtm_tag.get('evidence', [])) == 'fired'
+                or any(
+                    'googletagmanager.com/gtm.js' in req.get('url', '')
+                    for req in network_logs
+                )
+                or any(
+                    e.get('event', '') in ('gtm.js', 'gtm.dom', 'gtm.load')
+                    for e in (datalayer.get('events') or [])
+                    if isinstance(e, dict)
+                )
+            )
+
             page_info = {
                 'url': url,
                 'depth': depth,
@@ -1049,7 +1143,9 @@ class SiteAuditor:
                 'network_requests': network_logs,
                 'internal_links_found': len(links),
                 'screenshot': screenshot_path,
-                'crawled_at': datetime.now().isoformat()
+                'crawled_at': datetime.now().isoformat(),
+                'script_deferral': script_deferral,
+                'gtm_executed': gtm_executed,
             }
 
             if depth < self.max_depth:
@@ -1291,6 +1387,8 @@ class SiteAuditor:
         for tag_name in sorted(self.stats['tags_found'].keys()):
             pages_present = []
             pages_absent = []
+            pages_fired = []
+            pages_declared_only = []
             all_ids = set()
             all_evidence = set()
             confidence_values = set()
@@ -1303,6 +1401,12 @@ class SiteAuditor:
                     all_evidence.update(tag_data.get('evidence', []))
                     if 'confidence' in tag_data:
                         confidence_values.add(tag_data['confidence'])
+                    evidence = tag_data.get('evidence', [])
+                    status = tag_data.get('status') or classify_tag_status(evidence)
+                    if status == 'fired':
+                        pages_fired.append(page['url'])
+                    else:
+                        pages_declared_only.append(page['url'])
                 else:
                     pages_absent.append(page['url'])
 
@@ -1312,6 +1416,7 @@ class SiteAuditor:
             entry = {
                 'category': tag_config.get('category', 'Unknown'),
                 'page_count': len(pages_present),
+                'fired_page_count': len(pages_fired),
                 'total_pages': total_pages,
                 'coverage_pct': coverage_pct,
                 'confidence': max(confidence_values, key=lambda c: {'high': 3, 'medium': 2, 'low': 1}.get(c, 0)) if confidence_values else 'unknown',
@@ -1321,6 +1426,8 @@ class SiteAuditor:
                     e.split(':')[0] for e in all_evidence
                 )),
             }
+            if pages_declared_only:
+                entry['declared_only_pages'] = pages_declared_only
             if coverage_pct < 100:
                 entry['absent_from'] = pages_absent
             tag_index[tag_name] = entry
@@ -1444,16 +1551,76 @@ class SiteAuditor:
         # --- Auto-generated Findings ---
         findings = []
 
-        # Coverage gaps
+        # Declared-but-not-executed (GTM loaded as HTML but never fired a network request)
+        gtm_info = tag_index.get('google_tag_manager', {})
+        gtm_declared_not_executed = False
+        if gtm_info.get('page_count', 0) > 0 and gtm_info.get('fired_page_count', 0) < gtm_info.get('page_count', 0):
+            declared_only_count = gtm_info['page_count'] - gtm_info['fired_page_count']
+            # Collect deferral mechanisms from pages where GTM is declared but not fired
+            deferral_mechanisms: set = set()
+            example_urls: list = []
+            for page in self.page_data:
+                gtm_tag = page.get('tags', {}).get('google_tag_manager', {})
+                if not gtm_tag.get('found'):
+                    continue
+                evidence = gtm_tag.get('evidence', [])
+                status = gtm_tag.get('status') or classify_tag_status(evidence)
+                if status != 'fired':
+                    sd = page.get('script_deferral', {})
+                    deferral_mechanisms.update(sd.get('mechanisms', []))
+                    if len(example_urls) < 3:
+                        example_urls.append(page['url'])
+            mech_str = f" via {', '.join(sorted(deferral_mechanisms))}" if deferral_mechanisms else ''
+            detail = (
+                f"Google Tag Manager is present in HTML on {gtm_info['page_count']} page(s) "
+                f"but network requests confirm it executed on only {gtm_info['fired_page_count']}{mech_str}. "
+                f"Tag coverage on the remaining {declared_only_count} page(s) could not be observed. "
+                f"Example pages: {', '.join(example_urls[:3])}."
+            )
+            findings.append({
+                'type': 'declared_not_executed',
+                'severity': 'high',
+                'tag': 'google_tag_manager',
+                'detail': detail,
+            })
+            gtm_declared_not_executed = True
+
+        # Coverage gaps — use fired_page_count so deferred tags don't generate spurious gaps
         for tag_name, info in tag_index.items():
             if 0 < info['coverage_pct'] < 100:
+                fired_count = info.get('fired_page_count', info['page_count'])
                 absent_count = total_pages - info['page_count']
-                findings.append({
+                # If all absences are explained by GTM not executing, annotate rather than alarm
+                explained_by = None
+                if gtm_declared_not_executed:
+                    absent_pages = set(info.get('absent_from', []))
+                    # Pages where GTM actually executed
+                    gtm_executed_urls = set()
+                    for page in self.page_data:
+                        gtm_tag = page.get('tags', {}).get('google_tag_manager', {})
+                        if gtm_tag.get('found'):
+                            evidence = gtm_tag.get('evidence', [])
+                            status = gtm_tag.get('status') or classify_tag_status(evidence)
+                            if status == 'fired':
+                                gtm_executed_urls.add(page['url'])
+                    # If no absent page had GTM running, the gap is explained by deferral
+                    if absent_pages and not (absent_pages & gtm_executed_urls):
+                        explained_by = 'declared_not_executed'
+                finding = {
                     'type': 'coverage_gap',
                     'severity': 'medium' if info['coverage_pct'] > 50 else 'high',
                     'tag': tag_name,
-                    'detail': f"{tag_name} detected on {info['page_count']}/{total_pages} pages ({info['coverage_pct']}%). Missing from {absent_count} pages.",
-                })
+                    'detail': (
+                        f"{tag_name} observed firing on {fired_count}/{total_pages} pages "
+                        f"({info['coverage_pct']}%). Not observed on {absent_count} pages."
+                        if explained_by else
+                        f"{tag_name} detected on {info['page_count']}/{total_pages} pages "
+                        f"({info['coverage_pct']}%). Missing from {absent_count} pages."
+                    ),
+                }
+                if explained_by:
+                    finding['explained_by'] = explained_by
+                findings.append(finding)
 
         # Dual-fire detection (UA + GA4)
         if 'universal_analytics' in tag_index and 'google_analytics_4' in tag_index:
@@ -1621,8 +1788,9 @@ class SiteAuditor:
 
             # Correlation: do pages with more tags load slower?
             if len(set(tag_counts)) > 1 and len(load_times) >= 5:
-                # Group by tag count, require ≥5 pages per group for meaningful comparison
-                tc_groups = defaultdict(list)
+                # Group by tag count; require >=5 pages per group to avoid
+                # spurious findings from small, non-representative samples.
+                tc_groups: defaultdict = defaultdict(list)
                 for tc, lt in zip(tag_counts, load_times):
                     tc_groups[tc].append(lt)
                 eligible = {tc: lts for tc, lts in tc_groups.items() if len(lts) >= 5}
@@ -1639,14 +1807,31 @@ class SiteAuditor:
                             'detail': f"Correlation observed: pages with {max_tc} tags average {avg_max:.0f}ms vs {avg_min:.0f}ms for pages with {min_tc} tags ({((avg_max / avg_min) - 1) * 100:.0f}% difference). Tag count may be a contributing factor.",
                         })
 
-        # Silent GA4 pages -- GA4 tag present but no collect request fired
+        # Silent GA4 pages -- GA4 tag fired (or GTM executed) but no collect request observed
         if 'google_analytics_4' in tag_index:
             silent_pages = []
             for page in self.page_data:
                 ga4_tag = page.get('tags', {}).get('google_analytics_4', {})
-                ga4_collect = page.get('ga4_collect_events', {})
-                if ga4_tag.get('found') and not ga4_collect.get('events'):
-                    silent_pages.append(page['url'])
+                if not ga4_tag.get('found'):
+                    continue
+                # Only report silent if GA4 actually fired, GTM executed, or no
+                # evidence is available (legacy data — fall back to old behaviour).
+                ga4_evidence = ga4_tag.get('evidence', [])
+                ga4_status = ga4_tag.get('status') or classify_tag_status(ga4_evidence)
+                page_gtm_executed = page.get('gtm_executed')
+                if page_gtm_executed is None:
+                    # Derive from GTM tag evidence for old fixture pages
+                    gtm_tag = page.get('tags', {}).get('google_tag_manager', {})
+                    if gtm_tag.get('found'):
+                        gtm_ev = gtm_tag.get('evidence', [])
+                        page_gtm_executed = (gtm_tag.get('status') or classify_tag_status(gtm_ev)) == 'fired'
+                    else:
+                        page_gtm_executed = False
+                no_evidence = not ga4_evidence
+                if ga4_status == 'fired' or page_gtm_executed or no_evidence:
+                    ga4_collect = page.get('ga4_collect_events', {})
+                    if not ga4_collect.get('events'):
+                        silent_pages.append(page['url'])
             if silent_pages:
                 findings.append({
                     'type': 'silent_ga4',
@@ -1730,7 +1915,6 @@ class SiteAuditor:
             return
 
         self._canonicalise_tags()
-
         # Collect all tags that were found on at least one page
         all_tags = sorted({
             tag_name
