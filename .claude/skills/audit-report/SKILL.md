@@ -37,6 +37,31 @@ After writing, tell the user the output path.
 
 **Do not hallucinate data. Every number, tag name, and finding must come from the JSON.**
 
+### Evidence rules (mandatory)
+
+1. **Declared ≠ fired.** Treat a tag as present only where `status == "fired"` (or, for
+   pre-3.6 JSON, where evidence includes `request_host`/`request_url`). If findings
+   include `declared_not_executed` or any page has `script_deferral.deferred == true`,
+   the Executive Summary must lead with that, and every coverage statement must say
+   "not observed" rather than "missing" or "not firing".
+2. **Never infer GTM configuration from page observations.** Only describe what a
+   container contains (tags, triggers, consent settings) when `gtm_container` is present
+   in findings. Never recommend "add a tag" or "configure X in GTM" without it.
+3. **Low-confidence detections cannot headline.** A tag whose only evidence is
+   `html_pattern` may appear in the inventory table, not in the summary or
+   recommendations.
+4. **Observed / Possible cause / How to verify.** Each tier-3 finding is written with
+   those three parts. "Possible cause" is hedged; "How to verify" names a concrete check.
+5. **Correlation language only** for performance findings. Do not write "confirmed" or
+   "direct" for anything derived from `tag_performance_correlation`.
+6. **Different app, not a gap.** Pages with zero tags AND a different technology profile
+   (no CMS match, different title pattern) are reported as separate applications, not
+   coverage or consent gaps.
+7. **State the crawl mode.** Report `crawl_info.interaction_mode` and
+   `crawl_info.consent_action` in the Executive Summary.
+8. **No external facts without data.** Don't add vendor history (e.g. product sunsets)
+   unless the pattern carries a `detection_note` saying so.
+
 ### Report Structure
 
 Produce the report in markdown with these sections. Skip any section where there is nothing
