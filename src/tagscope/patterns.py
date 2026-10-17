@@ -33,9 +33,10 @@ TAG_PATTERNS = {
         'category': 'Advertising'
     },
     'google_optimize': {
-        'patterns': [r'GTM-[A-Z0-9]{4,}'],
+        'patterns': [r'OPT-[A-Z0-9]{6,}'],
         'urls': ['www.googleoptimize.com/optimize.js'],
-        'category': 'A/B Testing'
+        'category': 'A/B Testing',
+        'detection_note': 'Sunset by Google Sept 2023 — any hit is dead code.',
     },
     
     # Meta/Facebook Products
