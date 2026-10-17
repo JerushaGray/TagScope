@@ -299,6 +299,21 @@ class SiteAuditor:
 
         return True
 
+    def _adopt_redirect_host(self, final_url: str) -> None:
+        """Update base_domain if the depth-0 page redirected to a www/apex variant.
+
+        Accepts only redirects that differ from the original host by a leading 'www.'
+        in either direction (apex→www or www→apex). Any other host change is ignored.
+        """
+        final_host = urlparse(final_url).netloc
+        if final_host == self.base_domain:
+            return
+        stripped_final = final_host.removeprefix('www.')
+        stripped_base = self.base_domain.removeprefix('www.')
+        if stripped_final == stripped_base:
+            logging.info(f"Redirect: adopting '{final_host}' as base domain (was '{self.base_domain}')")
+            self.base_domain = final_host
+
     def normalize_url(self, url: str) -> str:
         """Normalize URL."""
         parsed = urlparse(url)
@@ -950,6 +965,9 @@ class SiteAuditor:
                     'depth': depth
                 })
                 return None
+
+            if depth == 0:
+                self._adopt_redirect_host(page.url)
 
             await asyncio.sleep(self.rate_limit)
 
