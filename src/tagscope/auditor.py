@@ -22,7 +22,7 @@ from playwright.async_api import (
 
 from tagscope import __version__
 from tagscope.patterns import (
-    TAG_PATTERNS, GA4_EVENTS, TECHNOLOGY_PATTERNS,
+    TAG_PATTERNS, TAG_ALIASES, GA4_EVENTS, TECHNOLOGY_PATTERNS,
     CONFIDENCE_HIGH, CONFIDENCE_MEDIUM, CONFIDENCE_LOW,
 )
 
@@ -313,6 +313,37 @@ class SiteAuditor:
         if stripped_final == stripped_base:
             logging.info(f"Redirect: adopting '{final_host}' as base domain (was '{self.base_domain}')")
             self.base_domain = final_host
+
+    def _canonicalise_tags(self) -> None:
+        """Merge deprecated tag keys in page_data using TAG_ALIASES.
+
+        Old JSON exports may contain the source key (e.g. 'clarity') alongside
+        or instead of the canonical key ('microsoft_clarity'). This method
+        merges them in place so all downstream functions see only canonical keys.
+        """
+        for page in self.page_data:
+            tags = page.get('tags', {})
+            for old_key, new_key in TAG_ALIASES.items():
+                if old_key not in tags:
+                    continue
+                old_data = tags.pop(old_key)
+                if new_key in tags:
+                    # Merge: combine IDs and evidence; keep found=True if either had it
+                    existing = tags[new_key]
+                    existing['found'] = existing.get('found') or old_data.get('found')
+                    existing['ids'] = list(set(existing.get('ids', []) + old_data.get('ids', [])))
+                    existing['evidence'] = list(set(existing.get('evidence', []) + old_data.get('evidence', [])))
+                else:
+                    # Rename: re-key under canonical name
+                    old_data['_aliased_from'] = old_key
+                    tags[new_key] = old_data
+        # Rebuild stats so tag_index counts canonical keys
+        from collections import defaultdict
+        self.stats['tags_found'] = defaultdict(int)
+        for page in self.page_data:
+            for tag_name, tag_data in page.get('tags', {}).items():
+                if tag_data.get('found'):
+                    self.stats['tags_found'][tag_name] += 1
 
     def normalize_url(self, url: str) -> str:
         """Normalize URL."""
@@ -1251,6 +1282,7 @@ class SiteAuditor:
         if not self.page_data:
             return
 
+        self._canonicalise_tags()
         total_pages = len(self.page_data)
         matched_requests, unidentified_hosts = self._classify_network_requests()
 
@@ -1687,6 +1719,8 @@ class SiteAuditor:
         """
         if not self.page_data:
             return
+
+        self._canonicalise_tags()
 
         # Collect all tags that were found on at least one page
         all_tags = sorted({

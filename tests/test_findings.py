@@ -62,7 +62,7 @@ class TestVendorRedundancy:
     def test_two_analytics_tools(self, auditor):
         tags = {
             'google_analytics_4': _tag(category='Analytics'),
-            'microsoft_clarity': _tag(category='Analytics'),
+            'mixpanel': _tag(category='Analytics'),
         }
         auditor.page_data = [_make_page('https://example.com', tags=tags)]
         data = _export_findings(auditor)
@@ -74,12 +74,12 @@ class TestVendorRedundancy:
     def test_two_heatmap_tools(self, auditor):
         tags = {
             'hotjar': _tag(category='Heatmaps'),
-            'clarity': _tag(category='Heatmaps'),
+            'microsoft_clarity': _tag(category='Session Recording'),
         }
         auditor.page_data = [_make_page('https://example.com', tags=tags)]
         data = _export_findings(auditor)
         finding = next(f for f in data['findings'] if f['type'] == 'vendor_redundancy')
-        assert 'heatmap' in finding['detail'].lower()
+        assert 'heatmap' in finding['detail'].lower() or 'session recording' in finding['detail'].lower()
 
     def test_heatmap_and_session_recording_grouped(self, auditor):
         tags = {
@@ -265,6 +265,29 @@ class TestDeadEndPages:
         ]
         data = _export_findings(auditor)
         assert 'dead_end_pages' not in _finding_types(data)
+
+
+class TestTagAliases:
+    def test_clarity_alias_merges_into_microsoft_clarity(self, auditor):
+        """Old JSON with 'clarity' key must be treated as 'microsoft_clarity'."""
+        tags = {'clarity': _tag(category='Heatmaps')}
+        auditor.page_data = [_make_page('https://example.com', tags=tags)]
+        data = _export_findings(auditor)
+        assert 'microsoft_clarity' in data['tag_index']
+        assert 'clarity' not in data['tag_index']
+
+    def test_no_vendor_redundancy_for_alias_merge(self, auditor):
+        """A page with both 'clarity' and 'microsoft_clarity' must not trigger vendor_redundancy."""
+        tags = {
+            'clarity': _tag(category='Heatmaps'),
+            'microsoft_clarity': _tag(category='Session Recording'),
+        }
+        auditor.page_data = [_make_page('https://example.com', tags=tags)]
+        data = _export_findings(auditor)
+        # After merge there is only one tag; no redundancy
+        assert 'vendor_redundancy' not in [f['type'] for f in data['findings']]
+        assert 'microsoft_clarity' in data['tag_index']
+        assert 'clarity' not in data['tag_index']
 
 
 class TestFindingsSortOrder:

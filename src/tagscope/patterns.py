@@ -187,13 +187,6 @@ TAG_PATTERNS = {
         'urls': ['d10lpsik1i8c69.cloudfront.net'],
         'category': 'Heatmaps'
     },
-    'clarity': {
-        'patterns': [r'clarity\([\'"]set[\'"]'],
-        'urls': ['clarity.ms'],
-        'owned_domains': ['clarity.ms'],
-        'category': 'Heatmaps'
-    },
-    
     # A/B Testing
     'optimizely': {
         'patterns': [r'optimizely'],
@@ -411,10 +404,10 @@ TAG_PATTERNS = {
 
     # Other
     'microsoft_clarity': {
-        'patterns': [r'clarity\([\'"]start[\'"]'],
-        'urls': ['www.clarity.ms'],
+        'patterns': [r'clarity\([\'"]start[\'"]', r'clarity\([\'"]set[\'"]'],
+        'urls': ['www.clarity.ms', 'clarity.ms'],
         'owned_domains': ['clarity.ms'],
-        'category': 'Analytics'
+        'category': 'Session Recording',
     },
     'bing_ads': {
         'patterns': [r'UET_TAG_ID'],
@@ -453,6 +446,12 @@ TAG_PATTERNS = {
         'owned_domains': ['rubiconproject.com', 'magnite.com'],
         'category': 'Programmatic-Advertising'
     },
+}
+
+# Canonical aliases for deprecated tag keys.
+# Old JSON exports may reference the key on the left; treat it as the key on the right.
+TAG_ALIASES: dict[str, str] = {
+    "clarity": "microsoft_clarity",
 }
 
 # Common GA4 events to identify in dataLayer

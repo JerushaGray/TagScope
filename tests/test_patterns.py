@@ -5,7 +5,7 @@ from tagscope.patterns import TAG_PATTERNS, GA4_EVENTS, TECHNOLOGY_PATTERNS
 
 class TestPatternIntegrity:
     def test_tag_pattern_count(self):
-        assert len(TAG_PATTERNS) == 77
+        assert len(TAG_PATTERNS) == 76
 
     def test_technology_pattern_count(self):
         assert len(TECHNOLOGY_PATTERNS) == 50
