@@ -161,17 +161,37 @@ class TestPerformanceFindings:
             'hotjar': _tag(category='Heatmaps'),
             'fb': _tag(category='Advertising'),
             'li': _tag(category='Advertising'),
-            'clarity': _tag(category='Heatmaps'),
+            'microsoft_clarity': _tag(category='Session Recording'),
         }
         auditor.page_data = [
             _make_page('https://example.com/a', tags=few_tags, performance={'load_time': 1000}),
             _make_page('https://example.com/b', tags=few_tags, performance={'load_time': 1100}),
             _make_page('https://example.com/c', tags=few_tags, performance={'load_time': 1050}),
-            _make_page('https://example.com/d', tags=many_tags, performance={'load_time': 3000}),
-            _make_page('https://example.com/e', tags=many_tags, performance={'load_time': 3200}),
+            _make_page('https://example.com/d', tags=few_tags, performance={'load_time': 1020}),
+            _make_page('https://example.com/e', tags=few_tags, performance={'load_time': 1080}),
+            _make_page('https://example.com/f', tags=many_tags, performance={'load_time': 3000}),
+            _make_page('https://example.com/g', tags=many_tags, performance={'load_time': 3200}),
+            _make_page('https://example.com/h', tags=many_tags, performance={'load_time': 2900}),
+            _make_page('https://example.com/i', tags=many_tags, performance={'load_time': 3100}),
+            _make_page('https://example.com/j', tags=many_tags, performance={'load_time': 3050}),
         ]
         data = _export_findings(auditor)
         assert 'tag_performance_correlation' in _finding_types(data)
+
+    def test_tag_performance_correlation_requires_group_size(self, auditor):
+        few_tags = {'ga4': _tag(category='Analytics')}
+        many_tags = {
+            'ga4': _tag(category='Analytics'),
+            'hotjar': _tag(category='Heatmaps'),
+        }
+        auditor.page_data = [
+            _make_page('https://example.com/a', tags=few_tags, performance={'load_time': 1000}),
+            _make_page('https://example.com/b', tags=few_tags, performance={'load_time': 1100}),
+            _make_page('https://example.com/c', tags=many_tags, performance={'load_time': 3000}),
+            _make_page('https://example.com/d', tags=many_tags, performance={'load_time': 3200}),
+        ]
+        data = _export_findings(auditor)
+        assert 'tag_performance_correlation' not in _finding_types(data)
 
 
 class TestSilentGA4:

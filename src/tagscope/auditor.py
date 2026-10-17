@@ -1580,20 +1580,23 @@ class SiteAuditor:
 
             # Correlation: do pages with more tags load slower?
             if len(set(tag_counts)) > 1 and len(load_times) >= 5:
-                # Group by tag count, compare averages
+                # Group by tag count, require ≥5 pages per group for meaningful comparison
                 tc_groups = defaultdict(list)
                 for tc, lt in zip(tag_counts, load_times):
                     tc_groups[tc].append(lt)
-                group_avgs = {tc: sum(lts) / len(lts) for tc, lts in tc_groups.items()}
-                min_tc = min(group_avgs)
-                max_tc = max(group_avgs)
-                if max_tc > min_tc and group_avgs[max_tc] > group_avgs[min_tc] * 1.2:
-                    findings.append({
-                        'type': 'tag_performance_correlation',
-                        'severity': 'low',
-                        'tag': 'none',
-                        'detail': f"Pages with {max_tc} tags average {group_avgs[max_tc]:.0f}ms load time vs {group_avgs[min_tc]:.0f}ms for pages with {min_tc} tags ({((group_avgs[max_tc] / group_avgs[min_tc]) - 1) * 100:.0f}% slower).",
-                    })
+                eligible = {tc: lts for tc, lts in tc_groups.items() if len(lts) >= 5}
+                if len(eligible) >= 2:
+                    min_tc = min(eligible)
+                    max_tc = max(eligible)
+                    avg_min = sum(eligible[min_tc]) / len(eligible[min_tc])
+                    avg_max = sum(eligible[max_tc]) / len(eligible[max_tc])
+                    if max_tc > min_tc and avg_max > avg_min * 1.2:
+                        findings.append({
+                            'type': 'tag_performance_correlation',
+                            'severity': 'low',
+                            'tag': 'none',
+                            'detail': f"Correlation observed: pages with {max_tc} tags average {avg_max:.0f}ms vs {avg_min:.0f}ms for pages with {min_tc} tags ({((avg_max / avg_min) - 1) * 100:.0f}% difference). Tag count may be a contributing factor.",
+                        })
 
         # Silent GA4 pages -- GA4 tag present but no collect request fired
         if 'google_analytics_4' in tag_index:
