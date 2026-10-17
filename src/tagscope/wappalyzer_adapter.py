@@ -40,43 +40,103 @@ RULESETS_DIR = Path.home() / ".tagscope" / "rulesets"
 # Default False because they tend toward false positives on large DOMs.
 INCLUDE_HTML_BODY = False
 
-# Wappalyzer category ID -> TagScope category string mapping.
-# IDs come from Wappalyzer's categories.json.  Unmapped IDs get a
-# fallback based on the category name.
-_CATEGORY_MAP: Dict[int, str] = {
-    1: "CMS",
-    2: "CMS",            # Message boards
-    6: "E-commerce",
-    11: "CMS",           # Blogs
-    12: "JavaScript Framework",
-    18: "CMS",           # Web frameworks (close enough)
-    22: "CDN",
-    27: "Programming Language",
-    28: "Web Server",     # Operating systems -> treat as server
-    31: "CDN",           # CDN
-    32: "Performance Monitoring",
-    34: "Web Server",
-    36: "Hosting",
-    41: "Payment",
-    47: "CSS Framework",
-    51: "UI Library",
-    52: "JavaScript Library",
-    57: "JavaScript Framework",  # Static site generators
-    59: "JavaScript Library",
-    62: "Hosting",       # PaaS
-    63: "Hosting",       # IaaS
-    64: "Security",
-    67: "Font Service",
-    68: "Error Tracking",
-    75: "E-commerce",    # E-commerce (subtypes)
-    76: "Performance Monitoring",
-    78: "Security",      # SEO
-    86: "Headless CMS",
-    92: "E-commerce",
-    95: "Performance Monitoring",
+# Primary lookup: Wappalyzer category name (lowercased) -> TagScope category.
+# Checked before the ID map so that upstream renumbering cannot silently
+# corrupt categories again.
+_NAME_MAP: Dict[str, str] = {
+    "cms": "CMS",
+    "message boards": "CMS",
+    "blogs": "CMS",
+    "page builders": "CMS",
+    "wordpress themes": "CMS",
+    "drupal themes": "CMS",
+    "wordpress plugins": "CMS Plugin",
+    "ecommerce": "E-commerce",
+    "shopify themes": "E-commerce",
+    "shopify apps": "E-commerce",
+    "cross border ecommerce": "E-commerce",
+    "ecommerce frontends": "E-commerce",
+    "javascript frameworks": "JavaScript Framework",
+    "web frameworks": "JavaScript Framework",
+    "mobile frameworks": "JavaScript Framework",
+    "static site generator": "JavaScript Framework",
+    "javascript libraries": "JavaScript Library",
+    "javascript graphics": "JavaScript Library",
+    "cdn": "CDN",
+    "hosting panels": "Hosting",
+    "paas": "Hosting",
+    "iaas": "Hosting",
+    "hosting": "Hosting",
+    "analytics": "Analytics",
+    "tag managers": "Tag Management",
+    "security": "Security",
+    "authentication": "Security",
+    "browser fingerprinting": "Security",
+    "ssl/tls certificate authorities": "Security",
+    "font scripts": "Font Service",
+    "web servers": "Web Server",
+    "reverse proxies": "Web Server",
+    "load balancers": "Web Server",
+    "web server extensions": "Web Server",
+    "programming languages": "Programming Language",
+    "databases": "Database",
+    "database managers": "Database",
+    "css frameworks": "CSS Framework",
+    "ui frameworks": "UI Library",
+    "development": "Developer Tools",
+    "marketing automation": "Marketing Automation",
+    "email": "Marketing Automation",
+    "crm": "Marketing Automation",
+    "form builders": "Marketing Automation",
+    "surveys": "Marketing Automation",
+    "appointment scheduling": "Marketing Automation",
+    "reviews": "Marketing Automation",
+    "advertising": "Advertising",
+    "retargeting": "Advertising",
+    "affiliate programs": "Advertising",
+    "referral marketing": "Advertising",
+    "live chat": "Customer Support",
+    "cookie compliance": "Consent Management",
+    "accessibility": "Accessibility",
+    "a/b testing": "A/B Testing",
+    "feature management": "A/B Testing",
+    "personalisation": "Personalization",
+    "rum": "Performance Monitoring",
+    "performance": "Performance",
+    "caching": "Performance",
+    "digital asset management": "Digital Asset Management",
+    "segmentation": "Customer Data Platform",
+    "customer data platform": "Customer Data Platform",
+    "payment processors": "Payment",
+    "buy now pay later": "Payment",
+    "seo": "SEO",
+    "video players": "Media",
+    "media servers": "Media",
+    "livestreaming": "Media",
 }
 
-# Fallback: map Wappalyzer category name substrings to TagScope categories
+# ID override map — used when the categories lookup is empty (e.g. in unit tests)
+# or for the few IDs where the name alone is ambiguous.
+# All entries here should be correct; the _NAME_MAP takes priority when names
+# are available.
+_CATEGORY_MAP: Dict[int, str] = {
+    1: "CMS",
+    2: "CMS",                   # Message boards
+    6: "E-commerce",
+    11: "CMS",                  # Blogs
+    12: "JavaScript Framework",
+    18: "JavaScript Framework", # Web frameworks
+    27: "Programming Language",
+    28: "Web Server",           # Operating systems -> treat as server infrastructure
+    31: "CDN",
+    41: "Payment",
+    57: "JavaScript Framework", # Static site generators
+    59: "JavaScript Library",
+    62: "Hosting",              # PaaS
+    63: "Hosting",              # IaaS
+}
+
+# Substring fallback for category names not covered by _NAME_MAP or _CATEGORY_MAP.
 _CATEGORY_NAME_FALLBACKS = [
     ("cms", "CMS"),
     ("e-commerce", "E-commerce"),
@@ -87,7 +147,7 @@ _CATEGORY_NAME_FALLBACKS = [
     ("cdn", "CDN"),
     ("hosting", "Hosting"),
     ("server", "Web Server"),
-    ("analytics", "Performance Monitoring"),
+    ("analytics", "Analytics"),
     ("monitoring", "Performance Monitoring"),
     ("error", "Error Tracking"),
     ("payment", "Payment"),
@@ -186,14 +246,21 @@ def _map_category(
 ) -> str:
     """Map Wappalyzer category IDs to a TagScope category string.
 
-    Tries the explicit ID map first, then falls back to name-based matching,
-    then defaults to 'Other'.
+    Lookup order:
+    1. Exact name match via _NAME_MAP (robust to upstream renumbering).
+    2. ID override via _CATEGORY_MAP (for empty lookups and ambiguous cases).
+    3. Substring fallback via _CATEGORY_NAME_FALLBACKS.
+    4. 'Other'.
     """
+    for cid in cat_ids:
+        name = categories_lookup.get(cid, "").lower()
+        if name in _NAME_MAP:
+            return _NAME_MAP[name]
+
     for cid in cat_ids:
         if cid in _CATEGORY_MAP:
             return _CATEGORY_MAP[cid]
 
-    # Fallback: check category name from categories.json
     for cid in cat_ids:
         name = categories_lookup.get(cid, "").lower()
         for substr, mapped in _CATEGORY_NAME_FALLBACKS:
