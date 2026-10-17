@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "tagscope"
-version = "3.5.0"
+version = "3.6.0"
 description = "Playwright-powered site auditor and marketing tag detector."
 readme = "README.md"
 authors = [

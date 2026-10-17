@@ -1,6 +1,6 @@
 """TagScope: a Playwright-powered site auditor and marketing tag detector."""
 
-__version__ = "3.5.0"
+__version__ = "3.6.0"
 
 
 def __getattr__(name):
