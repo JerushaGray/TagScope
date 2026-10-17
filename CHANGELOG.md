@@ -1,5 +1,54 @@
 # Changelog
 
+## v3.6.0
+
+Audit quality overhaul: declared-vs-fired tag status, container-aware
+findings, Wappalyzer corrections, and false-positive elimination.
+
+### Added
+
+- **Declared vs fired tag status (FIX-01).** Tags detected only in HTML
+  are now marked `"declared"`; tags confirmed by network requests are
+  `"fired"`. `tag_index` gains `fired_page_count` and
+  `declared_only_pages`. New `declared_not_executed` finding (high) when
+  GTM is present but never fires.
+- **Script deferral detection (FIX-01).** `detect_script_deferral()`
+  identifies 8 mechanisms (WP Rocket, LiteSpeed, Perfmatters, Flying
+  Scripts, Cloudflare Rocket Loader, Cookiebot autoblock, OneTrust
+  autoblock, Partytown). Stored per page as `script_deferral`.
+- **GTM container analysis (FIX-07).** When `gtm_container_summary` is
+  set, findings JSON gains a `gtm_container` key. New findings:
+  `events_configured_not_observed`, `consent_default_granted`,
+  `paused_tags`, `obfuscated_custom_html`,
+  `tags_without_consent_requirement`.
+- **TAG_ALIASES (FIX-05).** Deprecated tag keys in old crawl JSON are
+  normalised at export time. `clarity` → `microsoft_clarity`.
+- **Technology index deduplication (FIX-06b).** Technologies whose
+  normalised name matches a TAG_PATTERNS key are excluded from
+  `technology_index`.
+- **Audit-report skill guardrails (FIX-13).** 8 mandatory evidence rules
+  prevent the report skill from overstating coverage or inferring GTM
+  configuration from page-only data.
+
+### Fixed
+
+- **Google Optimize false positive (FIX-04).** Pattern changed from
+  `GTM-[A-Z0-9]{4,}` to `OPT-[A-Z0-9]{6,}` so every GTM container ID
+  no longer triggers a Google Optimize detection.
+- **Clarity counted twice (FIX-05).** `clarity` entry removed;
+  `microsoft_clarity` updated with merged patterns/URLs and category
+  changed to `Session Recording`.
+- **Wappalyzer category mis-mapping (FIX-06a).** Name-first lookup via
+  `_NAME_MAP` (64 entries) replaces fragile ID-only mapping. 20+
+  categories corrected (e.g. cookie compliance was "Font Service").
+- **Apex → www redirect kills crawl (FIX-08).** `_adopt_redirect_host`
+  updates `base_domain` when the depth-0 page redirects between
+  apex and www variants.
+- **Performance correlation confounded (FIX-11).** Requires ≥5 pages per
+  compared group and uses hedged correlation language.
+- **`no_event_tracking` prescriptive language (FIX-07).** Replaced with
+  observational `no_events_observed` wording.
+
 ## v3.5.0
 
 Bug fixes, config correctness, and crawl reliability improvements.
