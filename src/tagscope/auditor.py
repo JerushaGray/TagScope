@@ -1840,14 +1840,35 @@ class SiteAuditor:
                     'detail': f"GA4 tag present on {len(silent_pages)} page(s) but no Measurement Protocol collect requests fired. GA4 may be blocked by consent, ad blockers, or misconfiguration: {', '.join(silent_pages[:5])}" + (f" and {len(silent_pages) - 5} more." if len(silent_pages) > 5 else "."),
                 })
 
-        # DataLayer pollution -- high push count with no structured events
+        # DataLayer with no structured events — container-aware when available
+        container_summary = getattr(self, 'gtm_container_summary', None)
         if ga4_summary['total_datalayer_pushes'] > 0 and not ga4_summary['datalayer_events']:
-            findings.append({
-                'type': 'no_event_tracking',
-                'severity': 'low',
-                'tag': 'none',
-                'detail': f"{ga4_summary['total_datalayer_pushes']} dataLayer pushes detected across all pages but 0 named GA4 events surfaced. No structured event tracking is in place -- conversion actions (form submits, sign-ups, purchases) are not being measured.",
-            })
+            if container_summary and container_summary.get('ga4_event_tags'):
+                # Container has GA4 event tags configured but none were observed in the crawl
+                event_names = [t.get('event_name', '?') for t in container_summary['ga4_event_tags']]
+                findings.append({
+                    'type': 'events_configured_not_observed',
+                    'severity': 'low',
+                    'tag': 'google_analytics_4',
+                    'detail': (
+                        f"{len(event_names)} GA4 event tag(s) configured in the GTM container "
+                        f"({', '.join(event_names[:5])}"
+                        f"{' and ' + str(len(event_names) - 5) + ' more' if len(event_names) > 5 else ''}"
+                        f") but none were observed during the crawl. "
+                        f"Conversion events may fire on interactions the crawler did not perform."
+                    ),
+                })
+            else:
+                findings.append({
+                    'type': 'no_events_observed',
+                    'severity': 'low',
+                    'tag': 'none',
+                    'detail': (
+                        f"{ga4_summary['total_datalayer_pushes']} dataLayer pushes observed across "
+                        f"all pages but none were GA4 event names. Conversion events may be configured "
+                        f"in GTM on interactions the crawler did not perform."
+                    ),
+                })
 
         # Multiple GTM containers
         gtm_info = tag_index.get('google_tag_manager', {})
@@ -1877,6 +1898,58 @@ class SiteAuditor:
         severity_order = {'high': 0, 'medium': 1, 'low': 2}
         findings.sort(key=lambda f: severity_order.get(f['severity'], 3))
 
+        # --- Container-aware findings (when GTM container summary is available) ---
+        if container_summary:
+            # consent_default_granted: all regions grant consent by default
+            for cd in container_summary.get('consent_defaults', []):
+                for region in cd.get('regions', []):
+                    granted_types = [
+                        k.replace('defaultConsent', '')
+                        for k, v in region.items()
+                        if k.startswith('defaultConsent') and v == 'granted'
+                    ]
+                    if granted_types:
+                        findings.append({
+                            'type': 'consent_default_granted',
+                            'severity': 'high',
+                            'tag': 'google_tag_manager',
+                            'detail': (
+                                f"Consent defaults in the GTM container grant "
+                                f"{', '.join(granted_types)} for {region.get('region', 'unknown region')} "
+                                f"before any CMP interaction."
+                            ),
+                        })
+
+            # paused_tags
+            paused = container_summary.get('paused_tags', [])
+            if paused:
+                findings.append({
+                    'type': 'paused_tags',
+                    'severity': 'low',
+                    'tag': 'google_tag_manager',
+                    'detail': f"{len(paused)} tag(s) in the GTM container are paused (tag IDs: {', '.join(str(t) for t in paused)}).",
+                })
+
+            # obfuscated_custom_html
+            obfuscated = container_summary.get('obfuscated_custom_html', [])
+            if obfuscated:
+                findings.append({
+                    'type': 'obfuscated_custom_html',
+                    'severity': 'medium',
+                    'tag': 'google_tag_manager',
+                    'detail': f"{len(obfuscated)} Custom HTML tag(s) in the GTM container contain obfuscated code (tag IDs: {', '.join(str(t) for t in obfuscated)}).",
+                })
+
+            # tags_without_consent_requirement
+            no_consent = container_summary.get('tags_without_consent_requirement', [])
+            if no_consent:
+                findings.append({
+                    'type': 'tags_without_consent_requirement',
+                    'severity': 'medium',
+                    'tag': 'google_tag_manager',
+                    'detail': f"{len(no_consent)} tag(s) in the GTM container have no additional consent requirement configured.",
+                })
+
         # --- Assemble Output ---
         output = {
             'report_info': {
@@ -1898,6 +1971,9 @@ class SiteAuditor:
             },
             'findings': findings,
         }
+
+        if container_summary:
+            output['gtm_container'] = container_summary
 
         with open(filename, 'w', encoding='utf-8') as f:
             json.dump(output, f, indent=2, ensure_ascii=False, default=str)

@@ -163,27 +163,21 @@ class TestPerformanceFindings:
             'li': _tag(category='Advertising'),
             'microsoft_clarity': _tag(category='Session Recording'),
         }
+        # 5 pages per group satisfies the >=5 minimum
         auditor.page_data = [
-            _make_page('https://example.com/a', tags=few_tags, performance={'load_time': 1000}),
-            _make_page('https://example.com/b', tags=few_tags, performance={'load_time': 1100}),
-            _make_page('https://example.com/c', tags=few_tags, performance={'load_time': 1050}),
-            _make_page('https://example.com/d', tags=few_tags, performance={'load_time': 1020}),
-            _make_page('https://example.com/e', tags=few_tags, performance={'load_time': 1080}),
-            _make_page('https://example.com/f', tags=many_tags, performance={'load_time': 3000}),
-            _make_page('https://example.com/g', tags=many_tags, performance={'load_time': 3200}),
-            _make_page('https://example.com/h', tags=many_tags, performance={'load_time': 2900}),
-            _make_page('https://example.com/i', tags=many_tags, performance={'load_time': 3100}),
-            _make_page('https://example.com/j', tags=many_tags, performance={'load_time': 3050}),
+            _make_page(f'https://example.com/few/{i}', tags=few_tags, performance={'load_time': 1000 + i * 10})
+            for i in range(5)
+        ] + [
+            _make_page(f'https://example.com/many/{i}', tags=many_tags, performance={'load_time': 3000 + i * 50})
+            for i in range(5)
         ]
         data = _export_findings(auditor)
         assert 'tag_performance_correlation' in _finding_types(data)
 
     def test_tag_performance_correlation_requires_group_size(self, auditor):
         few_tags = {'ga4': _tag(category='Analytics')}
-        many_tags = {
-            'ga4': _tag(category='Analytics'),
-            'hotjar': _tag(category='Heatmaps'),
-        }
+        many_tags = {'ga4': _tag(category='Analytics'), 'hotjar': _tag(category='Heatmaps')}
+        # Only 2 pages per group -- below the >=5 minimum, finding must not fire
         auditor.page_data = [
             _make_page('https://example.com/a', tags=few_tags, performance={'load_time': 1000}),
             _make_page('https://example.com/b', tags=few_tags, performance={'load_time': 1100}),
@@ -220,7 +214,7 @@ class TestDataLayerPollution:
                        datalayer={'total_events': 50, 'ga4_events': {}, 'ecommerce_events': [], 'gtag_config': []}),
         ]
         data = _export_findings(auditor)
-        assert 'no_event_tracking' in _finding_types(data)
+        assert 'no_events_observed' in _finding_types(data)
 
     def test_no_pollution_when_events_exist(self, auditor):
         auditor.page_data = [
@@ -228,7 +222,7 @@ class TestDataLayerPollution:
                        datalayer={'total_events': 50, 'ga4_events': {'page_view': 5}, 'ecommerce_events': [], 'gtag_config': []}),
         ]
         data = _export_findings(auditor)
-        assert 'no_event_tracking' not in _finding_types(data)
+        assert 'no_events_observed' not in _finding_types(data)
 
 
 class TestMultipleGTMContainers:
