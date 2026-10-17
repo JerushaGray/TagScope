@@ -1,0 +1,1851 @@
+{
+  "report_info": {
+    "site": "https://www.checkfront.com",
+    "domain": "www.checkfront.com",
+    "generated_at": "2026-10-15T06:07:05.079179",
+    "total_pages": 149,
+    "tagscope_version": "3.5.0"
+  },
+  "tag_index": {
+    "cookiebot": {
+      "category": "Consent Management",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "high",
+      "ids": [
+        "Cookiebot"
+      ],
+      "evidence_types": [
+        "html_pattern:Cookiebot",
+        "request_host:consent.cookiebot.com",
+        "script_url:consent.cookiebot.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    "crazy_egg": {
+      "category": "Heatmaps",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "high",
+      "ids": [
+        "crazyegg"
+      ],
+      "evidence_types": [
+        "html_pattern:crazyegg",
+        "request_host:script.crazyegg.com",
+        "script_url:script.crazyegg.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    "facebook_pixel": {
+      "category": "Advertising",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "high",
+      "ids": [
+        "838153926237180"
+      ],
+      "evidence_types": [
+        "html_pattern:fbq\\([\\'\"]init[\\'\"]\\s*,\\s*[\\'\"](\\d+)[\\'\"]",
+        "request_host:connect.facebook.net",
+        "request_host:www.facebook.com",
+        "script_url:connect.facebook.net/en_US/fbevents.js"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/blog/why-email-personalization-is-one-of-the-best-online-booking-tools-youre-overlooking",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/blog/how-to-sell-public-and-private-boat-tours-in-4-steps",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/blog/3-tips-to-tackle-cart-abandonment-and-capture-more-bookings-in-2023",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/blog/easy-effective-pricing-tactics-for-activity-and-rental-operators-with-examples",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/blog/travel-industry-trends-the-rise-of-multi-day-tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026",
+        "https://www.checkfront.com/blog/atv-rental-software-that-runs-itself",
+        "https://www.checkfront.com/blog/what-is-an-online-booking-system",
+        "https://www.checkfront.com/blog/page/2",
+        "https://www.checkfront.com/blog/how-to-choose-rental-booking-software",
+        "https://www.checkfront.com/blog/checkfront-features-most-operators-dont-know",
+        "https://www.checkfront.com/blog/last-minute-bookings-world-cup",
+        "https://www.checkfront.com/blog/category/marketing-strategies",
+        "https://www.checkfront.com/blog/world-cup-tour-operator-lessons-2026",
+        "https://www.checkfront.com/blog/rental-deposits-guide",
+        "https://www.checkfront.com/blog/page/3",
+        "https://www.checkfront.com/blog/add-ons-selling-beyond-the-booking",
+        "https://www.checkfront.com/blog/category/business-tips",
+        "https://www.checkfront.com/blog/off-season-revenue-plan",
+        "https://www.checkfront.com/blog/category/booking-management",
+        "https://www.checkfront.com/blog/page/22",
+        "https://www.checkfront.com/blog/booking-abandonment",
+        "https://www.checkfront.com/blog/kayak-rental-software-features",
+        "https://www.checkfront.com/blog/category/guest-experience",
+        "https://www.checkfront.com/blog/category/operator-highlights",
+        "https://www.checkfront.com/blog/ski-rental-booking-lead-time",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/blog/how-to-reduce-no-shows-and-manage-last-minute-cancellations",
+        "https://www.checkfront.com/blog/how-checkfront-can-help-you-avoid-overbookings",
+        "https://www.checkfront.com/blog/booking-confirmation-email",
+        "https://www.checkfront.com/blog/3-helpful-tips-to-get-the-most-out-of-your-digital-waivers",
+        "https://www.checkfront.com/blog/holiday-promotion-ideas-small-businesses",
+        "https://www.checkfront.com/blog/checkfront-spotlight-drake-bay-getaway-resort-wins-2015-boutique-hotel-award",
+        "https://www.checkfront.com/blog/entice-customers-to-stay-longer-with-tiered-pricing",
+        "https://www.checkfront.com/blog/how-to-setup-your-booking-system",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/blog/moresby-explorers",
+        "https://www.checkfront.com/blog/automate-your-business-with-zapier",
+        "https://www.checkfront.com/blog/rent-a-tent-canada-seamless-booking-experience",
+        "https://www.checkfront.com/blog/6-tips-to-increase-online-bookings",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/blog/how-to-use-automated-sms-notifications-to-support-your-bookings-and-business-examples-included",
+        "https://www.checkfront.com/blog/3-emails-to-improve-the-post-booking-experience",
+        "https://www.checkfront.com/blog/create-call-to-action-button-facebook",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/blog/gdpr-ready",
+        "https://www.checkfront.com/blog/pos-software",
+        "https://www.checkfront.com/blog/how-to-use-facebook-for-bookings",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/booking-software-for-boat-rentals",
+        "https://www.checkfront.com/blog/how-to-create-tour-packages-that-sell-themselves",
+        "https://www.checkfront.com/blog/urban-axes-online-sales",
+        "https://www.checkfront.com/blog/canmore-cave-tours",
+        "https://www.checkfront.com/blog/jaguar-land-rover-experience-global-growth",
+        "https://www.checkfront.com/blog/eagle-wing-case-study",
+        "https://www.checkfront.com/blog/choosing-a-payment-provider-for-your-checkfront-account",
+        "https://www.checkfront.com/blog/visualizing-your-booking-funnel-with-google-analytics",
+        "https://www.checkfront.com/blog/best-booking-process-tour-website",
+        "https://www.checkfront.com/blog/mystery-towns-tour-app",
+        "https://www.checkfront.com/blog/contactless-check-in",
+        "https://www.checkfront.com/blog/axe-throwing-checkfront-features",
+        "https://www.checkfront.com/blog/valentines-day-ideas-and-promotions-for-tour-and-activity-companies",
+        "https://www.checkfront.com/blog/how-to-increase-revenue-with-tour-costing-and-pricing",
+        "https://www.checkfront.com/blog/creating-advanced-discounts-with-group-pricing",
+        "https://www.checkfront.com/blog/digital-marketing-trends-2020",
+        "https://www.checkfront.com/blog/self-guided-tour",
+        "https://www.checkfront.com/blog/tour-itinerary",
+        "https://www.checkfront.com/blog/how-you-can-start-a-rewarding-ecotourism-business",
+        "https://www.checkfront.com/blog/how-to-become-a-powerful-tour-director-that-wows-guests",
+        "https://www.checkfront.com/blog/spirit-bear-lodge-online-bookings",
+        "https://www.checkfront.com/atv-quad-bike-tours-booking-software",
+        "https://www.checkfront.com/blog/how-does-an-online-booking-system-work",
+        "https://www.checkfront.com/blog/excel-spreadsheets-vs-an-online-booking-system",
+        "https://www.checkfront.com/resources/content/online-booking-systems-guide",
+        "https://www.checkfront.com/blog/tour-operator-cancellation-policy-world-cup",
+        "https://www.checkfront.com/blog/page/4",
+        "https://www.checkfront.com/blog/checkfront-vs-fareharbor-an-honest-2026-comparison",
+        "https://www.checkfront.com/blog/creating-thank-you-emails-for-your-tour-companys-customers",
+        "https://www.checkfront.com/blog/cross-border-booking-setup-canadian-tour-operators",
+        "https://www.checkfront.com/blog/a-practical-guide-to-ai-for-tour-and-activity-operators",
+        "https://www.checkfront.com/blog/pre-busy-season-setup-check-tour-operators",
+        "https://www.checkfront.com/blog/last-minute-tour-bookings",
+        "https://www.checkfront.com/blog/should-you-raise-prices-summer-2026",
+        "https://www.checkfront.com/blog/how-to-run-a-tour-business-when-weather-stopped-being-seasonal",
+        "https://www.checkfront.com/blog/what-dynamic-pricing-teaches-tour-operators-lessons-from-the-world-cup",
+        "https://www.checkfront.com/blog/pre-season-checklist-tour-operators-summer",
+        "https://www.checkfront.com/blog/how-to-respond-to-negative-travel-reviews",
+        "https://www.checkfront.com/blog/how-to-start-a-tour-operator-business",
+        "https://www.checkfront.com/ski-rental-software",
+        "https://www.checkfront.com/bike-rental-software",
+        "https://www.checkfront.com/kayak-rental-software",
+        "https://www.checkfront.com/blog/keeping-a-seasonal-business-profitable-year-round",
+        "https://www.checkfront.com/blog/3-must-use-artificial-intelligence-tools-for-rental-and-activity-operators",
+        "https://www.checkfront.com/blog/how-to-write-atv-rental-descriptions",
+        "https://www.checkfront.com/blog/strategic-planning-process",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/3",
+        "https://www.checkfront.com/blog/4-promo-code-ideas-to-drive-off-season-revenue-with-examples",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/7",
+        "https://www.checkfront.com/blog/sell-gift-cards-online",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/2",
+        "https://www.checkfront.com/blog/gift-certificates",
+        "https://www.checkfront.com/blog/page/5",
+        "https://www.checkfront.com/blog/how-to-choose-the-right-website-builder-for-tour-and-activity-providers",
+        "https://www.checkfront.com/blog/the-best-tour-operator-software-in-2025"
+      ]
+    },
+    "google_ads": {
+      "category": "Advertising",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "low",
+      "ids": [
+        "AW-1029841353"
+      ],
+      "evidence_types": [
+        "html_pattern:AW-\\d+"
+      ],
+      "detection_methods": [
+        "html_pattern"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/blog/why-email-personalization-is-one-of-the-best-online-booking-tools-youre-overlooking",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/blog/how-to-sell-public-and-private-boat-tours-in-4-steps",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/blog/3-tips-to-tackle-cart-abandonment-and-capture-more-bookings-in-2023",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/blog/easy-effective-pricing-tactics-for-activity-and-rental-operators-with-examples",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/blog/travel-industry-trends-the-rise-of-multi-day-tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026",
+        "https://www.checkfront.com/blog/atv-rental-software-that-runs-itself",
+        "https://www.checkfront.com/blog/what-is-an-online-booking-system",
+        "https://www.checkfront.com/blog/page/2",
+        "https://www.checkfront.com/blog/how-to-choose-rental-booking-software",
+        "https://www.checkfront.com/blog/checkfront-features-most-operators-dont-know",
+        "https://www.checkfront.com/blog/last-minute-bookings-world-cup",
+        "https://www.checkfront.com/blog/category/marketing-strategies",
+        "https://www.checkfront.com/blog/world-cup-tour-operator-lessons-2026",
+        "https://www.checkfront.com/blog/rental-deposits-guide",
+        "https://www.checkfront.com/blog/page/3",
+        "https://www.checkfront.com/blog/add-ons-selling-beyond-the-booking",
+        "https://www.checkfront.com/blog/category/business-tips",
+        "https://www.checkfront.com/blog/off-season-revenue-plan",
+        "https://www.checkfront.com/blog/category/booking-management",
+        "https://www.checkfront.com/blog/page/22",
+        "https://www.checkfront.com/blog/booking-abandonment",
+        "https://www.checkfront.com/blog/kayak-rental-software-features",
+        "https://www.checkfront.com/blog/category/guest-experience",
+        "https://www.checkfront.com/blog/category/operator-highlights",
+        "https://www.checkfront.com/blog/ski-rental-booking-lead-time",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/blog/how-to-reduce-no-shows-and-manage-last-minute-cancellations",
+        "https://www.checkfront.com/blog/how-checkfront-can-help-you-avoid-overbookings",
+        "https://www.checkfront.com/blog/booking-confirmation-email",
+        "https://www.checkfront.com/blog/3-helpful-tips-to-get-the-most-out-of-your-digital-waivers",
+        "https://www.checkfront.com/blog/holiday-promotion-ideas-small-businesses",
+        "https://www.checkfront.com/blog/checkfront-spotlight-drake-bay-getaway-resort-wins-2015-boutique-hotel-award",
+        "https://www.checkfront.com/blog/entice-customers-to-stay-longer-with-tiered-pricing",
+        "https://www.checkfront.com/blog/how-to-setup-your-booking-system",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/blog/moresby-explorers",
+        "https://www.checkfront.com/blog/automate-your-business-with-zapier",
+        "https://www.checkfront.com/blog/rent-a-tent-canada-seamless-booking-experience",
+        "https://www.checkfront.com/blog/6-tips-to-increase-online-bookings",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/blog/how-to-use-automated-sms-notifications-to-support-your-bookings-and-business-examples-included",
+        "https://www.checkfront.com/blog/3-emails-to-improve-the-post-booking-experience",
+        "https://www.checkfront.com/blog/create-call-to-action-button-facebook",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/blog/gdpr-ready",
+        "https://www.checkfront.com/blog/pos-software",
+        "https://www.checkfront.com/blog/how-to-use-facebook-for-bookings",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/booking-software-for-boat-rentals",
+        "https://www.checkfront.com/blog/how-to-create-tour-packages-that-sell-themselves",
+        "https://www.checkfront.com/blog/urban-axes-online-sales",
+        "https://www.checkfront.com/blog/canmore-cave-tours",
+        "https://www.checkfront.com/blog/jaguar-land-rover-experience-global-growth",
+        "https://www.checkfront.com/blog/eagle-wing-case-study",
+        "https://www.checkfront.com/blog/choosing-a-payment-provider-for-your-checkfront-account",
+        "https://www.checkfront.com/blog/visualizing-your-booking-funnel-with-google-analytics",
+        "https://www.checkfront.com/blog/best-booking-process-tour-website",
+        "https://www.checkfront.com/blog/mystery-towns-tour-app",
+        "https://www.checkfront.com/blog/contactless-check-in",
+        "https://www.checkfront.com/blog/axe-throwing-checkfront-features",
+        "https://www.checkfront.com/blog/valentines-day-ideas-and-promotions-for-tour-and-activity-companies",
+        "https://www.checkfront.com/blog/how-to-increase-revenue-with-tour-costing-and-pricing",
+        "https://www.checkfront.com/blog/creating-advanced-discounts-with-group-pricing",
+        "https://www.checkfront.com/blog/digital-marketing-trends-2020",
+        "https://www.checkfront.com/blog/self-guided-tour",
+        "https://www.checkfront.com/blog/tour-itinerary",
+        "https://www.checkfront.com/blog/how-you-can-start-a-rewarding-ecotourism-business",
+        "https://www.checkfront.com/blog/how-to-become-a-powerful-tour-director-that-wows-guests",
+        "https://www.checkfront.com/blog/spirit-bear-lodge-online-bookings",
+        "https://www.checkfront.com/atv-quad-bike-tours-booking-software",
+        "https://www.checkfront.com/blog/how-does-an-online-booking-system-work",
+        "https://www.checkfront.com/blog/excel-spreadsheets-vs-an-online-booking-system",
+        "https://www.checkfront.com/resources/content/online-booking-systems-guide",
+        "https://www.checkfront.com/blog/tour-operator-cancellation-policy-world-cup",
+        "https://www.checkfront.com/blog/page/4",
+        "https://www.checkfront.com/blog/checkfront-vs-fareharbor-an-honest-2026-comparison",
+        "https://www.checkfront.com/blog/creating-thank-you-emails-for-your-tour-companys-customers",
+        "https://www.checkfront.com/blog/cross-border-booking-setup-canadian-tour-operators",
+        "https://www.checkfront.com/blog/a-practical-guide-to-ai-for-tour-and-activity-operators",
+        "https://www.checkfront.com/blog/pre-busy-season-setup-check-tour-operators",
+        "https://www.checkfront.com/blog/last-minute-tour-bookings",
+        "https://www.checkfront.com/blog/should-you-raise-prices-summer-2026",
+        "https://www.checkfront.com/blog/how-to-run-a-tour-business-when-weather-stopped-being-seasonal",
+        "https://www.checkfront.com/blog/what-dynamic-pricing-teaches-tour-operators-lessons-from-the-world-cup",
+        "https://www.checkfront.com/blog/pre-season-checklist-tour-operators-summer",
+        "https://www.checkfront.com/blog/how-to-respond-to-negative-travel-reviews",
+        "https://www.checkfront.com/blog/how-to-start-a-tour-operator-business",
+        "https://www.checkfront.com/ski-rental-software",
+        "https://www.checkfront.com/bike-rental-software",
+        "https://www.checkfront.com/kayak-rental-software",
+        "https://www.checkfront.com/blog/keeping-a-seasonal-business-profitable-year-round",
+        "https://www.checkfront.com/blog/3-must-use-artificial-intelligence-tools-for-rental-and-activity-operators",
+        "https://www.checkfront.com/blog/how-to-write-atv-rental-descriptions",
+        "https://www.checkfront.com/blog/strategic-planning-process",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/3",
+        "https://www.checkfront.com/blog/4-promo-code-ideas-to-drive-off-season-revenue-with-examples",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/7",
+        "https://www.checkfront.com/blog/sell-gift-cards-online",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/2",
+        "https://www.checkfront.com/blog/gift-certificates",
+        "https://www.checkfront.com/blog/page/5",
+        "https://www.checkfront.com/blog/how-to-choose-the-right-website-builder-for-tour-and-activity-providers",
+        "https://www.checkfront.com/blog/the-best-tour-operator-software-in-2025"
+      ]
+    },
+    "google_analytics_4": {
+      "category": "Analytics",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "high",
+      "ids": [
+        "G-SQ4Z7H3P33"
+      ],
+      "evidence_types": [
+        "html_pattern:G-[A-Z0-9]{10,}",
+        "request_host:www.googletagmanager.com",
+        "script_url:googletagmanager.com/gtag/js"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/blog/why-email-personalization-is-one-of-the-best-online-booking-tools-youre-overlooking",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/blog/how-to-sell-public-and-private-boat-tours-in-4-steps",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/blog/3-tips-to-tackle-cart-abandonment-and-capture-more-bookings-in-2023",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/blog/easy-effective-pricing-tactics-for-activity-and-rental-operators-with-examples",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/blog/travel-industry-trends-the-rise-of-multi-day-tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026",
+        "https://www.checkfront.com/blog/atv-rental-software-that-runs-itself",
+        "https://www.checkfront.com/blog/what-is-an-online-booking-system",
+        "https://www.checkfront.com/blog/page/2",
+        "https://www.checkfront.com/blog/how-to-choose-rental-booking-software",
+        "https://www.checkfront.com/blog/checkfront-features-most-operators-dont-know",
+        "https://www.checkfront.com/blog/last-minute-bookings-world-cup",
+        "https://www.checkfront.com/blog/category/marketing-strategies",
+        "https://www.checkfront.com/blog/world-cup-tour-operator-lessons-2026",
+        "https://www.checkfront.com/blog/rental-deposits-guide",
+        "https://www.checkfront.com/blog/page/3",
+        "https://www.checkfront.com/blog/add-ons-selling-beyond-the-booking",
+        "https://www.checkfront.com/blog/category/business-tips",
+        "https://www.checkfront.com/blog/off-season-revenue-plan",
+        "https://www.checkfront.com/blog/category/booking-management",
+        "https://www.checkfront.com/blog/page/22",
+        "https://www.checkfront.com/blog/booking-abandonment",
+        "https://www.checkfront.com/blog/kayak-rental-software-features",
+        "https://www.checkfront.com/blog/category/guest-experience",
+        "https://www.checkfront.com/blog/category/operator-highlights",
+        "https://www.checkfront.com/blog/ski-rental-booking-lead-time",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/blog/how-to-reduce-no-shows-and-manage-last-minute-cancellations",
+        "https://www.checkfront.com/blog/how-checkfront-can-help-you-avoid-overbookings",
+        "https://www.checkfront.com/blog/booking-confirmation-email",
+        "https://www.checkfront.com/blog/3-helpful-tips-to-get-the-most-out-of-your-digital-waivers",
+        "https://www.checkfront.com/blog/holiday-promotion-ideas-small-businesses",
+        "https://www.checkfront.com/blog/checkfront-spotlight-drake-bay-getaway-resort-wins-2015-boutique-hotel-award",
+        "https://www.checkfront.com/blog/entice-customers-to-stay-longer-with-tiered-pricing",
+        "https://www.checkfront.com/blog/how-to-setup-your-booking-system",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/blog/moresby-explorers",
+        "https://www.checkfront.com/blog/automate-your-business-with-zapier",
+        "https://www.checkfront.com/blog/rent-a-tent-canada-seamless-booking-experience",
+        "https://www.checkfront.com/blog/6-tips-to-increase-online-bookings",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/blog/how-to-use-automated-sms-notifications-to-support-your-bookings-and-business-examples-included",
+        "https://www.checkfront.com/blog/3-emails-to-improve-the-post-booking-experience",
+        "https://www.checkfront.com/blog/create-call-to-action-button-facebook",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/blog/gdpr-ready",
+        "https://www.checkfront.com/blog/pos-software",
+        "https://www.checkfront.com/blog/how-to-use-facebook-for-bookings",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/booking-software-for-boat-rentals",
+        "https://www.checkfront.com/blog/how-to-create-tour-packages-that-sell-themselves",
+        "https://www.checkfront.com/blog/urban-axes-online-sales",
+        "https://www.checkfront.com/blog/canmore-cave-tours",
+        "https://www.checkfront.com/blog/jaguar-land-rover-experience-global-growth",
+        "https://www.checkfront.com/blog/eagle-wing-case-study",
+        "https://www.checkfront.com/blog/choosing-a-payment-provider-for-your-checkfront-account",
+        "https://www.checkfront.com/blog/visualizing-your-booking-funnel-with-google-analytics",
+        "https://www.checkfront.com/blog/best-booking-process-tour-website",
+        "https://www.checkfront.com/blog/mystery-towns-tour-app",
+        "https://www.checkfront.com/blog/contactless-check-in",
+        "https://www.checkfront.com/blog/axe-throwing-checkfront-features",
+        "https://www.checkfront.com/blog/valentines-day-ideas-and-promotions-for-tour-and-activity-companies",
+        "https://www.checkfront.com/blog/how-to-increase-revenue-with-tour-costing-and-pricing",
+        "https://www.checkfront.com/blog/creating-advanced-discounts-with-group-pricing",
+        "https://www.checkfront.com/blog/digital-marketing-trends-2020",
+        "https://www.checkfront.com/blog/self-guided-tour",
+        "https://www.checkfront.com/blog/tour-itinerary",
+        "https://www.checkfront.com/blog/how-you-can-start-a-rewarding-ecotourism-business",
+        "https://www.checkfront.com/blog/how-to-become-a-powerful-tour-director-that-wows-guests",
+        "https://www.checkfront.com/blog/spirit-bear-lodge-online-bookings",
+        "https://www.checkfront.com/atv-quad-bike-tours-booking-software",
+        "https://www.checkfront.com/blog/how-does-an-online-booking-system-work",
+        "https://www.checkfront.com/blog/excel-spreadsheets-vs-an-online-booking-system",
+        "https://www.checkfront.com/resources/content/online-booking-systems-guide",
+        "https://www.checkfront.com/blog/tour-operator-cancellation-policy-world-cup",
+        "https://www.checkfront.com/blog/page/4",
+        "https://www.checkfront.com/blog/checkfront-vs-fareharbor-an-honest-2026-comparison",
+        "https://www.checkfront.com/blog/creating-thank-you-emails-for-your-tour-companys-customers",
+        "https://www.checkfront.com/blog/cross-border-booking-setup-canadian-tour-operators",
+        "https://www.checkfront.com/blog/a-practical-guide-to-ai-for-tour-and-activity-operators",
+        "https://www.checkfront.com/blog/pre-busy-season-setup-check-tour-operators",
+        "https://www.checkfront.com/blog/last-minute-tour-bookings",
+        "https://www.checkfront.com/blog/should-you-raise-prices-summer-2026",
+        "https://www.checkfront.com/blog/how-to-run-a-tour-business-when-weather-stopped-being-seasonal",
+        "https://www.checkfront.com/blog/what-dynamic-pricing-teaches-tour-operators-lessons-from-the-world-cup",
+        "https://www.checkfront.com/blog/pre-season-checklist-tour-operators-summer",
+        "https://www.checkfront.com/blog/how-to-respond-to-negative-travel-reviews",
+        "https://www.checkfront.com/blog/how-to-start-a-tour-operator-business",
+        "https://www.checkfront.com/ski-rental-software",
+        "https://www.checkfront.com/bike-rental-software",
+        "https://www.checkfront.com/kayak-rental-software",
+        "https://www.checkfront.com/blog/keeping-a-seasonal-business-profitable-year-round",
+        "https://www.checkfront.com/blog/3-must-use-artificial-intelligence-tools-for-rental-and-activity-operators",
+        "https://www.checkfront.com/blog/how-to-write-atv-rental-descriptions",
+        "https://www.checkfront.com/blog/strategic-planning-process",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/3",
+        "https://www.checkfront.com/blog/4-promo-code-ideas-to-drive-off-season-revenue-with-examples",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/7",
+        "https://www.checkfront.com/blog/sell-gift-cards-online",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/2",
+        "https://www.checkfront.com/blog/gift-certificates",
+        "https://www.checkfront.com/blog/page/5",
+        "https://www.checkfront.com/blog/how-to-choose-the-right-website-builder-for-tour-and-activity-providers",
+        "https://www.checkfront.com/blog/the-best-tour-operator-software-in-2025"
+      ]
+    },
+    "google_optimize": {
+      "category": "A/B Testing",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "low",
+      "ids": [
+        "GTM-P6TLSZF"
+      ],
+      "evidence_types": [
+        "html_pattern:GTM-[A-Z0-9]{4,}"
+      ],
+      "detection_methods": [
+        "html_pattern"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    "google_tag_manager": {
+      "category": "Tag Management",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "high",
+      "ids": [
+        "GTM-P6TLSZF"
+      ],
+      "evidence_types": [
+        "html_pattern:GTM-[A-Z0-9]{4,}",
+        "request_host:www.googletagmanager.com",
+        "script_url:googletagmanager.com/gtm.js"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    "hubspot": {
+      "category": "Marketing Automation",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "high",
+      "ids": [
+        "_hsq.push"
+      ],
+      "evidence_types": [
+        "html_pattern:_hsq\\.push",
+        "request_host:js.hs-scripts.com",
+        "request_host:js.hubspot.com",
+        "script_url:js.hs-scripts.com",
+        "script_url:js.hubspot.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    "hubspot_conversations": {
+      "category": "Customer Support",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:js.usemessages.com",
+        "script_url:js.usemessages.com"
+      ],
+      "detection_methods": [
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/blog/why-email-personalization-is-one-of-the-best-online-booking-tools-youre-overlooking",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/blog/how-to-sell-public-and-private-boat-tours-in-4-steps",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/blog/3-tips-to-tackle-cart-abandonment-and-capture-more-bookings-in-2023",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/blog/easy-effective-pricing-tactics-for-activity-and-rental-operators-with-examples",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/blog/travel-industry-trends-the-rise-of-multi-day-tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026",
+        "https://www.checkfront.com/blog/atv-rental-software-that-runs-itself",
+        "https://www.checkfront.com/blog/what-is-an-online-booking-system",
+        "https://www.checkfront.com/blog/page/2",
+        "https://www.checkfront.com/blog/how-to-choose-rental-booking-software",
+        "https://www.checkfront.com/blog/checkfront-features-most-operators-dont-know",
+        "https://www.checkfront.com/blog/last-minute-bookings-world-cup",
+        "https://www.checkfront.com/blog/category/marketing-strategies",
+        "https://www.checkfront.com/blog/world-cup-tour-operator-lessons-2026",
+        "https://www.checkfront.com/blog/rental-deposits-guide",
+        "https://www.checkfront.com/blog/page/3",
+        "https://www.checkfront.com/blog/add-ons-selling-beyond-the-booking",
+        "https://www.checkfront.com/blog/category/business-tips",
+        "https://www.checkfront.com/blog/off-season-revenue-plan",
+        "https://www.checkfront.com/blog/category/booking-management",
+        "https://www.checkfront.com/blog/page/22",
+        "https://www.checkfront.com/blog/booking-abandonment",
+        "https://www.checkfront.com/blog/kayak-rental-software-features",
+        "https://www.checkfront.com/blog/category/guest-experience",
+        "https://www.checkfront.com/blog/category/operator-highlights",
+        "https://www.checkfront.com/blog/ski-rental-booking-lead-time",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/blog/how-to-reduce-no-shows-and-manage-last-minute-cancellations",
+        "https://www.checkfront.com/blog/how-checkfront-can-help-you-avoid-overbookings",
+        "https://www.checkfront.com/blog/booking-confirmation-email",
+        "https://www.checkfront.com/blog/3-helpful-tips-to-get-the-most-out-of-your-digital-waivers",
+        "https://www.checkfront.com/blog/holiday-promotion-ideas-small-businesses",
+        "https://www.checkfront.com/blog/checkfront-spotlight-drake-bay-getaway-resort-wins-2015-boutique-hotel-award",
+        "https://www.checkfront.com/blog/entice-customers-to-stay-longer-with-tiered-pricing",
+        "https://www.checkfront.com/blog/how-to-setup-your-booking-system",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/blog/moresby-explorers",
+        "https://www.checkfront.com/blog/automate-your-business-with-zapier",
+        "https://www.checkfront.com/blog/rent-a-tent-canada-seamless-booking-experience",
+        "https://www.checkfront.com/blog/6-tips-to-increase-online-bookings",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/blog/how-to-use-automated-sms-notifications-to-support-your-bookings-and-business-examples-included",
+        "https://www.checkfront.com/blog/3-emails-to-improve-the-post-booking-experience",
+        "https://www.checkfront.com/blog/create-call-to-action-button-facebook",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/blog/gdpr-ready",
+        "https://www.checkfront.com/blog/pos-software",
+        "https://www.checkfront.com/blog/how-to-use-facebook-for-bookings",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/booking-software-for-boat-rentals",
+        "https://www.checkfront.com/blog/how-to-create-tour-packages-that-sell-themselves",
+        "https://www.checkfront.com/blog/urban-axes-online-sales",
+        "https://www.checkfront.com/blog/canmore-cave-tours",
+        "https://www.checkfront.com/blog/jaguar-land-rover-experience-global-growth",
+        "https://www.checkfront.com/blog/eagle-wing-case-study",
+        "https://www.checkfront.com/blog/choosing-a-payment-provider-for-your-checkfront-account",
+        "https://www.checkfront.com/blog/visualizing-your-booking-funnel-with-google-analytics",
+        "https://www.checkfront.com/blog/best-booking-process-tour-website",
+        "https://www.checkfront.com/blog/mystery-towns-tour-app",
+        "https://www.checkfront.com/blog/contactless-check-in",
+        "https://www.checkfront.com/blog/axe-throwing-checkfront-features",
+        "https://www.checkfront.com/blog/valentines-day-ideas-and-promotions-for-tour-and-activity-companies",
+        "https://www.checkfront.com/blog/how-to-increase-revenue-with-tour-costing-and-pricing",
+        "https://www.checkfront.com/blog/creating-advanced-discounts-with-group-pricing",
+        "https://www.checkfront.com/blog/digital-marketing-trends-2020",
+        "https://www.checkfront.com/blog/self-guided-tour",
+        "https://www.checkfront.com/blog/tour-itinerary",
+        "https://www.checkfront.com/blog/how-you-can-start-a-rewarding-ecotourism-business",
+        "https://www.checkfront.com/blog/how-to-become-a-powerful-tour-director-that-wows-guests",
+        "https://www.checkfront.com/blog/spirit-bear-lodge-online-bookings",
+        "https://www.checkfront.com/atv-quad-bike-tours-booking-software",
+        "https://www.checkfront.com/blog/how-does-an-online-booking-system-work",
+        "https://www.checkfront.com/blog/excel-spreadsheets-vs-an-online-booking-system",
+        "https://www.checkfront.com/resources/content/online-booking-systems-guide",
+        "https://www.checkfront.com/blog/tour-operator-cancellation-policy-world-cup",
+        "https://www.checkfront.com/blog/page/4",
+        "https://www.checkfront.com/blog/checkfront-vs-fareharbor-an-honest-2026-comparison",
+        "https://www.checkfront.com/blog/creating-thank-you-emails-for-your-tour-companys-customers",
+        "https://www.checkfront.com/blog/cross-border-booking-setup-canadian-tour-operators",
+        "https://www.checkfront.com/blog/a-practical-guide-to-ai-for-tour-and-activity-operators",
+        "https://www.checkfront.com/blog/pre-busy-season-setup-check-tour-operators",
+        "https://www.checkfront.com/blog/last-minute-tour-bookings",
+        "https://www.checkfront.com/blog/should-you-raise-prices-summer-2026",
+        "https://www.checkfront.com/blog/how-to-run-a-tour-business-when-weather-stopped-being-seasonal",
+        "https://www.checkfront.com/blog/what-dynamic-pricing-teaches-tour-operators-lessons-from-the-world-cup",
+        "https://www.checkfront.com/blog/pre-season-checklist-tour-operators-summer",
+        "https://www.checkfront.com/blog/how-to-respond-to-negative-travel-reviews",
+        "https://www.checkfront.com/blog/how-to-start-a-tour-operator-business",
+        "https://www.checkfront.com/ski-rental-software",
+        "https://www.checkfront.com/bike-rental-software",
+        "https://www.checkfront.com/kayak-rental-software",
+        "https://www.checkfront.com/blog/keeping-a-seasonal-business-profitable-year-round",
+        "https://www.checkfront.com/blog/3-must-use-artificial-intelligence-tools-for-rental-and-activity-operators",
+        "https://www.checkfront.com/blog/how-to-write-atv-rental-descriptions",
+        "https://www.checkfront.com/blog/strategic-planning-process",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/3",
+        "https://www.checkfront.com/blog/4-promo-code-ideas-to-drive-off-season-revenue-with-examples",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/7",
+        "https://www.checkfront.com/blog/sell-gift-cards-online",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/2",
+        "https://www.checkfront.com/blog/gift-certificates",
+        "https://www.checkfront.com/blog/page/5",
+        "https://www.checkfront.com/blog/how-to-choose-the-right-website-builder-for-tour-and-activity-providers",
+        "https://www.checkfront.com/blog/the-best-tour-operator-software-in-2025"
+      ]
+    },
+    "linkedin_insight": {
+      "category": "Advertising",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:px.ads.linkedin.com",
+        "request_host:snap.licdn.com",
+        "request_url:px.ads.linkedin.com",
+        "script_url:snap.licdn.com/li.lms-analytics"
+      ],
+      "detection_methods": [
+        "request_host",
+        "request_url",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/blog/why-email-personalization-is-one-of-the-best-online-booking-tools-youre-overlooking",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/blog/how-to-sell-public-and-private-boat-tours-in-4-steps",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/blog/3-tips-to-tackle-cart-abandonment-and-capture-more-bookings-in-2023",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/blog/easy-effective-pricing-tactics-for-activity-and-rental-operators-with-examples",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/blog/travel-industry-trends-the-rise-of-multi-day-tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026",
+        "https://www.checkfront.com/blog/atv-rental-software-that-runs-itself",
+        "https://www.checkfront.com/blog/what-is-an-online-booking-system",
+        "https://www.checkfront.com/blog/page/2",
+        "https://www.checkfront.com/blog/how-to-choose-rental-booking-software",
+        "https://www.checkfront.com/blog/checkfront-features-most-operators-dont-know",
+        "https://www.checkfront.com/blog/last-minute-bookings-world-cup",
+        "https://www.checkfront.com/blog/category/marketing-strategies",
+        "https://www.checkfront.com/blog/world-cup-tour-operator-lessons-2026",
+        "https://www.checkfront.com/blog/rental-deposits-guide",
+        "https://www.checkfront.com/blog/page/3",
+        "https://www.checkfront.com/blog/add-ons-selling-beyond-the-booking",
+        "https://www.checkfront.com/blog/category/business-tips",
+        "https://www.checkfront.com/blog/off-season-revenue-plan",
+        "https://www.checkfront.com/blog/category/booking-management",
+        "https://www.checkfront.com/blog/page/22",
+        "https://www.checkfront.com/blog/booking-abandonment",
+        "https://www.checkfront.com/blog/kayak-rental-software-features",
+        "https://www.checkfront.com/blog/category/guest-experience",
+        "https://www.checkfront.com/blog/category/operator-highlights",
+        "https://www.checkfront.com/blog/ski-rental-booking-lead-time",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/blog/how-to-reduce-no-shows-and-manage-last-minute-cancellations",
+        "https://www.checkfront.com/blog/how-checkfront-can-help-you-avoid-overbookings",
+        "https://www.checkfront.com/blog/booking-confirmation-email",
+        "https://www.checkfront.com/blog/3-helpful-tips-to-get-the-most-out-of-your-digital-waivers",
+        "https://www.checkfront.com/blog/holiday-promotion-ideas-small-businesses",
+        "https://www.checkfront.com/blog/checkfront-spotlight-drake-bay-getaway-resort-wins-2015-boutique-hotel-award",
+        "https://www.checkfront.com/blog/entice-customers-to-stay-longer-with-tiered-pricing",
+        "https://www.checkfront.com/blog/how-to-setup-your-booking-system",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/blog/moresby-explorers",
+        "https://www.checkfront.com/blog/automate-your-business-with-zapier",
+        "https://www.checkfront.com/blog/rent-a-tent-canada-seamless-booking-experience",
+        "https://www.checkfront.com/blog/6-tips-to-increase-online-bookings",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/blog/how-to-use-automated-sms-notifications-to-support-your-bookings-and-business-examples-included",
+        "https://www.checkfront.com/blog/3-emails-to-improve-the-post-booking-experience",
+        "https://www.checkfront.com/blog/create-call-to-action-button-facebook",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/blog/gdpr-ready",
+        "https://www.checkfront.com/blog/pos-software",
+        "https://www.checkfront.com/blog/how-to-use-facebook-for-bookings",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/booking-software-for-boat-rentals",
+        "https://www.checkfront.com/blog/how-to-create-tour-packages-that-sell-themselves",
+        "https://www.checkfront.com/blog/urban-axes-online-sales",
+        "https://www.checkfront.com/blog/canmore-cave-tours",
+        "https://www.checkfront.com/blog/jaguar-land-rover-experience-global-growth",
+        "https://www.checkfront.com/blog/eagle-wing-case-study",
+        "https://www.checkfront.com/blog/choosing-a-payment-provider-for-your-checkfront-account",
+        "https://www.checkfront.com/blog/visualizing-your-booking-funnel-with-google-analytics",
+        "https://www.checkfront.com/blog/best-booking-process-tour-website",
+        "https://www.checkfront.com/blog/mystery-towns-tour-app",
+        "https://www.checkfront.com/blog/contactless-check-in",
+        "https://www.checkfront.com/blog/axe-throwing-checkfront-features",
+        "https://www.checkfront.com/blog/valentines-day-ideas-and-promotions-for-tour-and-activity-companies",
+        "https://www.checkfront.com/blog/how-to-increase-revenue-with-tour-costing-and-pricing",
+        "https://www.checkfront.com/blog/creating-advanced-discounts-with-group-pricing",
+        "https://www.checkfront.com/blog/digital-marketing-trends-2020",
+        "https://www.checkfront.com/blog/self-guided-tour",
+        "https://www.checkfront.com/blog/tour-itinerary",
+        "https://www.checkfront.com/blog/how-you-can-start-a-rewarding-ecotourism-business",
+        "https://www.checkfront.com/blog/how-to-become-a-powerful-tour-director-that-wows-guests",
+        "https://www.checkfront.com/blog/spirit-bear-lodge-online-bookings",
+        "https://www.checkfront.com/atv-quad-bike-tours-booking-software",
+        "https://www.checkfront.com/blog/how-does-an-online-booking-system-work",
+        "https://www.checkfront.com/blog/excel-spreadsheets-vs-an-online-booking-system",
+        "https://www.checkfront.com/resources/content/online-booking-systems-guide",
+        "https://www.checkfront.com/blog/tour-operator-cancellation-policy-world-cup",
+        "https://www.checkfront.com/blog/page/4",
+        "https://www.checkfront.com/blog/checkfront-vs-fareharbor-an-honest-2026-comparison",
+        "https://www.checkfront.com/blog/creating-thank-you-emails-for-your-tour-companys-customers",
+        "https://www.checkfront.com/blog/cross-border-booking-setup-canadian-tour-operators",
+        "https://www.checkfront.com/blog/a-practical-guide-to-ai-for-tour-and-activity-operators",
+        "https://www.checkfront.com/blog/pre-busy-season-setup-check-tour-operators",
+        "https://www.checkfront.com/blog/last-minute-tour-bookings",
+        "https://www.checkfront.com/blog/should-you-raise-prices-summer-2026",
+        "https://www.checkfront.com/blog/how-to-run-a-tour-business-when-weather-stopped-being-seasonal",
+        "https://www.checkfront.com/blog/what-dynamic-pricing-teaches-tour-operators-lessons-from-the-world-cup",
+        "https://www.checkfront.com/blog/pre-season-checklist-tour-operators-summer",
+        "https://www.checkfront.com/blog/how-to-respond-to-negative-travel-reviews",
+        "https://www.checkfront.com/blog/how-to-start-a-tour-operator-business",
+        "https://www.checkfront.com/ski-rental-software",
+        "https://www.checkfront.com/bike-rental-software",
+        "https://www.checkfront.com/kayak-rental-software",
+        "https://www.checkfront.com/blog/keeping-a-seasonal-business-profitable-year-round",
+        "https://www.checkfront.com/blog/3-must-use-artificial-intelligence-tools-for-rental-and-activity-operators",
+        "https://www.checkfront.com/blog/how-to-write-atv-rental-descriptions",
+        "https://www.checkfront.com/blog/strategic-planning-process",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/3",
+        "https://www.checkfront.com/blog/4-promo-code-ideas-to-drive-off-season-revenue-with-examples",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/7",
+        "https://www.checkfront.com/blog/sell-gift-cards-online",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/2",
+        "https://www.checkfront.com/blog/gift-certificates",
+        "https://www.checkfront.com/blog/page/5",
+        "https://www.checkfront.com/blog/how-to-choose-the-right-website-builder-for-tour-and-activity-providers",
+        "https://www.checkfront.com/blog/the-best-tour-operator-software-in-2025"
+      ]
+    },
+    "vwo": {
+      "category": "A/B Testing",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "high",
+      "ids": [
+        "_vwo_"
+      ],
+      "evidence_types": [
+        "html_pattern:_vwo_",
+        "request_host:dev.visualwebsiteoptimizer.com",
+        "script_url:dev.visualwebsiteoptimizer.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    "zendesk": {
+      "category": "Customer Support",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "high",
+      "ids": [
+        "zE(function()"
+      ],
+      "evidence_types": [
+        "html_pattern:zE\\(function\\(\\)",
+        "request_host:static.zdassets.com",
+        "script_url:static.zdassets.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/blog/why-email-personalization-is-one-of-the-best-online-booking-tools-youre-overlooking",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/pricing",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/blog/how-to-sell-public-and-private-boat-tours-in-4-steps",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/blog/3-tips-to-tackle-cart-abandonment-and-capture-more-bookings-in-2023",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/blog/easy-effective-pricing-tactics-for-activity-and-rental-operators-with-examples",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/blog/travel-industry-trends-the-rise-of-multi-day-tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026",
+        "https://www.checkfront.com/blog/atv-rental-software-that-runs-itself",
+        "https://www.checkfront.com/blog/what-is-an-online-booking-system",
+        "https://www.checkfront.com/blog/page/2",
+        "https://www.checkfront.com/blog/how-to-choose-rental-booking-software",
+        "https://www.checkfront.com/blog/checkfront-features-most-operators-dont-know",
+        "https://www.checkfront.com/blog/last-minute-bookings-world-cup",
+        "https://www.checkfront.com/blog/category/marketing-strategies",
+        "https://www.checkfront.com/blog/world-cup-tour-operator-lessons-2026",
+        "https://www.checkfront.com/blog/rental-deposits-guide",
+        "https://www.checkfront.com/blog/page/3",
+        "https://www.checkfront.com/blog/add-ons-selling-beyond-the-booking",
+        "https://www.checkfront.com/blog/category/business-tips",
+        "https://www.checkfront.com/blog/off-season-revenue-plan",
+        "https://www.checkfront.com/blog/category/booking-management",
+        "https://www.checkfront.com/blog/page/22",
+        "https://www.checkfront.com/blog/booking-abandonment",
+        "https://www.checkfront.com/blog/kayak-rental-software-features",
+        "https://www.checkfront.com/blog/category/guest-experience",
+        "https://www.checkfront.com/blog/category/operator-highlights",
+        "https://www.checkfront.com/blog/ski-rental-booking-lead-time",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/blog/how-to-reduce-no-shows-and-manage-last-minute-cancellations",
+        "https://www.checkfront.com/blog/how-checkfront-can-help-you-avoid-overbookings",
+        "https://www.checkfront.com/plans",
+        "https://www.checkfront.com/blog/booking-confirmation-email",
+        "https://www.checkfront.com/blog/3-helpful-tips-to-get-the-most-out-of-your-digital-waivers",
+        "https://www.checkfront.com/blog/holiday-promotion-ideas-small-businesses",
+        "https://www.checkfront.com/blog/checkfront-spotlight-drake-bay-getaway-resort-wins-2015-boutique-hotel-award",
+        "https://www.checkfront.com/blog/entice-customers-to-stay-longer-with-tiered-pricing",
+        "https://www.checkfront.com/blog/how-to-setup-your-booking-system",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/blog/moresby-explorers",
+        "https://www.checkfront.com/blog/automate-your-business-with-zapier",
+        "https://www.checkfront.com/blog/rent-a-tent-canada-seamless-booking-experience",
+        "https://www.checkfront.com/blog/6-tips-to-increase-online-bookings",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/blog/how-to-use-automated-sms-notifications-to-support-your-bookings-and-business-examples-included",
+        "https://www.checkfront.com/blog/3-emails-to-improve-the-post-booking-experience",
+        "https://www.checkfront.com/blog/create-call-to-action-button-facebook",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/blog/gdpr-ready",
+        "https://www.checkfront.com/blog/pos-software",
+        "https://www.checkfront.com/blog/how-to-use-facebook-for-bookings",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/booking-software-for-boat-rentals",
+        "https://www.checkfront.com/blog/how-to-create-tour-packages-that-sell-themselves",
+        "https://www.checkfront.com/blog/urban-axes-online-sales",
+        "https://www.checkfront.com/blog/canmore-cave-tours",
+        "https://www.checkfront.com/blog/jaguar-land-rover-experience-global-growth",
+        "https://www.checkfront.com/blog/eagle-wing-case-study",
+        "https://www.checkfront.com/blog/choosing-a-payment-provider-for-your-checkfront-account",
+        "https://www.checkfront.com/blog/visualizing-your-booking-funnel-with-google-analytics",
+        "https://www.checkfront.com/blog/best-booking-process-tour-website",
+        "https://www.checkfront.com/blog/mystery-towns-tour-app",
+        "https://www.checkfront.com/blog/contactless-check-in",
+        "https://www.checkfront.com/blog/axe-throwing-checkfront-features",
+        "https://www.checkfront.com/blog/valentines-day-ideas-and-promotions-for-tour-and-activity-companies",
+        "https://www.checkfront.com/blog/how-to-increase-revenue-with-tour-costing-and-pricing",
+        "https://www.checkfront.com/blog/creating-advanced-discounts-with-group-pricing",
+        "https://www.checkfront.com/blog/digital-marketing-trends-2020",
+        "https://www.checkfront.com/blog/self-guided-tour",
+        "https://www.checkfront.com/blog/tour-itinerary",
+        "https://www.checkfront.com/blog/how-you-can-start-a-rewarding-ecotourism-business",
+        "https://www.checkfront.com/blog/how-to-become-a-powerful-tour-director-that-wows-guests",
+        "https://www.checkfront.com/blog/spirit-bear-lodge-online-bookings",
+        "https://www.checkfront.com/atv-quad-bike-tours-booking-software",
+        "https://www.checkfront.com/blog/how-does-an-online-booking-system-work",
+        "https://www.checkfront.com/blog/excel-spreadsheets-vs-an-online-booking-system",
+        "https://www.checkfront.com/resources/content/online-booking-systems-guide",
+        "https://www.checkfront.com/blog/tour-operator-cancellation-policy-world-cup",
+        "https://www.checkfront.com/blog/page/4",
+        "https://www.checkfront.com/blog/checkfront-vs-fareharbor-an-honest-2026-comparison",
+        "https://www.checkfront.com/blog/creating-thank-you-emails-for-your-tour-companys-customers",
+        "https://www.checkfront.com/blog/cross-border-booking-setup-canadian-tour-operators",
+        "https://www.checkfront.com/blog/a-practical-guide-to-ai-for-tour-and-activity-operators",
+        "https://www.checkfront.com/blog/pre-busy-season-setup-check-tour-operators",
+        "https://www.checkfront.com/blog/last-minute-tour-bookings",
+        "https://www.checkfront.com/blog/should-you-raise-prices-summer-2026",
+        "https://www.checkfront.com/blog/how-to-run-a-tour-business-when-weather-stopped-being-seasonal",
+        "https://www.checkfront.com/blog/what-dynamic-pricing-teaches-tour-operators-lessons-from-the-world-cup",
+        "https://www.checkfront.com/blog/pre-season-checklist-tour-operators-summer",
+        "https://www.checkfront.com/blog/how-to-respond-to-negative-travel-reviews",
+        "https://www.checkfront.com/blog/how-to-start-a-tour-operator-business",
+        "https://www.checkfront.com/ski-rental-software",
+        "https://www.checkfront.com/bike-rental-software",
+        "https://www.checkfront.com/kayak-rental-software",
+        "https://www.checkfront.com/blog/keeping-a-seasonal-business-profitable-year-round",
+        "https://www.checkfront.com/blog/3-must-use-artificial-intelligence-tools-for-rental-and-activity-operators",
+        "https://www.checkfront.com/blog/how-to-write-atv-rental-descriptions",
+        "https://www.checkfront.com/blog/strategic-planning-process",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/3",
+        "https://www.checkfront.com/blog/4-promo-code-ideas-to-drive-off-season-revenue-with-examples",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/7",
+        "https://www.checkfront.com/blog/sell-gift-cards-online",
+        "https://www.checkfront.com/blog/category/marketing-strategies/page/2",
+        "https://www.checkfront.com/blog/gift-certificates",
+        "https://www.checkfront.com/blog/page/5",
+        "https://www.checkfront.com/blog/how-to-choose-the-right-website-builder-for-tour-and-activity-providers",
+        "https://www.checkfront.com/blog/the-best-tour-operator-software-in-2025"
+      ]
+    }
+  },
+  "technology_index": {
+    "angular": {
+      "category": "JavaScript Framework",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:ng-app"
+      ]
+    },
+    "checkfront": {
+      "category": "Other",
+      "page_count": 149,
+      "total_pages": 149,
+      "coverage_pct": 100.0,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.checkfront\\.com/"
+      ]
+    },
+    "cloudflare": {
+      "category": "CDN",
+      "page_count": 3,
+      "total_pages": 149,
+      "coverage_pct": 2.0,
+      "confidence": "high",
+      "evidence_types": [
+        "header:server",
+        "html_pattern:cloudflareinsights\\.com"
+      ]
+    },
+    "cookiebot": {
+      "category": "Font Service",
+      "page_count": 39,
+      "total_pages": 149,
+      "coverage_pct": 26.2,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:consent\\.cookiebot\\.com"
+      ]
+    },
+    "crazy_egg": {
+      "category": "Performance Monitoring",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:script\\.crazyegg\\.com/pages/scripts/\\d+/\\d+\\.js"
+      ]
+    },
+    "doubleclick_floodlight": {
+      "category": "Hosting",
+      "page_count": 12,
+      "total_pages": 149,
+      "coverage_pct": 8.1,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.doubleclick\\.net"
+      ]
+    },
+    "ethicalads": {
+      "category": "Hosting",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:media\\.ethicalads\\.io"
+      ]
+    },
+    "ewww_image_optimizer": {
+      "category": "E-commerce",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:/wp-content/plugins/ewww-image-optimizer/"
+      ]
+    },
+    "facebook_pixel": {
+      "category": "Performance Monitoring",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:connect\\.facebook.\\w+/signals/config/\\d+\\?v=([\\d\\.]+)"
+      ]
+    },
+    "font_awesome": {
+      "category": "UI Library",
+      "page_count": 148,
+      "total_pages": 149,
+      "coverage_pct": 99.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:fa-[a-z]+-[a-z]+",
+        "html_pattern:fontawesome"
+      ]
+    },
+    "google_analytics": {
+      "category": "Performance Monitoring",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:googletagmanager\\.com/gtag/js"
+      ]
+    },
+    "google_cloud_cdn": {
+      "category": "CDN",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "high",
+      "evidence_types": [
+        "header:via"
+      ]
+    },
+    "google_fonts": {
+      "category": "Font Service",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:fonts\\.googleapis\\.com"
+      ]
+    },
+    "google_tag_manager": {
+      "category": "Other",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:googletagmanager\\.com/gtm\\.js"
+      ]
+    },
+    "gsap": {
+      "category": "JavaScript Library",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:gsap\\.min\\.js"
+      ]
+    },
+    "http_3": {
+      "category": "Other",
+      "page_count": 149,
+      "total_pages": 149,
+      "coverage_pct": 100.0,
+      "confidence": "high",
+      "evidence_types": [
+        "header:alt-svc"
+      ]
+    },
+    "hubspot": {
+      "category": "Performance Monitoring",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.hs-scripts\\.com/"
+      ]
+    },
+    "hubspot_analytics": {
+      "category": "Performance Monitoring",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:js\\.hs-analytics\\.net/analytics"
+      ]
+    },
+    "hubspot_chat": {
+      "category": "JavaScript Library",
+      "page_count": 35,
+      "total_pages": 149,
+      "coverage_pct": 23.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:js\\.usemessages\\.com"
+      ]
+    },
+    "indeed": {
+      "category": "UI Library",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.indeed\\.com"
+      ]
+    },
+    "jazzhr": {
+      "category": "UI Library",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:app\\.jazz\\.co/"
+      ]
+    },
+    "joomla": {
+      "category": "CMS",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:Joomla!"
+      ]
+    },
+    "jquery_migrate": {
+      "category": "JavaScript Library",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:jquery-migrate(?:\\.min)?(?:-)?(?:\\.min)?\\.js(?:\\?v(?:er)?=((?:\\d+\\.)+\\d+))?"
+      ]
+    },
+    "linkedin_insight_tag": {
+      "category": "Performance Monitoring",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:snap\\.licdn\\.com/li\\.lms-analytics/insight\\.min\\.js"
+      ]
+    },
+    "magnific_popup": {
+      "category": "JavaScript Library",
+      "page_count": 26,
+      "total_pages": 149,
+      "coverage_pct": 17.4,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:magnific-popup(?:\\.min)?\\.js(?:\\?v(?:er)?=((?:\\d+\\.)+\\d+))?"
+      ]
+    },
+    "material_ui": {
+      "category": "CSS Framework",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:Mui[A-Z]"
+      ]
+    },
+    "max_mega_menu": {
+      "category": "Other",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:(?:max)?megamenu(?:-pro)?(?:\\/assets)?(?:\\/public)?\\.js(?:\\?v(?:er)?=((?:\\d+\\.)+\\d+))?"
+      ]
+    },
+    "onsen_ui": {
+      "category": "JavaScript Framework",
+      "page_count": 2,
+      "total_pages": 149,
+      "coverage_pct": 1.3,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:(/.*onsen.*min\\.js|.*angular-onsenui\\.min\\.js)"
+      ]
+    },
+    "openresty": {
+      "category": "CDN",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "high",
+      "evidence_types": [
+        "header:server"
+      ]
+    },
+    "popper": {
+      "category": "Other",
+      "page_count": 14,
+      "total_pages": 149,
+      "coverage_pct": 9.4,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:/popper(?:\\.min)?\\.js(?:/([0-9.]+))?"
+      ]
+    },
+    "recaptcha": {
+      "category": "Security",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:google\\.com/recaptcha"
+      ]
+    },
+    "semrush": {
+      "category": "Performance Monitoring",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:www\\.semrush\\.com"
+      ]
+    },
+    "snowplow_analytics": {
+      "category": "Hosting",
+      "page_count": 18,
+      "total_pages": 149,
+      "coverage_pct": 12.1,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:sp\\.js"
+      ]
+    },
+    "trustpilot": {
+      "category": "Other",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.trustpilot\\.com"
+      ]
+    },
+    "twitter": {
+      "category": "Other",
+      "page_count": 1,
+      "total_pages": 149,
+      "coverage_pct": 0.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern://platform\\.twitter\\.com/widgets\\.js"
+      ]
+    },
+    "vwo": {
+      "category": "Performance Monitoring",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:dev\\.visualwebsiteoptimizer\\.com/"
+      ]
+    },
+    "wordpress": {
+      "category": "CMS",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:wp-content/"
+      ]
+    },
+    "wp_rocket": {
+      "category": "Other",
+      "page_count": 145,
+      "total_pages": 149,
+      "coverage_pct": 97.3,
+      "confidence": "high",
+      "evidence_types": [
+        "html_pattern:/wp-content/plugins/wp-rocket/",
+        "meta:generator"
+      ]
+    },
+    "youtube": {
+      "category": "Other",
+      "page_count": 147,
+      "total_pages": 149,
+      "coverage_pct": 98.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.youtube\\.com/"
+      ]
+    },
+    "zendesk": {
+      "category": "JavaScript Library",
+      "page_count": 3,
+      "total_pages": 149,
+      "coverage_pct": 2.0,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:static\\.zdassets\\.com"
+      ]
+    }
+  },
+  "category_breakdown": {
+    "A/B Testing": [
+      "google_optimize",
+      "vwo"
+    ],
+    "Advertising": [
+      "facebook_pixel",
+      "google_ads",
+      "linkedin_insight"
+    ],
+    "Analytics": [
+      "google_analytics_4"
+    ],
+    "Consent Management": [
+      "cookiebot"
+    ],
+    "Customer Support": [
+      "hubspot_conversations",
+      "zendesk"
+    ],
+    "Heatmaps": [
+      "crazy_egg"
+    ],
+    "Marketing Automation": [
+      "hubspot"
+    ],
+    "Tag Management": [
+      "google_tag_manager"
+    ]
+  },
+  "ga4_summary": {
+    "measurement_ids": [
+      "G-SQ4Z7H3P33"
+    ],
+    "collect_events": {
+      "page_view": 2
+    },
+    "datalayer_events": {},
+    "total_datalayer_pushes": 16,
+    "gtag_config": [
+      {
+        "command": "set",
+        "target": "developer_id.dMWZhNz",
+        "params": true
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 05:33:44.235000+00:00",
+        "params": {}
+      },
+      {
+        "command": "set",
+        "target": "developer_id.dZTQ1Zm",
+        "params": true
+      },
+      {
+        "command": "config",
+        "target": "AW-1029841353",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 05:42:57.753000+00:00",
+        "params": {}
+      }
+    ]
+  },
+  "coverage_profiles": [
+    {
+      "tags": [
+        "cookiebot",
+        "crazy_egg",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "vwo"
+      ],
+      "tag_count": 6,
+      "page_count": 144,
+      "pages": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/blog",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/integrations",
+        "... and 134 more"
+      ]
+    },
+    {
+      "tags": [
+        "cookiebot",
+        "crazy_egg",
+        "facebook_pixel",
+        "google_ads",
+        "google_analytics_4",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "hubspot_conversations",
+        "linkedin_insight",
+        "vwo"
+      ],
+      "tag_count": 11,
+      "page_count": 2,
+      "pages": [
+        "https://www.checkfront.com/pricing",
+        "https://www.checkfront.com/plans"
+      ]
+    },
+    {
+      "tags": [],
+      "tag_count": 0,
+      "page_count": 2,
+      "pages": [
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/developers"
+      ]
+    },
+    {
+      "tags": [
+        "cookiebot",
+        "crazy_egg",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "vwo",
+        "zendesk"
+      ],
+      "tag_count": 7,
+      "page_count": 1,
+      "pages": [
+        "https://www.checkfront.com/company/contact"
+      ]
+    }
+  ],
+  "third_party_summary": {
+    "matched_request_count": 4313,
+    "unidentified_host_count": 12,
+    "unidentified_hosts": {
+      "player.vimeo.com": 52,
+      "get.checkfront.com": 35,
+      "api.checkfront.com": 17,
+      "tr.capterra.com": 6,
+      "consentcdn.cookiebot.com": 4,
+      "media.ethicalads.io": 4,
+      "csp.withgoogle.com": 3,
+      "checkfront-legacy.zendesk.com": 2,
+      "api.hubapi.com": 2,
+      "server.ethicalads.io": 2,
+      "ekr.zdassets.com": 1,
+      "cdn-production.checkfront.com": 1
+    }
+  },
+  "findings": [
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "facebook_pixel",
+      "detail": "facebook_pixel detected on 2/149 pages (1.3%). Missing from 147 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "google_ads",
+      "detail": "google_ads detected on 2/149 pages (1.3%). Missing from 147 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "google_analytics_4",
+      "detail": "google_analytics_4 detected on 2/149 pages (1.3%). Missing from 147 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "hubspot_conversations",
+      "detail": "hubspot_conversations detected on 2/149 pages (1.3%). Missing from 147 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "linkedin_insight",
+      "detail": "linkedin_insight detected on 2/149 pages (1.3%). Missing from 147 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "zendesk",
+      "detail": "zendesk detected on 1/149 pages (0.7%). Missing from 148 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "cookiebot",
+      "detail": "cookiebot detected on 147/149 pages (98.7%). Missing from 2 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "crazy_egg",
+      "detail": "crazy_egg detected on 147/149 pages (98.7%). Missing from 2 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "google_optimize",
+      "detail": "google_optimize detected on 147/149 pages (98.7%). Missing from 2 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "google_tag_manager",
+      "detail": "google_tag_manager detected on 147/149 pages (98.7%). Missing from 2 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "hubspot",
+      "detail": "hubspot detected on 147/149 pages (98.7%). Missing from 2 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "vwo",
+      "detail": "vwo detected on 147/149 pages (98.7%). Missing from 2 pages."
+    },
+    {
+      "type": "unidentified_vendors",
+      "severity": "medium",
+      "tag": "none",
+      "detail": "12 unidentified third-party hosts receiving requests. Top: player.vimeo.com, get.checkfront.com, api.checkfront.com, tr.capterra.com, consentcdn.cookiebot.com."
+    },
+    {
+      "type": "vendor_redundancy",
+      "severity": "medium",
+      "tag": "google_optimize, vwo",
+      "detail": "2 A/B testing tools active: google_optimize, vwo. Redundant tools add network overhead, may produce conflicting data, and increase the privacy surface."
+    },
+    {
+      "type": "slow_pages",
+      "severity": "medium",
+      "tag": "none",
+      "detail": "13 page(s) load more than 1.5x the average (2871ms). Slowest: https://www.checkfront.com/plans (8086ms). Next: https://www.checkfront.com/pricing (7576ms)."
+    },
+    {
+      "type": "tag_profile_inconsistency",
+      "severity": "low",
+      "tag": "none",
+      "detail": "4 distinct tag profiles detected. 144/149 pages share the dominant profile (6 tags). 5 pages have a different tag stack, suggesting template-level variation."
+    },
+    {
+      "type": "missing_description",
+      "severity": "low",
+      "tag": "none",
+      "detail": "2 page(s) missing a meta description: https://www.checkfront.com/login, https://www.checkfront.com/support/developers."
+    },
+    {
+      "type": "duplicate_titles",
+      "severity": "low",
+      "tag": "none",
+      "detail": "10 pages share duplicate titles across 5 title(s). Most repeated: \"Online Booking Software for Tours & Activities | Checkfront\" (2 pages)."
+    },
+    {
+      "type": "tag_performance_correlation",
+      "severity": "low",
+      "tag": "none",
+      "detail": "Pages with 11 tags average 7831ms load time vs 711ms for pages with 0 tags (1001% slower)."
+    },
+    {
+      "type": "no_event_tracking",
+      "severity": "low",
+      "tag": "none",
+      "detail": "16 dataLayer pushes detected across all pages but 0 named GA4 events surfaced. No structured event tracking is in place -- conversion actions (form submits, sign-ups, purchases) are not being measured."
+    },
+    {
+      "type": "dead_end_pages",
+      "severity": "low",
+      "tag": "none",
+      "detail": "50 page(s) have 1 or fewer internal links, limiting discoverability: https://www.checkfront.com/maximize-your-resources, https://www.checkfront.com/company, https://www.checkfront.com/integrations/zapier, https://www.checkfront.com/blog/summer-road-trip-travel-trends-2026, https://www.checkfront.com/blog/atv-rental-software-that-runs-itself and 45 more."
+    }
+  ]
+}

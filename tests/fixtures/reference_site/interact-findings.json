@@ -1,0 +1,1713 @@
+{
+  "report_info": {
+    "site": "https://www.checkfront.com",
+    "domain": "www.checkfront.com",
+    "generated_at": "2026-10-15T08:12:40.956124",
+    "total_pages": 58,
+    "tagscope_version": "3.5.0"
+  },
+  "tag_index": {
+    "bing_ads": {
+      "category": "Advertising",
+      "page_count": 19,
+      "total_pages": 58,
+      "coverage_pct": 32.8,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:bat.bing.com",
+        "script_url:bat.bing.com"
+      ],
+      "detection_methods": [
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "clarity": {
+      "category": "Heatmaps",
+      "page_count": 19,
+      "total_pages": 58,
+      "coverage_pct": 32.8,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:a.clarity.ms",
+        "request_host:c.clarity.ms",
+        "request_host:g.clarity.ms",
+        "request_host:h.clarity.ms",
+        "request_host:i.clarity.ms",
+        "request_host:j.clarity.ms",
+        "request_host:k.clarity.ms",
+        "request_host:l.clarity.ms",
+        "request_host:p.clarity.ms",
+        "request_host:q.clarity.ms",
+        "request_host:r.clarity.ms",
+        "request_host:scripts.clarity.ms",
+        "request_host:t.clarity.ms",
+        "request_host:u.clarity.ms",
+        "request_host:www.clarity.ms",
+        "request_host:y.clarity.ms",
+        "request_url:clarity.ms",
+        "script_url:clarity.ms"
+      ],
+      "detection_methods": [
+        "request_host",
+        "request_url",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "cookiebot": {
+      "category": "Consent Management",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "high",
+      "ids": [
+        "Cookiebot"
+      ],
+      "evidence_types": [
+        "html_pattern:Cookiebot",
+        "request_host:consent.cookiebot.com",
+        "script_url:consent.cookiebot.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "crazy_egg": {
+      "category": "Heatmaps",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "high",
+      "ids": [
+        "crazyegg"
+      ],
+      "evidence_types": [
+        "html_pattern:crazyegg",
+        "request_host:script.crazyegg.com",
+        "script_url:script.crazyegg.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "facebook_pixel": {
+      "category": "Advertising",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "high",
+      "ids": [
+        "838153926237180"
+      ],
+      "evidence_types": [
+        "html_pattern:fbq\\([\\'\"]init[\\'\"]\\s*,\\s*[\\'\"](\\d+)[\\'\"]",
+        "request_host:connect.facebook.net",
+        "request_host:www.facebook.com",
+        "script_url:connect.facebook.net/en_US/fbevents.js"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "google_ads": {
+      "category": "Advertising",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "low",
+      "ids": [
+        "AW-1029841353"
+      ],
+      "evidence_types": [
+        "html_pattern:AW-\\d+"
+      ],
+      "detection_methods": [
+        "html_pattern"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "google_analytics_4": {
+      "category": "Analytics",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "high",
+      "ids": [
+        "G-SQ4Z7H3P33"
+      ],
+      "evidence_types": [
+        "html_pattern:G-[A-Z0-9]{10,}",
+        "request_host:www.googletagmanager.com",
+        "script_url:googletagmanager.com/gtag/js"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "google_optimize": {
+      "category": "A/B Testing",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "low",
+      "ids": [
+        "GTM-P6TLSZF"
+      ],
+      "evidence_types": [
+        "html_pattern:GTM-[A-Z0-9]{4,}"
+      ],
+      "detection_methods": [
+        "html_pattern"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "google_tag_manager": {
+      "category": "Tag Management",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "high",
+      "ids": [
+        "GTM-P6TLSZF"
+      ],
+      "evidence_types": [
+        "html_pattern:GTM-[A-Z0-9]{4,}",
+        "request_host:www.googletagmanager.com",
+        "script_url:googletagmanager.com/gtm.js"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "hubspot": {
+      "category": "Marketing Automation",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "high",
+      "ids": [
+        "_hsq.push"
+      ],
+      "evidence_types": [
+        "html_pattern:_hsq\\.push",
+        "request_host:js.hs-scripts.com",
+        "request_host:js.hubspot.com",
+        "script_url:js.hs-scripts.com",
+        "script_url:js.hubspot.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "hubspot_conversations": {
+      "category": "Customer Support",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:js.usemessages.com",
+        "script_url:js.usemessages.com"
+      ],
+      "detection_methods": [
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "linkedin_insight": {
+      "category": "Advertising",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:px.ads.linkedin.com",
+        "request_host:snap.licdn.com",
+        "request_url:px.ads.linkedin.com",
+        "script_url:snap.licdn.com/li.lms-analytics"
+      ],
+      "detection_methods": [
+        "request_host",
+        "request_url",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "matomo": {
+      "category": "Analytics",
+      "page_count": 2,
+      "total_pages": 58,
+      "coverage_pct": 3.4,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_url:matomo.js",
+        "script_url:matomo.js"
+      ],
+      "detection_methods": [
+        "request_url",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/pricing",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/plans",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/?cfcp=api",
+        "https://www.checkfront.com/contact?cfcp=api",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "microsoft_clarity": {
+      "category": "Analytics",
+      "page_count": 19,
+      "total_pages": 58,
+      "coverage_pct": 32.8,
+      "confidence": "high",
+      "ids": [],
+      "evidence_types": [
+        "request_host:www.clarity.ms",
+        "script_url:www.clarity.ms"
+      ],
+      "detection_methods": [
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/company/contact",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "vwo": {
+      "category": "A/B Testing",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "high",
+      "ids": [
+        "_vwo_"
+      ],
+      "evidence_types": [
+        "html_pattern:_vwo_",
+        "request_host:dev.visualwebsiteoptimizer.com",
+        "script_url:dev.visualwebsiteoptimizer.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    "zendesk": {
+      "category": "Customer Support",
+      "page_count": 4,
+      "total_pages": 58,
+      "coverage_pct": 6.9,
+      "confidence": "high",
+      "ids": [
+        "zE(function()"
+      ],
+      "evidence_types": [
+        "html_pattern:zE\\(function\\(\\)",
+        "request_host:static.zdassets.com",
+        "script_url:static.zdassets.com"
+      ],
+      "detection_methods": [
+        "html_pattern",
+        "request_host",
+        "script_url"
+      ],
+      "absent_from": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/features/ticket-scanner",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "https://www.checkfront.com/integrations/wordpress",
+        "https://www.checkfront.com/integrations/joomla",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/terms/internationalization",
+        "https://www.checkfront.com/terms/gdpr",
+        "https://www.checkfront.com/book-a-demo",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/terms/security",
+        "https://www.checkfront.com/pricing",
+        "https://www.checkfront.com/industries/rentals",
+        "https://www.checkfront.com/company",
+        "https://www.checkfront.com/industries/escape-rooms",
+        "https://www.checkfront.com/features/payments",
+        "https://www.checkfront.com/privacy",
+        "https://www.checkfront.com/terms/privacy",
+        "https://www.checkfront.com/maximize-your-resources",
+        "https://www.checkfront.com/industries/tours",
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/integrations/zapier",
+        "https://www.checkfront.com/plans",
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/terms/authorized-users",
+        "https://www.checkfront.com/terms/payment-partners",
+        "https://www.checkfront.com/terms/self-serve",
+        "https://www.checkfront.com/terms/master",
+        "https://www.checkfront.com/terms/managed",
+        "https://www.checkfront.com/company/press/brand-resources",
+        "https://www.checkfront.com/company/press/media-kit",
+        "https://www.checkfront.com/company/press/press-releases",
+        "https://www.checkfront.com/support",
+        "https://www.checkfront.com/features/booking-widget/?rwstep=product",
+        "https://www.checkfront.com/?cfcp=api",
+        "https://www.checkfront.com/security",
+        "https://www.checkfront.com/terms/restricted-businesses",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    }
+  },
+  "technology_index": {
+    "checkfront": {
+      "category": "Other",
+      "page_count": 56,
+      "total_pages": 58,
+      "coverage_pct": 96.6,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.checkfront\\.com/"
+      ]
+    },
+    "cloudflare": {
+      "category": "CDN",
+      "page_count": 3,
+      "total_pages": 58,
+      "coverage_pct": 5.2,
+      "confidence": "high",
+      "evidence_types": [
+        "header:server"
+      ]
+    },
+    "cookiebot": {
+      "category": "Font Service",
+      "page_count": 36,
+      "total_pages": 58,
+      "coverage_pct": 62.1,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:consent\\.cookiebot\\.com"
+      ]
+    },
+    "crazy_egg": {
+      "category": "Performance Monitoring",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:script\\.crazyegg\\.com/pages/scripts/\\d+/\\d+\\.js"
+      ]
+    },
+    "doubleclick_floodlight": {
+      "category": "Hosting",
+      "page_count": 23,
+      "total_pages": 58,
+      "coverage_pct": 39.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.doubleclick\\.net"
+      ]
+    },
+    "ethicalads": {
+      "category": "Hosting",
+      "page_count": 1,
+      "total_pages": 58,
+      "coverage_pct": 1.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:media\\.ethicalads\\.io"
+      ]
+    },
+    "ewww_image_optimizer": {
+      "category": "E-commerce",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:/wp-content/plugins/ewww-image-optimizer/"
+      ]
+    },
+    "facebook_pixel": {
+      "category": "Performance Monitoring",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:connect\\.facebook.\\w+/signals/config/\\d+\\?v=([\\d\\.]+)"
+      ]
+    },
+    "font_awesome": {
+      "category": "UI Library",
+      "page_count": 53,
+      "total_pages": 58,
+      "coverage_pct": 91.4,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:fa-[a-z]+-[a-z]+",
+        "html_pattern:fontawesome"
+      ]
+    },
+    "google_analytics": {
+      "category": "Performance Monitoring",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:googletagmanager\\.com/gtag/js"
+      ]
+    },
+    "google_cloud_cdn": {
+      "category": "CDN",
+      "page_count": 1,
+      "total_pages": 58,
+      "coverage_pct": 1.7,
+      "confidence": "high",
+      "evidence_types": [
+        "header:via"
+      ]
+    },
+    "google_fonts": {
+      "category": "Font Service",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:fonts\\.googleapis\\.com"
+      ]
+    },
+    "google_tag_manager": {
+      "category": "Other",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:googletagmanager\\.com/gtm\\.js"
+      ]
+    },
+    "gsap": {
+      "category": "JavaScript Library",
+      "page_count": 2,
+      "total_pages": 58,
+      "coverage_pct": 3.4,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:gsap\\.min\\.js"
+      ]
+    },
+    "http_3": {
+      "category": "Other",
+      "page_count": 56,
+      "total_pages": 58,
+      "coverage_pct": 96.6,
+      "confidence": "high",
+      "evidence_types": [
+        "header:alt-svc"
+      ]
+    },
+    "hubspot": {
+      "category": "Performance Monitoring",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.hs-scripts\\.com/"
+      ]
+    },
+    "hubspot_analytics": {
+      "category": "Performance Monitoring",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:js\\.hs-analytics\\.net/analytics"
+      ]
+    },
+    "hubspot_chat": {
+      "category": "JavaScript Library",
+      "page_count": 34,
+      "total_pages": 58,
+      "coverage_pct": 58.6,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:js\\.usemessages\\.com"
+      ]
+    },
+    "jazzhr": {
+      "category": "UI Library",
+      "page_count": 1,
+      "total_pages": 58,
+      "coverage_pct": 1.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:app\\.jazz\\.co/"
+      ]
+    },
+    "joomla": {
+      "category": "CMS",
+      "page_count": 1,
+      "total_pages": 58,
+      "coverage_pct": 1.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:Joomla!"
+      ]
+    },
+    "jquery_migrate": {
+      "category": "JavaScript Library",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:jquery-migrate(?:\\.min)?(?:-)?(?:\\.min)?\\.js(?:\\?v(?:er)?=((?:\\d+\\.)+\\d+))?"
+      ]
+    },
+    "linkedin_insight_tag": {
+      "category": "Performance Monitoring",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:snap\\.licdn\\.com/li\\.lms-analytics/insight\\.min\\.js"
+      ]
+    },
+    "magnific_popup": {
+      "category": "JavaScript Library",
+      "page_count": 22,
+      "total_pages": 58,
+      "coverage_pct": 37.9,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:magnific-popup(?:\\.min)?\\.js(?:\\?v(?:er)?=((?:\\d+\\.)+\\d+))?"
+      ]
+    },
+    "material_ui": {
+      "category": "CSS Framework",
+      "page_count": 22,
+      "total_pages": 58,
+      "coverage_pct": 37.9,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:Mui[A-Z]"
+      ]
+    },
+    "max_mega_menu": {
+      "category": "Other",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:(?:max)?megamenu(?:-pro)?(?:\\/assets)?(?:\\/public)?\\.js(?:\\?v(?:er)?=((?:\\d+\\.)+\\d+))?"
+      ]
+    },
+    "microsoft_advertising": {
+      "category": "Hosting",
+      "page_count": 19,
+      "total_pages": 58,
+      "coverage_pct": 32.8,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:bat\\.bing\\.com/bat\\.js"
+      ]
+    },
+    "onsen_ui": {
+      "category": "JavaScript Framework",
+      "page_count": 20,
+      "total_pages": 58,
+      "coverage_pct": 34.5,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:(/.*onsen.*min\\.js|.*angular-onsenui\\.min\\.js)"
+      ]
+    },
+    "openresty": {
+      "category": "CDN",
+      "page_count": 1,
+      "total_pages": 58,
+      "coverage_pct": 1.7,
+      "confidence": "high",
+      "evidence_types": [
+        "header:server"
+      ]
+    },
+    "popper": {
+      "category": "Other",
+      "page_count": 10,
+      "total_pages": 58,
+      "coverage_pct": 17.2,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:/popper(?:\\.min)?\\.js(?:/([0-9.]+))?"
+      ]
+    },
+    "recaptcha": {
+      "category": "Security",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:google\\.com/recaptcha"
+      ]
+    },
+    "snowplow_analytics": {
+      "category": "Hosting",
+      "page_count": 13,
+      "total_pages": 58,
+      "coverage_pct": 22.4,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:sp\\.js"
+      ]
+    },
+    "vwo": {
+      "category": "Performance Monitoring",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:dev\\.visualwebsiteoptimizer\\.com/"
+      ]
+    },
+    "wordpress": {
+      "category": "CMS",
+      "page_count": 52,
+      "total_pages": 58,
+      "coverage_pct": 89.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:wp-content/"
+      ]
+    },
+    "wp_rocket": {
+      "category": "Other",
+      "page_count": 47,
+      "total_pages": 58,
+      "coverage_pct": 81.0,
+      "confidence": "high",
+      "evidence_types": [
+        "meta:generator"
+      ]
+    },
+    "youtube": {
+      "category": "Other",
+      "page_count": 54,
+      "total_pages": 58,
+      "coverage_pct": 93.1,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:\\.youtube\\.com/"
+      ]
+    },
+    "zendesk": {
+      "category": "JavaScript Library",
+      "page_count": 23,
+      "total_pages": 58,
+      "coverage_pct": 39.7,
+      "confidence": "medium",
+      "evidence_types": [
+        "html_pattern:static\\.zdassets\\.com"
+      ]
+    }
+  },
+  "category_breakdown": {
+    "A/B Testing": [
+      "google_optimize",
+      "vwo"
+    ],
+    "Advertising": [
+      "bing_ads",
+      "facebook_pixel",
+      "google_ads",
+      "linkedin_insight"
+    ],
+    "Analytics": [
+      "google_analytics_4",
+      "matomo",
+      "microsoft_clarity"
+    ],
+    "Consent Management": [
+      "cookiebot"
+    ],
+    "Customer Support": [
+      "hubspot_conversations",
+      "zendesk"
+    ],
+    "Heatmaps": [
+      "clarity",
+      "crazy_egg"
+    ],
+    "Marketing Automation": [
+      "hubspot"
+    ],
+    "Tag Management": [
+      "google_tag_manager"
+    ]
+  },
+  "ga4_summary": {
+    "measurement_ids": [
+      "G-SQ4Z7H3P33"
+    ],
+    "collect_events": {
+      "page_view": 20,
+      "scroll": 3
+    },
+    "datalayer_events": {},
+    "total_datalayer_pushes": 364,
+    "gtag_config": [
+      {
+        "command": "set",
+        "target": "developer_id.dMWZhNz",
+        "params": true
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:24:19.757000+00:00",
+        "params": {}
+      },
+      {
+        "command": "set",
+        "target": "developer_id.dZTQ1Zm",
+        "params": true
+      },
+      {
+        "command": "config",
+        "target": "AW-1029841353",
+        "params": {}
+      },
+      {
+        "command": "consent",
+        "target": "update",
+        "params": {
+          "ad_storage": "granted",
+          "ad_user_data": "granted",
+          "ad_personalization": "granted",
+          "analytics_storage": "granted",
+          "functionality_storage": "granted",
+          "personalization_storage": "granted",
+          "security_storage": "granted"
+        }
+      },
+      {
+        "command": "set",
+        "target": "ads_data_redaction",
+        "params": false
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:27:27.331000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:27:25.720000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:29:39.696000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:33:15.145000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:41:40.487000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:44:31.562000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:45:06.970000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:46:53.064000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:47:42.623000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:48:58.642000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:50:42.963000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:52:36.819000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:56:16.733000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:56:15.710000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 07:57:31.536000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 08:03:19.345000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 08:07:49.225000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 08:08:36.477000+00:00",
+        "params": {}
+      },
+      {
+        "command": "js",
+        "target": "2026-10-15 08:09:26.632000+00:00",
+        "params": {}
+      }
+    ]
+  },
+  "coverage_profiles": [
+    {
+      "tags": [
+        "cookiebot",
+        "crazy_egg",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "vwo"
+      ],
+      "tag_count": 6,
+      "page_count": 31,
+      "pages": [
+        "https://www.checkfront.com/take-more-bookings",
+        "https://www.checkfront.com/run-your-business",
+        "https://www.checkfront.com/integrations/drupal",
+        "https://www.checkfront.com/integrations",
+        "https://www.checkfront.com/integrations/square",
+        "https://www.checkfront.com/terms/cookie-policy",
+        "https://www.checkfront.com/company/careers",
+        "https://www.checkfront.com/resources/testimonials",
+        "https://www.checkfront.com/terms",
+        "https://www.checkfront.com/company/press",
+        "... and 21 more"
+      ]
+    },
+    {
+      "tags": [
+        "bing_ads",
+        "clarity",
+        "cookiebot",
+        "crazy_egg",
+        "facebook_pixel",
+        "google_ads",
+        "google_analytics_4",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "hubspot_conversations",
+        "linkedin_insight",
+        "microsoft_clarity",
+        "vwo"
+      ],
+      "tag_count": 14,
+      "page_count": 16,
+      "pages": [
+        "https://www.checkfront.com",
+        "https://www.checkfront.com/support/faq",
+        "https://www.checkfront.com/industries/activities",
+        "https://www.checkfront.com/features/waivers",
+        "https://www.checkfront.com/industries/accommodation",
+        "https://www.checkfront.com/features",
+        "https://www.checkfront.com/",
+        "https://www.checkfront.com/industries/adventure",
+        "https://www.checkfront.com/pricing",
+        "https://www.checkfront.com/industries/rentals",
+        "... and 6 more"
+      ]
+    },
+    {
+      "tags": [],
+      "tag_count": 0,
+      "page_count": 4,
+      "pages": [
+        "https://www.checkfront.com/support/developers",
+        "https://www.checkfront.com/login",
+        "https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg",
+        "https://www.checkfront.com/assets/brand/Checkfront_Color.svg"
+      ]
+    },
+    {
+      "tags": [
+        "bing_ads",
+        "clarity",
+        "cookiebot",
+        "crazy_egg",
+        "facebook_pixel",
+        "google_ads",
+        "google_analytics_4",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "hubspot_conversations",
+        "linkedin_insight",
+        "matomo",
+        "microsoft_clarity",
+        "vwo"
+      ],
+      "tag_count": 15,
+      "page_count": 2,
+      "pages": [
+        "https://www.checkfront.com/features/booking-widget",
+        "https://www.checkfront.com/features/booking-widget/?rwstep=product"
+      ]
+    },
+    {
+      "tags": [
+        "zendesk"
+      ],
+      "tag_count": 1,
+      "page_count": 2,
+      "pages": [
+        "https://www.checkfront.com/support/loggin-in",
+        "https://www.checkfront.com/forum"
+      ]
+    },
+    {
+      "tags": [
+        "cookiebot",
+        "crazy_egg",
+        "facebook_pixel",
+        "google_ads",
+        "google_analytics_4",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "hubspot_conversations",
+        "linkedin_insight",
+        "vwo"
+      ],
+      "tag_count": 11,
+      "page_count": 1,
+      "pages": [
+        "https://www.checkfront.com/features/ticket-scanner"
+      ]
+    },
+    {
+      "tags": [
+        "cookiebot",
+        "crazy_egg",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "vwo",
+        "zendesk"
+      ],
+      "tag_count": 7,
+      "page_count": 1,
+      "pages": [
+        "https://www.checkfront.com/company/contact"
+      ]
+    },
+    {
+      "tags": [
+        "bing_ads",
+        "clarity",
+        "cookiebot",
+        "crazy_egg",
+        "facebook_pixel",
+        "google_ads",
+        "google_analytics_4",
+        "google_optimize",
+        "google_tag_manager",
+        "hubspot",
+        "hubspot_conversations",
+        "linkedin_insight",
+        "microsoft_clarity",
+        "vwo",
+        "zendesk"
+      ],
+      "tag_count": 15,
+      "page_count": 1,
+      "pages": [
+        "https://www.checkfront.com/contact?cfcp=api"
+      ]
+    }
+  ],
+  "third_party_summary": {
+    "matched_request_count": 3128,
+    "unidentified_host_count": 20,
+    "unidentified_hosts": {
+      "tr.capterra.com": 60,
+      "consentcdn.cookiebot.com": 59,
+      "support.checkfront.com": 51,
+      "js.zi-scripts.com": 38,
+      "get.checkfront.com": 35,
+      "player.vimeo.com": 30,
+      "widgets.global.bookingplatform.app": 24,
+      "api.hubapi.com": 20,
+      "ws.zoominfo.com": 19,
+      "api.checkfront.com": 17,
+      "checkfront-legacy.zendesk.com": 8,
+      "ekr.zdassets.com": 4,
+      "tracking.bookingplatform.app": 4,
+      "guest-experience-api.global.bookingplatform.app": 4,
+      "media.ethicalads.io": 4,
+      "lh7-rt.googleusercontent.com": 2,
+      "guest-widgets-editor-backend.global.bookingplatform.app": 2,
+      "server.ethicalads.io": 2,
+      "csp.withgoogle.com": 1,
+      "cdn-production.checkfront.com": 1
+    }
+  },
+  "findings": [
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "bing_ads",
+      "detail": "bing_ads detected on 19/58 pages (32.8%). Missing from 39 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "clarity",
+      "detail": "clarity detected on 19/58 pages (32.8%). Missing from 39 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "facebook_pixel",
+      "detail": "facebook_pixel detected on 20/58 pages (34.5%). Missing from 38 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "google_ads",
+      "detail": "google_ads detected on 20/58 pages (34.5%). Missing from 38 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "google_analytics_4",
+      "detail": "google_analytics_4 detected on 20/58 pages (34.5%). Missing from 38 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "hubspot_conversations",
+      "detail": "hubspot_conversations detected on 20/58 pages (34.5%). Missing from 38 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "linkedin_insight",
+      "detail": "linkedin_insight detected on 20/58 pages (34.5%). Missing from 38 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "matomo",
+      "detail": "matomo detected on 2/58 pages (3.4%). Missing from 56 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "microsoft_clarity",
+      "detail": "microsoft_clarity detected on 19/58 pages (32.8%). Missing from 39 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "high",
+      "tag": "zendesk",
+      "detail": "zendesk detected on 4/58 pages (6.9%). Missing from 54 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "cookiebot",
+      "detail": "cookiebot detected on 52/58 pages (89.7%). Missing from 6 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "crazy_egg",
+      "detail": "crazy_egg detected on 52/58 pages (89.7%). Missing from 6 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "google_optimize",
+      "detail": "google_optimize detected on 52/58 pages (89.7%). Missing from 6 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "google_tag_manager",
+      "detail": "google_tag_manager detected on 52/58 pages (89.7%). Missing from 6 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "hubspot",
+      "detail": "hubspot detected on 52/58 pages (89.7%). Missing from 6 pages."
+    },
+    {
+      "type": "coverage_gap",
+      "severity": "medium",
+      "tag": "vwo",
+      "detail": "vwo detected on 52/58 pages (89.7%). Missing from 6 pages."
+    },
+    {
+      "type": "unidentified_vendors",
+      "severity": "medium",
+      "tag": "none",
+      "detail": "20 unidentified third-party hosts receiving requests. Top: tr.capterra.com, consentcdn.cookiebot.com, support.checkfront.com, js.zi-scripts.com, get.checkfront.com."
+    },
+    {
+      "type": "vendor_redundancy",
+      "severity": "medium",
+      "tag": "clarity, crazy_egg",
+      "detail": "2 heatmap/session recording tools active: clarity, crazy_egg. Redundant tools add network overhead, may produce conflicting data, and increase the privacy surface."
+    },
+    {
+      "type": "vendor_redundancy",
+      "severity": "medium",
+      "tag": "google_analytics_4, matomo, microsoft_clarity",
+      "detail": "3 analytics tools active: google_analytics_4, matomo, microsoft_clarity. Redundant tools add network overhead, may produce conflicting data, and increase the privacy surface."
+    },
+    {
+      "type": "vendor_redundancy",
+      "severity": "medium",
+      "tag": "google_optimize, vwo",
+      "detail": "2 A/B testing tools active: google_optimize, vwo. Redundant tools add network overhead, may produce conflicting data, and increase the privacy surface."
+    },
+    {
+      "type": "missing_title",
+      "severity": "medium",
+      "tag": "none",
+      "detail": "2 page(s) missing a title tag: https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg, https://www.checkfront.com/assets/brand/Checkfront_Color.svg."
+    },
+    {
+      "type": "duplicate_titles",
+      "severity": "medium",
+      "tag": "none",
+      "detail": "13 pages share duplicate titles across 6 title(s). Most repeated: \"Online Booking Software for Tours & Activities | Checkfront\" (3 pages)."
+    },
+    {
+      "type": "slow_pages",
+      "severity": "medium",
+      "tag": "none",
+      "detail": "5 page(s) load more than 1.5x the average (2102ms). Slowest: https://www.checkfront.com/features/booking-widget/?rwstep=product (7936ms). Next: https://www.checkfront.com/?cfcp=api (7520ms)."
+    },
+    {
+      "type": "tag_profile_inconsistency",
+      "severity": "low",
+      "tag": "none",
+      "detail": "8 distinct tag profiles detected. 31/58 pages share the dominant profile (6 tags). 27 pages have a different tag stack, suggesting template-level variation."
+    },
+    {
+      "type": "missing_description",
+      "severity": "low",
+      "tag": "none",
+      "detail": "5 page(s) missing a meta description: https://www.checkfront.com/support/developers, https://www.checkfront.com/login, https://www.checkfront.com/forum, https://www.checkfront.com/assets/brand/Checkfront_Graphite-Icon.svg, https://www.checkfront.com/assets/brand/Checkfront_Color.svg."
+    },
+    {
+      "type": "tag_performance_correlation",
+      "severity": "low",
+      "tag": "none",
+      "detail": "Pages with 15 tags average 4846ms load time vs 494ms for pages with 0 tags (880% slower)."
+    },
+    {
+      "type": "no_event_tracking",
+      "severity": "low",
+      "tag": "none",
+      "detail": "364 dataLayer pushes detected across all pages but 0 named GA4 events surfaced. No structured event tracking is in place -- conversion actions (form submits, sign-ups, purchases) are not being measured."
+    },
+    {
+      "type": "dead_end_pages",
+      "severity": "low",
+      "tag": "none",
+      "detail": "17 page(s) have 1 or fewer internal links, limiting discoverability: https://www.checkfront.com/integrations/zapier, https://www.checkfront.com/plans, https://www.checkfront.com/terms/authorized-users, https://www.checkfront.com/terms/payment-partners, https://www.checkfront.com/terms/self-serve and 12 more."
+    }
+  ]
+}
