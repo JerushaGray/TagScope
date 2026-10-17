@@ -1342,7 +1342,16 @@ class SiteAuditor:
                 if 'detection_note' in tech:
                     tech_notes[name] = tech['detection_note']
 
+        # Dedupe: skip technologies whose normalised name matches a TAG_PATTERNS key.
+        # Wappalyzer names like "Google Analytics 4" normalise to "google_analytics_4".
+        import re as _re
+        def _norm_tech(s):
+            return _re.sub(r'[\s\-]+', '_', s.lower())
+        _tag_pattern_keys = {_norm_tech(k) for k in TAG_PATTERNS}
+
         for name in sorted(tech_pages.keys()):
+            if _norm_tech(name) in _tag_pattern_keys:
+                continue
             coverage_pct = round(len(tech_pages[name]) / total_pages * 100, 1)
             conf_vals = tech_confidence[name]
             entry = {

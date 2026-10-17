@@ -307,3 +307,34 @@ class TestFindingsSortOrder:
         severities = [f['severity'] for f in data['findings']]
         order = {'high': 0, 'medium': 1, 'low': 2}
         assert severities == sorted(severities, key=lambda s: order[s])
+
+
+class TestTechIndexDedupe:
+    def test_tag_patterns_key_excluded_from_tech_index(self, auditor):
+        """Tech index must not contain entries whose name matches a TAG_PATTERNS key."""
+        techs = [
+            {'name': 'Google Analytics 4', 'category': 'Analytics', 'evidence': []},
+            {'name': 'WordPress', 'category': 'CMS', 'evidence': []},
+        ]
+        auditor.page_data = [_make_page('https://example.com', technologies=techs)]
+        data = _export_findings(auditor)
+        # 'google_analytics_4' is in TAG_PATTERNS — must not appear in tech_index
+        assert 'Google Analytics 4' not in data['technology_index']
+        # 'WordPress' is not in TAG_PATTERNS — must still appear
+        assert 'WordPress' in data['technology_index']
+
+    def test_no_tag_patterns_key_in_tech_index(self, auditor):
+        """Broader invariant: technology_index keys never duplicate TAG_PATTERNS."""
+        import re
+        from tagscope.patterns import TAG_PATTERNS
+        def norm(s): return re.sub(r'[\s\-]+', '_', s.lower())
+        tag_keys = {norm(k) for k in TAG_PATTERNS}
+        techs = [
+            {'name': 'Google Tag Manager', 'category': 'Tag Management', 'evidence': []},
+            {'name': 'Hotjar', 'category': 'Heatmaps', 'evidence': []},
+            {'name': 'Nginx', 'category': 'Web Server', 'evidence': []},
+        ]
+        auditor.page_data = [_make_page('https://example.com', technologies=techs)]
+        data = _export_findings(auditor)
+        for tech_name in data['technology_index']:
+            assert norm(tech_name) not in tag_keys, f"{tech_name!r} duplicates a TAG_PATTERNS key"
