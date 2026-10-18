@@ -85,3 +85,15 @@ logging:
 resume:
   enabled: true               # Allow resuming interrupted crawls
   state_file: "crawl_state.json"
+
+# Interaction Simulation (--interact flag)
+interact:
+  enabled: false              # Enable via --interact CLI flag
+  scroll_always: true         # Scroll milestones run on every page (triggers deferred scripts)
+  scroll_delay: 250           # Milliseconds between scroll steps
+  hover_nav: true             # Hover over nav links to trigger dropdowns
+  click_ctas: true            # Click non-navigation buttons to trigger GTM events
+  interaction_delay: 500      # Milliseconds between interactions
+  max_clicks: 3               # Maximum CTA buttons to click per page
+  exclude_patterns:           # URL paths to skip interactions on
+    - /blog
