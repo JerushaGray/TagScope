@@ -214,7 +214,7 @@ tags:
 
 output:
   formats: ["json", "csv", "html"]
-  prefix: "output/site-audit"
+  prefix: "site-audit"
 
 resume:
   enabled: true         # Resume interrupted crawls
