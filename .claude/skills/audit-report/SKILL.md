@@ -21,7 +21,7 @@ If no file is provided, look for the most recent `site-audit-*.json` in the work
 ## Instructions
 
 Read the JSON file at `$0` using the Read tool. If a companion findings report exists
-(same path with `-findings.json` suffix, e.g., `output/site-audit-example_com-findings.json`),
+(same path with `-findings.json` suffix, e.g., `outputs/example_com/2026-10-18/site-audit-example_com-findings.json`),
 read that too -- it contains the pre-built tag index, technology index, coverage profiles,
 GA4 summary, and auto-generated findings. Use the findings report as your primary data
 source for sections 2-5 and 7, and fall back to the raw JSON for anything not covered.
@@ -30,9 +30,9 @@ Use the data dictionary at `docs/DATA_DICTIONARY.md` for field definitions if ne
 
 ## Output
 
-Write the finished report to `output/audit-report-{domain}.md`, where
-`{domain}` is derived from the crawl's start_url (e.g., `output/audit-report-basemonkeys_com.md`).
-Create the `output/` directory if it does not exist. Use the Write tool to save the file.
+Write the finished report to the same directory as the input JSON file, named
+`audit-report-{domain}.md` (e.g., `outputs/example_com/2026-10-18/audit-report-example_com.md`).
+Use the Write tool to save the file.
 After writing, tell the user the output path.
 
 **Do not hallucinate data. Every number, tag name, and finding must come from the JSON.**
@@ -132,12 +132,14 @@ meaningful to report.
   - **Risk**: why it matters (privacy, performance, data quality, compliance)
   - **Recommendation**: specific action to take
   - **Priority**: High / Medium / Low
-- Finding types to expect: `coverage_gap`, `dual_fire`, `multiple_measurement_ids`,
-  `programmatic_ads`, `no_consent_management`, `unidentified_vendors`,
-  `tag_profile_inconsistency`, `vendor_redundancy`, `missing_title`,
-  `missing_description`, `duplicate_titles`, `slow_pages`,
-  `tag_performance_correlation`, `silent_ga4`, `no_event_tracking`,
-  `multiple_gtm_containers`, `dead_end_pages`
+- Finding types to expect: `declared_not_executed`, `coverage_gap`, `dual_fire`,
+  `multiple_measurement_ids`, `programmatic_ads`, `no_consent_management`,
+  `unidentified_vendors`, `tag_profile_inconsistency`, `vendor_redundancy`,
+  `missing_title`, `missing_description`, `duplicate_titles`, `slow_pages`,
+  `tag_performance_correlation`, `silent_ga4`, `no_events_observed`,
+  `multiple_gtm_containers`, `dead_end_pages`, `events_configured_not_observed`,
+  `consent_default_granted`, `paused_tags`, `obfuscated_custom_html`,
+  `tags_without_consent_requirement`
 - Sort by priority descending
 
 ### Formatting Rules
