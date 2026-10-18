@@ -1,5 +1,45 @@
 # Changelog
 
+## v3.6.1
+
+Deferred script detection, fixed URL scanning, and flush reliability.
+
+### Added
+
+- **`--urls-file` flag.** Scan a fixed list of URLs from a text file
+  (one per line) instead of crawling and discovering pages. Disables
+  link discovery, bypasses same-domain restriction, and auto-sets
+  `max_pages` to the URL count. Supports comments (`#`) and blank
+  lines. Enables reproducible run-over-run comparisons.
+- **Trusted input events for deferred script loaders.** `page.mouse.move()`
+  is now dispatched before scroll simulation to trigger WP Rocket
+  (`wp_rocket_delay_js`), LiteSpeed, Perfmatters, and similar deferred
+  script mechanisms that wait for a real browser input event. Previously,
+  programmatic `window.scrollTo()` calls did not release deferred scripts,
+  causing GTM and all GTM-dependent tags to appear as `declared` rather
+  than `fired` on affected sites.
+
+### Fixed
+
+- **`_flush_to_disk` datetime serialization.** Added `default=str` to the
+  partial-data JSON dump, fixing `Object of type datetime is not JSON
+  serializable` errors every 50 pages.
+- **`_flush_to_disk` atomic writes.** Partial data is now written to a
+  `.tmp` file and renamed into place, preventing corrupted JSON from
+  interrupted writes.
+- **`test_cli_output_prefix` assertion.** Updated to match the date-based
+  output directory structure introduced in v3.3.0.
+
+### Tests
+
+- 5 new tests for `--urls-file` (URL list loading, max_pages auto-set,
+  explicit max_pages override, comment/blank skipping, explicit URL
+  precedence).
+- Updated `_base_args` helper with `urls_file` key.
+- Updated `test_no_rate_limit_sleep` to allow small interaction sleeps
+  from the mouse move fix.
+- Total: 406 tests.
+
 ## v3.6.0
 
 Audit quality overhaul: declared-vs-fired tag status, container-aware

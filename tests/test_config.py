@@ -40,6 +40,7 @@ class TestLoadConfig:
             'exclude': None,
             'include': None,
             'no_resume': False,
+            'urls_file': None,
         }
         args.update(overrides)
         return args
@@ -67,7 +68,7 @@ class TestLoadConfig:
 
     def test_cli_output_prefix(self):
         config = load_config(None, self._base_args(output='my-report'))
-        assert config['output']['prefix'] == 'my-report'
+        assert config['output']['prefix'].endswith('/my-report')
 
     def test_cli_format_single(self):
         config = load_config(None, self._base_args(format='html'))
@@ -203,3 +204,57 @@ resume:
 
         os.unlink(f.name)
         assert config['crawl']['max_pages'] == 999
+
+    def test_urls_file_populates_urls_list(self):
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+            f.write('https://example.com/a\nhttps://example.com/b\nhttps://example.com/c\n')
+            f.flush()
+            config = load_config(None, self._base_args(url=None, urls_file=f.name))
+
+        os.unlink(f.name)
+        assert config['urls_list'] == [
+            'https://example.com/a',
+            'https://example.com/b',
+            'https://example.com/c',
+        ]
+        assert config['start_url'] == 'https://example.com/a'
+
+    def test_urls_file_sets_max_pages_to_url_count(self):
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+            f.write('https://example.com/1\nhttps://example.com/2\n')
+            f.flush()
+            config = load_config(None, self._base_args(url=None, urls_file=f.name))
+
+        os.unlink(f.name)
+        assert config['crawl']['max_pages'] == 2
+
+    def test_urls_file_explicit_max_pages_overrides(self):
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+            f.write('https://example.com/1\nhttps://example.com/2\n')
+            f.flush()
+            config = load_config(None, self._base_args(url=None, urls_file=f.name, max_pages=10))
+
+        os.unlink(f.name)
+        assert config['crawl']['max_pages'] == 10
+
+    def test_urls_file_skips_comments_and_blanks(self):
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+            f.write('# header comment\nhttps://example.com/a\n\n# another\nhttps://example.com/b\n')
+            f.flush()
+            config = load_config(None, self._base_args(url=None, urls_file=f.name))
+
+        os.unlink(f.name)
+        assert config['urls_list'] == [
+            'https://example.com/a',
+            'https://example.com/b',
+        ]
+
+    def test_urls_file_with_explicit_url_uses_url_as_start(self):
+        with tempfile.NamedTemporaryFile(mode='w', suffix='.txt', delete=False) as f:
+            f.write('https://example.com/a\nhttps://example.com/b\n')
+            f.flush()
+            config = load_config(None, self._base_args(
+                url='https://example.com', urls_file=f.name))
+
+        os.unlink(f.name)
+        assert config['start_url'] == 'https://example.com'

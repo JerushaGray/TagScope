@@ -71,7 +71,24 @@ def load_config(config_file: Optional[str], cli_args: Dict) -> Dict:
     if not config:
         config = _default_config()
 
-    config['start_url'] = cli_args['url']
+    # Handle --urls-file
+    if cli_args.get('urls_file'):
+        urls_path = Path(cli_args['urls_file'])
+        if not urls_path.exists():
+            print(f"URLs file not found: {cli_args['urls_file']}", file=sys.stderr)
+            sys.exit(1)
+        urls = [line.strip() for line in urls_path.read_text().splitlines()
+                if line.strip() and not line.strip().startswith('#')]
+        if not urls:
+            print(f"No URLs found in {cli_args['urls_file']}", file=sys.stderr)
+            sys.exit(1)
+        config['urls_list'] = urls
+        config['start_url'] = cli_args.get('url') or urls[0]
+        if not cli_args.get('max_pages'):
+            config['crawl']['max_pages'] = len(urls)
+    else:
+        config['start_url'] = cli_args['url']
+
     if cli_args.get('max_pages'):
         config['crawl']['max_pages'] = cli_args['max_pages']
     if cli_args.get('max_depth'):
@@ -191,6 +208,9 @@ Examples:
                         help='Enable extended technology detection using cached Wappalyzer rulesets')
     parser.add_argument('--interact', action='store_true',
                         help='Simulate user interactions (scroll, CTA clicks, nav hover) to trigger GTM interaction-based rules')
+    parser.add_argument('--urls-file', metavar='FILE',
+                        help='Path to a text file of URLs to scan (one per line); '
+                             'disables crawl discovery')
     parser.add_argument('--version', action='version',
                         version=f'%(prog)s {__version__}')
 
@@ -208,8 +228,8 @@ Examples:
             sys.exit(1)
         return
 
-    if not args.url:
-        parser.error("the following arguments are required: url")
+    if not args.url and not args.urls_file:
+        parser.error("one of the following is required: url or --urls-file")
 
     print(f"TagScope v{__version__} - checking dependencies...\n")
     if not check_dependencies():

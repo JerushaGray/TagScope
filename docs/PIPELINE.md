@@ -141,7 +141,7 @@ When the crawl completes, the CLI automatically runs all configured exports in s
 
 ### 3a. Raw JSON Export
 
-**File:** `output/site-audit-{domain}.json`
+**File:** `outputs/{domain}/{date}/site-audit-{domain}.json`
 
 The complete crawl dataset:
 
@@ -175,7 +175,7 @@ The complete crawl dataset:
 
 ### 3b. Findings JSON Export
 
-**File:** `output/site-audit-{domain}-findings.json`
+**File:** `outputs/{domain}/{date}/site-audit-{domain}-findings.json`
 
 A computed analysis layer derived from the raw data. This is not a copy -- it aggregates, cross-references, and analyzes the page-level data to produce:
 
@@ -232,7 +232,7 @@ Findings are sorted by severity (high first).
 
 ### 3c. Tag Coverage Matrix (CSV)
 
-**File:** `output/site-audit-{domain}-tag-matrix.csv`
+**File:** `outputs/{domain}/{date}/site-audit-{domain}-tag-matrix.csv`
 
 A spreadsheet-friendly matrix where:
 - Rows are pages (grouped when multiple pages share an identical tag profile)
@@ -242,13 +242,13 @@ A spreadsheet-friendly matrix where:
 
 ### 3d. CSV Export
 
-**File:** `output/site-audit-{domain}.csv`
+**File:** `outputs/{domain}/{date}/site-audit-{domain}.csv`
 
 Flat tabular export of page-level data for spreadsheet analysis.
 
 ### 3e. HTML Export
 
-**File:** `output/site-audit-{domain}.html`
+**File:** `outputs/{domain}/{date}/site-audit-{domain}.html`
 
 Interactive HTML report with sortable tables and visual summaries.
 
@@ -261,7 +261,7 @@ Interactive HTML report with sortable tables and visual summaries.
 This is the only step that involves Claude. It is triggered manually:
 
 ```
-/audit-report output/site-audit-{domain}.json --tier 3
+/audit-report outputs/{domain}/{date}/site-audit-{domain}.json --tier 3
 ```
 
 The Claude skill reads the raw JSON and findings JSON, then produces a structured markdown report. It does not generate new findings -- it formats and expands the auto-generated findings into client-ready prose.

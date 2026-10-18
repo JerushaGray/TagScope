@@ -47,6 +47,12 @@ tagscope https://example.com --format llm
 # All formats at once
 tagscope https://example.com --format all
 
+# Scan a fixed list of URLs (one per line, no crawl discovery)
+tagscope --urls-file urls.txt --format all
+
+# Simulate user interactions to trigger deferred tags (scroll, hover, click)
+tagscope https://example.com --interact
+
 # Filter URLs
 tagscope https://example.com --exclude "/admin.*" "/login.*"
 
@@ -93,7 +99,7 @@ async def run():
 
 ## Output
 
-Each crawl creates a run directory at `output/run-{domain}/` containing:
+Each crawl creates a run directory at `outputs/{domain}/{date}/` containing:
 
 | File | Contents |
 |------|----------|
@@ -106,14 +112,14 @@ Each crawl creates a run directory at `output/run-{domain}/` containing:
 
 ### Auto-generated findings
 
-The findings report detects 17 issue types automatically, including coverage gaps, UA/GA4 dual-fire, silent GA4 pages, missing consent management, vendor redundancy, duplicate titles, missing metadata, slow pages, dead-end pages, and programmatic ad vendor exposure. Each finding includes a type, severity (high/medium/low), and detail string.
+The findings report detects 18 issue types automatically, including coverage gaps, declared-but-not-executed tags, UA/GA4 dual-fire, silent GA4 pages, missing consent management, vendor redundancy, duplicate titles, missing metadata, slow pages, dead-end pages, and programmatic ad vendor exposure. Each finding includes a type, severity (high/medium/low), and detail string.
 
 ### Narrative report (optional)
 
 If you use [Claude Code](https://claude.ai/code), the bundled `/audit-report` skill reads the crawl JSON and produces a client-ready markdown report:
 
 ```
-/audit-report output/run-example.com/site-audit-example_com.json --tier 3
+/audit-report outputs/example_com/2026-10-18/site-audit-example_com.json --tier 3
 ```
 
 | Tier | Content | Length |
@@ -154,7 +160,7 @@ URL --> Playwright (Chromium, headless)
          |--> Resume capability via state files
          |
          v
-    output/run-{domain}/
+    outputs/{domain}/{date}/
          |--> Raw JSON + CSV + HTML exports
          |--> Findings report (computed analysis + auto-findings)
          |--> Tag coverage matrix
@@ -174,7 +180,7 @@ src/tagscope/
     mcp_server.py            MCP server with 6 auditing tools
     wappalyzer_adapter.py    Wappalyzer fingerprint conversion and caching
 config.yaml           Default configuration template
-tests/                366 tests (pytest)
+tests/                406 tests (pytest)
 docs/
     PIPELINE.md       Full pipeline walkthrough
     DATA_DICTIONARY.md  Field definitions for patterns, detection output, and export schema
@@ -238,7 +244,7 @@ This is opt-in because the Wappalyzer fingerprint data is [GPL-3.0](https://www.
 | Technology fingerprinting (50 curated, ~5000 extended) | Yes | Limited | No | No |
 | DataLayer/GA4 event parsing | Yes | No | No | No |
 | GA4 Measurement Protocol decoding | Yes | No | No | No |
-| Auto-generated findings (17 types) | Yes | No | No | No |
+| Auto-generated findings (18 types) | Yes | No | No | No |
 | LLM-optimized output format | Yes | No | No | No |
 | Python API (`audit_page`) | Yes | No | No | No |
 | MCP server (AI agent integration) | Yes | No | No | No |

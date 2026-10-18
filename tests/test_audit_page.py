@@ -195,9 +195,11 @@ class TestAuditPage:
             asyncio.run(
                 audit_page('https://example.com', browser=browser)
             )
-            # sleep(0) is effectively a no-op yield; should not sleep > 0
+            # sleep(0) is a no-op yield; small sleeps (≤0.25s) are allowed
+            # for interaction triggers (e.g. mouse move for wp_rocket).
+            # Only flag genuine rate-limit sleeps (≥1s).
             for call in mock_sleep.call_args_list:
-                assert call.args[0] == 0, f"unexpected sleep({call.args[0]})"
+                assert call.args[0] < 1.0, f"unexpected rate-limit sleep({call.args[0]})"
 
     def test_config_overrides_applied(self):
         page = _make_mock_page()

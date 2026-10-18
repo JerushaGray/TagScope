@@ -173,7 +173,13 @@ class SiteAuditor:
 
         # State management
         self.visited_urls: Set[str] = set()
-        self.to_visit: List[Tuple[str, int]] = [(self.start_url, 0)]
+        urls_list = config.get('urls_list')
+        if urls_list:
+            self.to_visit: List[Tuple[str, int]] = [(u, 0) for u in urls_list]
+            self._fixed_url_mode = True
+        else:
+            self.to_visit: List[Tuple[str, int]] = [(self.start_url, 0)]
+            self._fixed_url_mode = False
         self.page_data: List[Dict] = []
         self.broken_links: List[Dict] = []
         self.network_requests: Dict[str, List] = defaultdict(list)
@@ -302,8 +308,11 @@ class SiteAuditor:
 
                 existing_data.extend(self.page_data)
 
-                with open(temp_file, 'w') as f:
-                    json.dump(existing_data, f, indent=2)
+                # Write to a temp path then rename for atomic flush
+                tmp_write = temp_file.with_suffix('.tmp')
+                with open(tmp_write, 'w') as f:
+                    json.dump(existing_data, f, indent=2, default=str)
+                tmp_write.replace(temp_file)
 
                 logging.info(f"Flushed {len(self.page_data)} pages to disk")
                 self.page_data = []
@@ -325,6 +334,9 @@ class SiteAuditor:
 
     def should_crawl(self, url: str) -> bool:
         """Check if URL should be crawled."""
+        if self._fixed_url_mode:
+            return True
+
         parsed = urlparse(url)
 
         if parsed.netloc != self.base_domain:
@@ -937,6 +949,19 @@ class SiteAuditor:
                 return
 
         try:
+            # --- Trigger deferred script loaders (wp_rocket_delay_js, etc.) ---
+            # These listen for trusted browser input events (mousemove, keydown,
+            # touchstart) before releasing queued scripts.  A Playwright
+            # page.mouse.move() dispatches a real InputEvent the browser trusts,
+            # unlike page.evaluate("dispatchEvent(...)") which is synthetic.
+            await page.mouse.move(100, 100)
+            await asyncio.sleep(0.1)
+            await page.mouse.move(120, 120)
+            try:
+                await page.wait_for_load_state('networkidle', timeout=5000)
+            except Exception:
+                pass
+
             # --- Scroll depth milestones (always, unless disabled) ---
             if cfg.get('scroll_always', True) or cfg.get('scroll', True):
                 scroll_delay = cfg.get('scroll_delay', 250) / 1000
@@ -1148,7 +1173,7 @@ class SiteAuditor:
                 'gtm_executed': gtm_executed,
             }
 
-            if depth < self.max_depth:
+            if not self._fixed_url_mode and depth < self.max_depth:
                 for link in links:
                     if link not in self.visited_urls and link not in [u[0] for u in self.to_visit]:
                         self.to_visit.append((link, depth + 1))
@@ -1177,9 +1202,13 @@ class SiteAuditor:
 
     async def crawl(self):
         """Main crawl loop with concurrent page processing."""
-        print(f"\nStarting crawl of {self.start_url}")
-        print(f"Settings: {self.max_pages} pages, depth {self.max_depth}, {self.concurrent_pages} concurrent")
-        print(f"Rate limit: {self.rate_limit}s per page\n")
+        if self._fixed_url_mode:
+            print(f"\nScanning {len(self.to_visit)} URLs from file (no crawl discovery)")
+            print(f"Settings: {self.concurrent_pages} concurrent, rate limit {self.rate_limit}s per page\n")
+        else:
+            print(f"\nStarting crawl of {self.start_url}")
+            print(f"Settings: {self.max_pages} pages, depth {self.max_depth}, {self.concurrent_pages} concurrent")
+            print(f"Rate limit: {self.rate_limit}s per page\n")
 
         async with async_playwright() as p:
             browser = None
