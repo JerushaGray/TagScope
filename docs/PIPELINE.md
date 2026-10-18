@@ -20,6 +20,9 @@ The CLI (`src/tagscope/cli.py`) parses arguments, loads configuration (defaults 
 | `--rate-limit` | 1.0s | Delay between requests per tab |
 | `--extended` | off | Enable Wappalyzer rulesets for broader tech detection |
 | `--format` | json, csv, html | Export format(s) |
+| `--urls-file` | off | Scan a fixed list of URLs from a text file (no crawl discovery) |
+| `--interact` | off | Simulate user interactions (scroll, hover, CTA clicks) |
+| `--no-resume` | off | Disable resume capability and start a fresh crawl |
 
 If `--extended` is passed, Wappalyzer fingerprints are loaded from the local cache and merged with built-in patterns before crawling begins.
 
@@ -224,9 +227,10 @@ A computed analysis layer derived from the raw data. This is not a copy -- it ag
 | `slow_pages` | medium | Pages loading >1.5x the site average |
 | `tag_performance_correlation` | low | More tags correlate with slower load times |
 | `silent_ga4` | high/medium | GA4 tag present but no collect requests fired |
-| `no_event_tracking` | low | DataLayer active but zero GA4 events |
+| `no_events_observed` | low | DataLayer active but zero GA4 events observed |
 | `multiple_gtm_containers` | medium | More than one GTM container ID |
 | `dead_end_pages` | low | Pages with 1 or fewer internal links |
+| `declared_not_executed` | high | GTM present in HTML but not firing (e.g., deferred by wp_rocket) |
 
 Findings are sorted by severity (high first).
 
@@ -256,7 +260,7 @@ Interactive HTML report with sortable tables and visual summaries.
 
 ## Step 4: Narrative Report (Manual, On-Demand)
 
-**File:** `output/audit-report-{domain}.md`
+**File:** `outputs/{domain}/{date}/audit-report-{domain}.md`
 
 This is the only step that involves Claude. It is triggered manually:
 
@@ -291,7 +295,7 @@ The Claude skill reads the raw JSON and findings JSON, then produces a structure
 After a full run with a tier 3 report, the output directory contains:
 
 ```
-output/
+outputs/{domain}/{date}/
   site-audit-{domain}.json           # Raw crawl data
   site-audit-{domain}-findings.json  # Computed analysis + auto-findings
   site-audit-{domain}-tag-matrix.csv # Tag coverage matrix

@@ -45,6 +45,32 @@
 - [x] MCP server with 6 tools (`tagscope[mcp]`, `tagscope-mcp`)
 - [x] PyPI packaging (PEP 639, `tagscope[mcp]` optional extra)
 
+### v3.5
+
+- [x] `retry_on_status` enforcement for HTTP 429 and 5xx
+- [x] `respect_robots` enforcement via `urllib.robotparser`
+- [x] `custom_patterns` config support for user-defined tag patterns
+- [x] Confidence level corrections and findings version fix
+
+### v3.6
+
+- [x] Declared vs fired tag status (`fired_page_count`, `declared_only_pages`)
+- [x] Script deferral detection (8 mechanisms: WP Rocket, LiteSpeed, etc.)
+- [x] `declared_not_executed` finding type for GTM deferral detection
+- [x] GTM container analysis findings (5 new finding types)
+- [x] `TAG_ALIASES` for deprecated tag key normalization
+- [x] Technology index deduplication (tag-overlap removal)
+- [x] Google Optimize false-positive fix, Clarity merge into Microsoft Clarity
+- [x] Interaction simulation (`--interact` flag: scroll, hover, CTA clicks)
+- [x] Date-based output directories (`outputs/{domain}/{date}/`)
+
+### v3.6.1
+
+- [x] `--urls-file` flag for fixed URL scanning (reproducible comparisons)
+- [x] Trusted input events (`page.mouse.move()`) to trigger deferred script loaders
+- [x] `_flush_to_disk` datetime serialization and atomic write fixes
+- [x] 406 tests
+
 ## Planned
 
 - [ ] MCP client connection docs: Claude Desktop config block, `mcp.json` at repo root
@@ -53,7 +79,7 @@
 
 ## Future ideas
 
-- Drift comparison: diff two crawl JSONs to surface tag changes between runs
+- Drift comparison: diff two crawl JSONs to surface tag changes between runs (partially addressed by `--urls-file` for reproducible scanning)
 - Raw-fetch mode: lightweight requests-based crawl for sites that don't require JS
 - GA4 and GTM API integration for cross-referencing configured vs. detected events
 - Streamlit dashboard for visual audit review

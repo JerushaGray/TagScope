@@ -179,6 +179,8 @@ Top-level keys in the exported JSON file:
 | `internal_links_found` | `int` | Count of internal links extracted from the page. |
 | `screenshot` | `str\|null` | Path to screenshot file, if captured. |
 | `crawled_at` | `str` | ISO 8601 timestamp of when the page was crawled. |
+| `script_deferral` | `object` | Script deferral detection output (v3.6.0+). Contains `deferred` (bool), `mechanisms` (list of strings), `count` (int), `examples` (list of URLs). |
+| `gtm_executed` | `bool` | Whether GTM was confirmed executing on this page via network requests or dataLayer events (v3.6.0+). |
 
 ### metadata
 
@@ -340,8 +342,10 @@ Exported as `{prefix}-findings.json` alongside the main JSON export.
 | `coverage_pct` | `float` | Percentage of pages with this tag (0-100). |
 | `confidence` | `str` | Highest confidence level observed across all pages. |
 | `ids` | `list[str]` | All unique IDs extracted (container IDs, measurement IDs, etc.). |
+| `fired_page_count` | `int` | Number of pages where the tag was confirmed firing via network requests (v3.6.0+). |
 | `evidence_types` | `list[str]` | All unique evidence strings observed. |
 | `detection_methods` | `list[str]` | Distinct evidence prefixes (e.g., `html_pattern`, `request_host`). |
+| `declared_only_pages` | `list[str]` | URLs where the tag is present in HTML but not confirmed firing. Present only when some pages are declared-only (v3.6.0+). |
 | `absent_from` | `list[str]` | URLs where tag was not detected. Present only when coverage < 100%. |
 
 ### technology_index entries
@@ -379,7 +383,7 @@ Exported as `{prefix}-findings.json` alongside the main JSON export.
 
 | Field | Type | Description |
 |-------|------|-------------|
-| `type` | `str` | Finding type. One of: `coverage_gap`, `dual_fire`, `multiple_measurement_ids`, `programmatic_ads`, `no_consent_management`, `unidentified_vendors`, `tag_profile_inconsistency`, `vendor_redundancy`, `missing_title`, `missing_description`, `duplicate_titles`, `slow_pages`, `tag_performance_correlation`, `silent_ga4`, `no_event_tracking`, `multiple_gtm_containers`, `dead_end_pages`. |
+| `type` | `str` | Finding type. One of: `declared_not_executed`, `coverage_gap`, `dual_fire`, `multiple_measurement_ids`, `programmatic_ads`, `no_consent_management`, `unidentified_vendors`, `tag_profile_inconsistency`, `vendor_redundancy`, `missing_title`, `missing_description`, `duplicate_titles`, `slow_pages`, `tag_performance_correlation`, `silent_ga4`, `no_events_observed`, `multiple_gtm_containers`, `dead_end_pages`, `events_configured_not_observed`, `consent_default_granted`, `paused_tags`, `obfuscated_custom_html`, `tags_without_consent_requirement`. |
 | `severity` | `str` | `high`, `medium`, or `low`. |
 | `tag` | `str` | Tag name(s) related to the finding, or `'none'`. |
 | `detail` | `str` | Human-readable description of the finding. |
@@ -405,6 +409,13 @@ Exported as `{prefix}-findings.json` alongside the main JSON export.
 | `no_event_tracking` | low | DataLayer has pushes but zero named GA4 events -- no structured conversion tracking in place. |
 | `multiple_gtm_containers` | medium | More than one GTM container ID extracted. |
 | `dead_end_pages` | low | Pages with 1 or fewer internal outbound links. |
+| `declared_not_executed` | high | GTM is present in HTML but network requests confirm it did not execute (e.g., due to `wp_rocket_delay_js`). |
+| `no_events_observed` | low | DataLayer has pushes but none were GA4 event names. Replaces `no_event_tracking` with observational wording (v3.6.0+). |
+| `events_configured_not_observed` | medium | GTM container defines event tags but none were observed firing. Requires `gtm_container_summary`. |
+| `consent_default_granted` | medium | GTM container's consent defaults grant all storage types. Requires `gtm_container_summary`. |
+| `paused_tags` | low | GTM container has paused tags. Requires `gtm_container_summary`. |
+| `obfuscated_custom_html` | medium | GTM container has custom HTML tags with obfuscated or encoded content. Requires `gtm_container_summary`. |
+| `tags_without_consent_requirement` | medium | GTM container has tags that fire without any consent check. Requires `gtm_container_summary`. |
 
 ---
 

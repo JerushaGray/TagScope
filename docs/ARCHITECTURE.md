@@ -132,7 +132,7 @@ resource constraints. The `CrawlState` class persists visited URLs, the remainin
 and collected page data to a JSON file. On restart, the auditor picks up where it left
 off instead of re-crawling.
 
-State files are domain-specific (`output/crawl_state_example_com.json`) so multiple audits can
+State files are domain-specific (`outputs/{domain}/{date}/crawl_state_{domain}.json`) so multiple audits can
 coexist. The `--no-resume` flag forces a fresh start.
 
 ### Evidence and confidence model (v3.1)
@@ -236,14 +236,15 @@ first one that responds.
 
 ```
 src/tagscope/
-  __init__.py              # Package version
+  __init__.py              # Package exports: audit_page, format_page_llm, format_site_llm
   __main__.py              # python -m tagscope entry point
-  auditor.py               # SiteAuditor class, crawl logic, export
+  auditor.py               # SiteAuditor class, crawl logic, detection, export
   cli.py                   # Argument parsing, config loading, dependency checks
-  patterns.py              # TAG_PATTERNS, TECHNOLOGY_PATTERNS, GA4_EVENTS
+  patterns.py              # TAG_PATTERNS, TECHNOLOGY_PATTERNS, GA4_EVENTS, TAG_ALIASES
+  mcp_server.py            # MCP server with 6 auditing tools
   wappalyzer_adapter.py    # Wappalyzer fingerprint conversion and caching
 
-tests/
+tests/                     # 406 tests (pytest)
   conftest.py              # Shared fixtures (config, auditor instance)
   test_tag_detection.py
   test_technology_detection.py
@@ -252,9 +253,11 @@ tests/
   test_config.py
   test_export.py
   test_patterns.py
+  test_findings.py
+  test_audit_page.py
   test_wappalyzer_adapter.py
 ```
 
 Tests cover all non-Playwright logic (pattern matching, config loading, URL filtering,
-data export). The browser-dependent crawl path is tested via live runs rather than mocked
-browser sessions, keeping tests fast and deterministic.
+data export, findings generation). The browser-dependent crawl path is tested via live
+runs and mocked browser sessions, keeping tests fast and deterministic.
